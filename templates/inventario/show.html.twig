@@ -1,0 +1,154 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Mostrar Inventario{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Objeto</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Objeto</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Listado Inventario</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Mostrar Inventario</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <!-- Basic Inputs Validation start -->
+        <div class="card">
+            <div class="card-header">
+                <h5>Mostrar Inventario</h5>
+            </div>
+            <div class="card-block">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.cod_inventario, 'Código del Inventario :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.cod_inventario, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.fechainicio, 'Fecha y Hora de Inicio :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fechainicio, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.fechafin, 'Fecha y Hora de Fin :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fechafin, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.duracion, 'Duración :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.duracion, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.objetivo_general, 'Objetivo General :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.objetivo_general, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.objetivo_especificos, 'Objetivo Especificos :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.objetivo_especificos, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.estado, 'Estado :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.estado, { 'attr': { 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.especialistainvejefe, 'Especialista Jefe :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.especialistainvejefe, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.especialistasinvParticipantes, 'Especialistas Participantes :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.especialistasinvParticipantes, { 'attr': { 'class': 'form-control js-example-basic-multiple', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.sitiopatrimonial, 'Sitio Patrimonial :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.sitiopatrimonial, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.tipoinventario, 'Tipo de Inventario :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.tipoinventario, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.autorizacion, 'Autorización :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.autorizacion, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.faltantes, 'Faltantes :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.faltantes, { 'attr': { 'class': 'js-small', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.objetosfaltantes, 'Objetos Faltantes :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.objetosfaltantes, { 'attr': { 'class': 'form-control js-example-basic-multiple', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.descripcion_faltantes, 'Descripción de los Faltantes :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.descripcion_faltantes, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.causas_faltantes, 'Causa de los Faltantes :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.causas_faltantes, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <a href="{{ path('intervencion_index') }}" style="background-color:transparent" class="btn btn-mat btn-info f-right"><span style="color:#010d0c"><i class="icofont icofont-exchange"></i> Volver al Listado</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

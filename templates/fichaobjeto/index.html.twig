@@ -1,0 +1,439 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Ficha Objeto Patrimonial{% endblock %}
+{% block head %}
+    <!-- owl carousel css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/owl.carousel/css/owl.carousel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/owl.carousel/css/owl.theme.default.css') }}">
+    <!-- swiper css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/swiper/css/swiper.min.css') }}">
+    <!-- light-box css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/lightbox2/css/lightbox.min.css') }}">
+    <!-- modal efect css -->
+    <link href="{{ asset('page/modal/css/component.css') }}" rel="stylesheet">
+{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col-auto">
+                <div class="d-inline-block">
+                    <form method="get" action=".">
+                        <div class="input-group input-group-button input-group-primary">
+                            {{ form_widget(form.keyword, { 'attr': { 'class': 'form-control', 'placeholder': 'Buscar Ficha Objeto' } }) }}
+                            <button type="submit" value="filter" class="btn btn-primary input-group-addon" id="basic-addon1">Buscar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Objeto</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Listado Ficha Objeto Patrimonial</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task col-lg-12">
+                <div class="task-right-header-status">
+                    <span data-toggle="collapse">Busqueda Avanzada</span>
+                    <i class="icofont icofont-rounded-down f-right"></i>
+                </div>
+                <!-- end of sidebar-header completed status-->
+                <div class="taskboard-right-progress" style="display: none;">
+                    <form method="get" action=".">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-10">{{ form_label(form.codigoobjeto, 'Código del Objeto:') }}</label>
+                                    <div class="col-sm-10">
+                                        {{ form_widget(form.codigoobjeto, { 'attr': { 'class': 'form-control', 'placeholder': 'Código del Objeto Patrimonial' } }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-10">{{ form_label(form.otronombreobjeto, 'Otro Nombre :') }}</label>
+                                    <div class="col-sm-10">
+                                        {{ form_widget(form.otronombreobjeto, { 'attr': { 'class': 'form-control', 'placeholder': 'Otro nombre' } }) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-10">{{ form_label(form.nombreobjeto, 'Nombre del Objeto :') }}</label>
+                                    <div class="col-sm-10">
+                                        {{ form_widget(form.nombreobjeto, { 'attr': { 'class': 'form-control', 'placeholder': 'Nombre del Objeto Patrimonial' } }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-10">{{ form_label(form.categoriaobjeto, 'Categoría del Objeto :') }}</label>
+                                    <div class="col-sm-10">
+                                        {{ form_widget(form.categoriaobjeto) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-10">{{ form_label(form.tipomaterial, 'Tipo de Material :') }}</label>
+                                    <div class="col-sm-10">
+                                        {{ form_widget(form.tipomaterial, { 'attr': { 'class': 'form-control', 'placeholder': 'Tipo de Material' } }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-10">{{ form_label(form.subtipomaterial, 'SubTipo de Material :') }}</label>
+                                    <div class="col-sm-10">
+                                        {{ form_widget(form.subtipomaterial) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-10">{{ form_label(form.usofuncion, 'Uso - Función :') }}</label>
+                                    <div class="col-sm-10">
+                                        {{ form_widget(form.usofuncion, { 'attr': { 'class': 'form-control', 'placeholder': 'Tipo de Material' } }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-10">{{ form_label(form.sitiopatrimonial, 'Sitio Patrimonial :') }}</label>
+                                    <div class="col-sm-10">
+                                        {{ form_widget(form.sitiopatrimonial) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-10"></label>
+                            <div class="col-sm-12">
+                                <button type="submit" name="submit-filter" value="filter" class="btn btn-mat btn-dark f-right"><i
+                                            class="icofont icofont-search-alt-1"></i> Avanzada
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Ficha Objeto Patrimonial</h5>
+                <div class="dropdown-inverse dropdown open f-right">
+                    <button class="btn dropdown-toggle waves-effect waves-light" style="background-color:transparent" type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="icofont icofont-edit-alt"></i>Exportar</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="icofont icofont-file-pdf"></i> PDF</a>
+                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="icofont icofont-file-excel"></i> Excel</a>
+                    </div>
+                </div>
+                <a href="{{ path('fichaobjeto_index') }}">
+                    <button type="button" name="reset-filter" class="btn f-right" style="background-color:transparent" id="btn-reset-filtros"><i class="icofont icofont-refresh"></i>Refrescar</button>
+                </a>
+                <a href="{{ path('fichaobjeto_new') }}">
+                    <button type="button" style="background-color:transparent" class="btn f-right"><i
+                                class="icofont icofont-file-alt"></i><strong> Añadir</strong> Ficha Objeto
+                    </button>
+                </a>
+            </div>
+            <div class="card-block tab-icon">
+                <ul class="nav nav-tabs md-tabs " role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#home7" role="tab"><i class="icofont icofont-building-alt"></i>Listado de Fichas de Objetos</a>
+                        <div class="slide"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#profile7" role="tab"><i class="icofont icofont-plus "></i>Nuevas Fichas de Objetos <span class="pcoded-badge label label-success">{{ fichaobjetopatNew | length }}</span></a>
+                        <div class="slide"></div>
+                    </li>
+                </ul>
+                <div class="tab-content card-block">
+                    <div class="tab-pane active" id="home7" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Imagen</th>
+                                    <th>Código</th>
+                                    <th>Sitio Patrimonial</th>
+                                    <th>Nombre</th>
+                                    <th>Tipo Material</th>
+                                    <th>País</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for ficha in pagination %}
+                                    {% if not ficha.new %}
+                                    <tr>
+                                        <td>
+                                            <center>
+                                                {% if ficha.portadaobjeto | length > 0 %}
+                                                    <a href="{{ asset('/CLIO/public/uploads/objeto/portada/' ~ ficha.portadaobjeto[0].link)}}" data-lightbox="{{ ficha.portadaobjeto[0].link }}" data-title="{{ ficha.descripciontecnica }}" >
+                                                        <i class="icofont icofont-ui-image"></i>
+                                                    </a>
+                                                {% else %}
+                                                    ----
+                                                {% endif %}
+                                            </center>
+                                        </td>
+                                        <td>{{ ficha.codigoobjeto }}</td>
+                                        <td>{{ ficha.sitiopatrimonial }}</td>
+                                        <td>{{ ficha.nombreobjeto }}</td>
+                                        <td>{{ ficha.tipomaterial }}</td>
+                                        <td>{{ ficha.pais }}</td>
+                                        <td data-toggle="tooltip" data-placement="right" title="Activar/Desactivar Ficha"><input type="checkbox" data-value="{{ ficha.id }}"
+                                                                                                                                 class="js-small-new" {% if ficha.state %} checked {% endif %}></td>
+                                        <td>
+                                            <a class="dropdown-toggle addon-btn" data-toggle="dropdown" aria-expanded="true">
+                                                <i class="icofont icofont-ui-settings"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <button class="dropdown-item mostrar" value="{{ path('fichaobjeto_show', {'id': ficha.id}) }}"><i class="icofont icofont-eye-alt"></i>Mostrar</button>
+                                                <button class="dropdown-item editar" value="{{ path('fichaobjeto_edit', {'id': ficha.id}) }}" title="Editar"><i class="icofont icofont-ui-edit"></i>Editar</button>
+                                                <div role="separator" class="dropdown-divider"></div>
+                                                <button class="dropdown-item eliminar" value="{{ path('removerfichaobjetopat', {'id' : ficha.id}) }}"><i class="icofont icofont-trash"></i>Eliminar</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="profile7" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Imagen</th>
+                                    <th>Código</th>
+                                    <th>Sitio Patrimonial</th>
+                                    <th>Nombre</th>
+                                    <th>Tipo Material</th>
+                                    <th>País</th>
+                                    {% if not is_granted('ROLE_ESPECIALISTA') %}
+                                        <th>Estado</th>
+                                    {% endif %}
+                                    <th>Acción</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for ficha in pagination %}
+                                    {% if ficha.new %}
+                                    <tr>
+                                        <td>
+                                            <center>
+                                                {% if ficha.portadaobjeto | length > 0 %}
+                                                    <a href="{{ asset('/CLIO/public/uploads/objeto/portada/' ~ ficha.portadaobjeto[0].link) }}" data-lightbox="{{ ficha.portadaobjeto[0].link }}" data-title="{{ ficha.descripciontecnica }}" >
+                                                        <i class="icofont icofont-ui-image"></i>
+                                                    </a>
+                                                {% else %}
+                                                    ----
+                                                {% endif %}
+                                            </center>
+                                        </td>
+                                        <td>{{ ficha.codigoobjeto }}</td>
+                                        <td>{{ ficha.sitiopatrimonial }}</td>
+                                        <td>{{ ficha.nombreobjeto }}</td>
+                                        <td>{{ ficha.tipomaterial }}</td>
+                                        <td>{{ ficha.pais }}</td>
+                                        {% if not is_granted('ROLE_ESPECIALISTA') %}
+                                            <td data-toggle="tooltip" data-placement="right" title="Activar Ficha"><input type="checkbox" data-value="{{ ficha.id }}"
+                                                                                                                          class="js-small-new" {% if ficha.state %} checked {% endif %}></td>
+                                        {% endif %}
+                                        <td>
+                                            <a class="dropdown-toggle addon-btn" data-toggle="dropdown" aria-expanded="true">
+                                                <i class="icofont icofont-ui-settings"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <button class="dropdown-item mostrar" value="{{ path('fichaobjeto_show', {'id': ficha.id}) }}"><i class="icofont icofont-eye-alt"></i>Mostrar</button>
+                                                <button class="dropdown-item editar" value="{{ path('fichaobjeto_edit', {'id': ficha.id}) }}" title="Editar"><i class="icofont icofont-ui-edit"></i>Editar</button>
+                                                <div role="separator" class="dropdown-divider"></div>
+                                                <button class="dropdown-item eliminar" value="{{ path('removerfichaobjetopat', {'id' : ficha.id}) }}"><i class="icofont icofont-trash"></i>Eliminar</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="navigation">
+                            <ul class="pagination justify-content-lg-end m-0">
+                                {{ knp_pagination_render(pagination) }}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md-modal md-effect-1" id="modal-19">
+        <div class="md-content md-content-white">
+            <h3><i class="icofont icofont-warning"></i> Advertencia</h3>
+            <div>
+                <h5 id="mensaje"></h5>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <button class="btn btn-primary aceptar">Aceptar</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-inverse cancelar" onclick="$('#modal-19').removeClass('md-show')">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="md-overlay"></div>
+{% endblock %}
+{% block carousel %}
+    <div class="card">
+        <div class="card-block">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for f in fichao %}
+                        <div class="swiper-slide" style="width: 300.2px; margin-right: 50px;">
+                            <div class="col-xl-9 col-md-20">
+                                <div class="row align-items-center m-l-12">
+                                    <div class="col-auto">
+                                        <i class="feather icon-folder f-30 text-c-lite-green"></i>
+                                    </div>
+                                    <div class="col-lg-auto">
+                                        <h6 class="text-muted m-b-10">{{ f.nombre | raw }}</h6>
+                                        <h2 class="m-b-0">{{ f.fichaobjeto | length }}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <!-- end of swiper-slide -->
+                </div>
+                {#                <div class="swiper-pagination"></div>#}
+                <!-- end of swipper-wrapper -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <!-- owl carousel 2 js -->
+    <script type="text/javascript" src="{{ asset('page/bower_components/owl.carousel/js/owl.carousel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('page/assets/js/owl-custom.js') }}"></script>
+    <!-- swiper js -->
+    <script type="text/javascript" src="{{ asset('page/bower_components/swiper/js/swiper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('page/assets/js/swiper-custom.js') }}"></script>
+    <!-- light-box js -->
+    <script type="text/javascript" src="{{ asset('page/bower_components/lightbox2/js/lightbox.min.js') }}"></script>
+    <!-- task board js -->
+    <script type="text/javascript" src="{{ asset('page/assets/pages/task-board/task-board.js') }}"></script>
+    <!-- modal efect js -->
+    <script src="{{ asset('page/modal/js/modalEffects.js') }}"></script>
+    <script src="{{ asset('page/modal/js/classie.js') }}"></script>
+    <script>
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+        })
+
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        $(document).ready(function() {
+            $('[data-toggle="popover"]').popover({
+                html: true,
+                content: function() {
+                    return $('#primary-popover-content').html();
+                }
+            });
+        });
+
+        $(function () {
+            {% for notice_level in ['success','error','info', 'warning'] %}
+            {% set session_var = 'app_' ~ notice_level %}
+            {% if app.session.flashbag.has(session_var) %}
+            {% for flash in app.session.flashbag.get(session_var) %}
+            noty({
+                text: '{{ flash }}',
+                progressBar : true,
+                layout      : 'topRight',
+                dismissQueue: true,
+                timeout     : 5000,
+                closeWith   : ['click'],
+                theme       : 'relax',
+                type        : '{{ notice_level }}',
+                maxVisible  : 10,
+                animation   : {
+                    open  : 'animated bounceInRight',
+                    close : 'animated bounceOutRight',
+                    easing: 'swing',
+                    speed : 500
+                }
+            });
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+        });
+
+        $(document).ready(function(){
+            var elems = Array.prototype.slice.call(document.querySelectorAll('.js-small-new'));
+
+            elems.forEach(function (html) {
+                var switchery = new Switchery(html, {color: '#4680ff', jackColor: '#fff', size: 'small'});
+                $(html).on('change', function () {
+                    $.ajax({
+                        url: '{{ path('activate_fichaobjeto') }}',
+                        path: 'post',
+                        data: {value: html.checked, id: $(this).data('value')},
+                        success: function (res) {
+                            if (res.response === 'new') {
+                                window.location = "{{ path('fichaobjeto_index') }}";
+                            }
+                            notifierNoty(res.message, 'success');
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        }
+                    })
+                })
+            });
+        });
+
+        $('.editar').on('click', function () {
+            var link = $(this).val();
+            $('#modal-19').addClass('md-show');
+            $('#mensaje').text('Estas seguro que quieres editar esta Ficha del Objeto?');
+            $('.aceptar').on('click', function () {
+                window.location = link;
+            });
+        });
+
+        $('.eliminar').on('click', function () {
+            var link = $(this).val();
+            $('#modal-19').addClass('md-show');
+            $('#mensaje').text('Estas seguro que quieres eliminar esta Ficha del Objeto?');
+            $('.aceptar').on('click', function () {
+                window.location = link;
+            });
+        });
+
+        $('.mostrar').on('click', function () {
+            window.location = $(this).val();
+        });
+    </script>
+{% endblock %}

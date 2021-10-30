@@ -1,0 +1,165 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Settings Blog{% endblock %}
+{% block head %}
+    <!-- modal efect css -->
+    <link href="{{ asset('page/modal/css/component.css') }}" rel="stylesheet">
+{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Navegación</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Blog</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Settings Blog</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><strong>Listado</strong> Settings Blog</h5>
+                <div class="dropdown-inverse dropdown open f-right">
+                    <button class="btn dropdown-toggle waves-effect waves-light" style="background-color:transparent" type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="icofont icofont-upload-alt"></i>Exportar</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                        <a href="#" class="dropdown-item waves-light waves-effect"><i class="icofont icofont-file-pdf"></i> <strong> Exportar</strong> PDF</a>
+                        <a href="#" class="dropdown-item waves-light waves-effect"><i class="icofont icofont-file-excel"></i> <strong> Exportar</strong> EXCEL</a>
+                    </div>
+                </div>
+                <a href="">
+                    <button type="button" style="background-color:transparent" name="reset-filter" id="btn-reset-filtros" class="btn f-right"><i
+                                class="icofont icofont-refresh"></i>Refrescar
+                    </button>
+                </a>
+                {% if settingss == null %}
+                <a href="{{ path('settings_new') }}">
+                    <button type="button" style="background-color:transparent" class="btn f-right"><i
+                                class="icofont icofont-file-alt"></i><strong> Añadir</strong> Settings
+                    </button>
+                </a>
+                {% endif %}
+            </div>
+            <div class="card-block">
+                <div class="dt-responsive table-responsive">
+                    <table id="alt-pg-dt" class="table">
+                        <thead>
+                        <tr>
+                            <th>Blog</th>
+                            <th>Tagline</th>
+                            <th>Email</th>
+                            <th>Móvil</th>
+                            <th>Fijo</th>
+                            <th>Acción</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for setti in settings %}
+                            <tr>
+                                <td>{{ setti.pagename }}</td>
+                                <td>{{ setti.tagline }}</td>
+                                <td>{{ setti.email }}</td>
+                                <td>{{ setti.phone1 }}</td>
+                                <td>{{ setti.phone2 }}</td>
+                                <td>
+                                    <center>
+                                        <a class="dropdown-toggle addon-btn fc-center" data-toggle="dropdown" aria-expanded="true">
+                                            <i class="icofont icofont-ui-settings"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <button class="dropdown-item editar" value="{{ path('settings_edit', {'id': setti.id}) }}" title="Editar"><i class="icofont icofont-ui-edit"></i>Editar</button>
+                                            <div role="separator" class="dropdown-divider"></div>
+                                            <button class="dropdown-item eliminar" value="{{ path('settings_remove', {'id': setti.id}) }}"><i class="icofont icofont-trash"></i>Eliminar</button>
+                                        </div>
+                                    </center>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="md-modal md-effect-1" id="modal-19">
+        <div class="md-content md-content-white">
+            <h3><i class="icofont icofont-warning"></i> Advertencia</h3>
+            <div>
+                <h4 id="mensaje"></h4>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <button class="btn btn-primary aceptar">Aceptar</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-danger cancelar" onclick="$('#modal-19').removeClass('md-show')">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="md-overlay"></div>
+{% endblock %}
+{% block javascript %}
+    <!-- modal efect js -->
+    <script src="{{ asset('page/modal/js/modalEffects.js') }}"></script>
+    <script src="{{ asset('page/modal/js/classie.js') }}"></script>
+    <script>
+        $(function () {
+            {% for notice_level in ['success','error','info', 'warning'] %}
+            {% set session_var = 'app_' ~ notice_level %}
+            {% if app.session.flashbag.has(session_var) %}
+            {% for flash in app.session.flashbag.get(session_var) %}
+            noty({
+                text: '{{ flash }}',
+                progressBar : true,
+                layout      : 'topRight',
+                dismissQueue: true,
+                timeout     : 5000,
+                closeWith   : ['click'],
+                theme       : 'relax',
+                type        : '{{ notice_level }}',
+                maxVisible  : 10,
+                animation   : {
+                    open  : 'animated bounceInRight',
+                    close : 'animated bounceOutRight',
+                    easing: 'swing',
+                    speed : 500
+                }
+            });
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+        });
+
+        $('.editar').on('click', function () {
+            var link = $(this).val();
+            $('#modal-19').addClass('md-show');
+            $('#mensaje').text('Estas seguro que quieres editar este Settings del Blog?');
+            $('.aceptar').on('click', function () {
+                window.location = link;
+            });
+        });
+
+        $('.eliminar').on('click', function () {
+            var link = $(this).val();
+            $('#modal-19').addClass('md-show');
+            $('#mensaje').text('Estas seguro que quieres eliminar este Settings del Blog?');
+            $('.aceptar').on('click', function () {
+                window.location = link;
+            });
+        });
+    </script>
+{% endblock %}

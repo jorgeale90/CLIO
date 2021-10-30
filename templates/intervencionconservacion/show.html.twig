@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Mostrar Intervención{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Objeto</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Objeto</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Listado Intervención Conservación</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Mostrar Intervención Conservación</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <!-- Basic Inputs Validation start -->
+        <div class="card">
+            <div class="card-header">
+                <h5>Mostrar Intervención Conservación</h5>
+            </div>
+            <div class="card-block">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.sitiopatrimonial, 'Sitio Patrimonial :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.sitiopatrimonial, { 'attr': { 'class': 'form-control js-example-basic-single', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.fichaobjeto, 'Ficha Objeto Patrimonial :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fichaobjeto, { 'attr': { 'class': 'form-control js-example-basic-single', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.cod_intervencion, 'Código de la Intervención :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.cod_intervencion, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.fechainicio, 'Fecha y Hora de Inicio :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fechainicio, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.fechafin, 'Fecha y Hora de Fin :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fechafin, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.duracion, 'Duración :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.duracion, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.objetivo_general, 'Objetivo General :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.objetivo_general, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.objetivo_especificos, 'Objetivo Específico :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.objetivo_especificos, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.descripcion, 'Descripción :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.descripcion, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.especialista_jefe, 'Especialista Jefe :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.especialista_jefe, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled' , 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.especialistapart, 'Especialista Participan :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.especialistapart, { 'attr': { 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.tipointervencionobj, 'Tipo de Intervención del Objeto :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.tipointervencionobj, { 'attr': { 'class': 'form-control js-example-basic-single', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.causaintervencionobj, 'Causa de Intervención del Objeto :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.causaintervencionobj, { 'attr': { 'class': 'form-control js-example-basic-single', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.tratamientoinsitu, 'Tratamiento Insitu :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.tratamientoinsitu, { 'attr': { 'class': 'form-control js-example-basic-single', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.tratamientolaboratorio, 'Tratamiento de Laboratorio :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.tratamientolaboratorio, { 'attr': { 'class': 'form-control js-example-basic-single', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.tecnicaaplicada, 'Tecnica Aplicada :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.tecnicaaplicada, { 'attr': { 'class': 'form-control js-example-basic-single', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-10"></label>
+                    <div class="col-sm-12">
+                        <a href="{{ path('intervencionconservacion_index') }}" style="background-color:transparent" class="btn btn-mat btn-info f-right"><span style="color:#010d0c"><i class="icofont icofont-exchange"></i> Volver al Listado</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

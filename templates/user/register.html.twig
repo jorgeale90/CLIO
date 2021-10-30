@@ -1,0 +1,163 @@
+{% extends 'login-base.html.twig' %}
+{% block form %}
+    {{ form_start(form) }}
+    <div class="wrap-input100 validate-input" data-validate="Escriba el número de registro">
+        {% if(form_errors(form.noReg)) %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ form_errors(form.noReg) }}</strong>
+            </div>
+        {% endif %}
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </span>
+        {{ form_widget(form.noReg, {'attr': {'class': 'input100', 'placeholder': 'No. de Registro'}}) }}
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate = "Escriba el carnet de identidad">
+        {% if(form_errors(form.noId)) %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ form_errors(form.noId) }}</strong>
+            </div>
+        {% endif %}
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </span>
+        {{ form_widget(form.noId, {'attr': {'class': 'input100', 'placeholder': 'Carnet de Identidad'}}) }}
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate="Escriba el nombre de Usuario">
+        {% if(form_errors(form.credentials.firstname)) %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ form_errors(form.credentials.firstname) }}</strong>
+            </div>
+        {% endif %}
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </span>
+        {{ form_widget(form.credentials.firstname) }}
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate="Escriba el nombre de Usuario">
+        {% if(form_errors(form.credentials.lastname)) %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ form_errors(form.credentials.lastname) }}</strong>
+            </div>
+        {% endif %}
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </span>
+        {{ form_widget(form.credentials.lastname) }}
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate="El email requerido es: ex@abc.xyz">
+        {% if(form_errors(form.credentials.email)) %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ form_errors(form.credentials.email) }}</strong>
+            </div>
+        {% endif %}
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </span>
+        {{ form_widget(form.credentials.email) }}
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate="Password is required">
+        {% if(form_errors(form.credentials.password.first)) %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ form_errors(form.credentials.password.first) }}</strong>
+            </div>
+        {% endif %}
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                    </span>
+        {{ form_widget(form.credentials.password.first) }}
+    </div>
+
+    <div class="wrap-input100 validate-input" data-validate="Password is required">
+        {% if(form_errors(form.credentials.password.second)) %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ form_errors(form.credentials.password.second) }}</strong>
+            </div>
+        {% endif %}
+        <span class="focus-input100"></span>
+        <span class="symbol-input100">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                    </span>
+        {{ form_widget(form.credentials.password.second) }}
+    </div>
+
+    <div class="wrap-input100 validate-input">
+        {% if(form_errors(form.credentials.agreeTerms)) %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ form_errors(form.credentials.agreeTerms) }}</strong>
+            </div>
+        {% endif %}
+        <span class="focus-input100"></span>
+        {{ form_widget(form.credentials.agreeTerms) }}
+        <a style="background-color:transparent" class="btn f-right" data-toggle="modal" data-target="#default-Modal">
+                <strong>Acepta los términos de Uso!</strong>
+        </a>
+    </div>
+
+    <div class="container-login100-form-btn">
+        <button class="login100-form-btn">
+            Registrar
+        </button>
+    </div>
+
+    <div class="text-center p-t-10">
+                                    <span class="txt1">
+                                        Ya soy Miembro -
+                                    </span>
+        <a class="txt2" href="{{ path('app_login') }}">
+            Login
+        </a>
+    </div>
+    {{ form_end(form) }}
+
+    <div class="modal fade" id="default-Modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Términos de Uso</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="container-fluid">
+                    <br>
+                    <p>El Solicitante manifiesta que, una vez descargue e instale el Certificado en su equipo,
+                        adquirirá la condición de Titular y utilizará el Certificado de conformidad con las condiciones adjuntas y atendiendo al
+                        contenido de la Declaración General de Prácticas de Servicios de Confianza y de Certificación electrónica y los de las
+                        Políticas y Prácticas Particulares de los Certificados de Persona Física de la FNMT-RCM
+                        (https://www.sede.fnmt.gob.es/dpcs/acusuarios), declarando expresamente que las acepta en toda su
+                        extensión y que su capacidad no se encuentra limitada para contratar con esta Entidad.
+                    </p>
+                    <br>
+                    <p>
+                        Estas condiciones son un extracto de las Políticas y Prácticas Particulares de los Certificados de Personas Físicas
+                        con las normas básicas para la expedición de estos Certificados. Se pone a disposición del Solicitante la siguiente
+                        información básica y que, por razones de espacio, el deber de información quedará satisfecho con la Declaración General
+                        de Prácticas de Servicios de Confianza y de Certificación electrónica (DGPC) y con las Políticas y Prácticas Particulares
+                        de los Certificados de Personas Físicas, puestas a disposición en formato digital en el anterior enlace.
+                    </p>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

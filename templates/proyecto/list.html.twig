@@ -1,0 +1,32 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Cód.</th>
+            <th>Inicio</th>
+            <th>Clausura</th>
+            <th>Nombre</th>
+            <th>Tipo Proyecto</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for proyecto in proyectos %}
+            <tr>
+                <td>{{ proyecto.codProyecto }}</td>
+                <td>{{ proyecto.fechaInicio | date('Y-m-d') }}</td>
+                <td>{{ proyecto.fechaFin | date('Y-m-d') }}</td>
+                <td>{{ proyecto.nombre }}</td>
+                <td>{{ proyecto.tipoProyecto }}</td>
+                <td>
+                    <a href="{{ path('proyectoesp_show', {'id': proyecto.id}) }}"><center><i class="icofont icofont-info-circle"></i></center></a>
+                </td>
+            </tr>
+        {% else %}
+            <div class="alert alert-warning background-warning">
+                El Especialista no tiene Proyectos!!!
+            </div>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

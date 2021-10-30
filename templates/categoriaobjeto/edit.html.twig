@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Editar Categoría Objeto{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Configuración General</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Configuración General</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Listado Categoría Objeto</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Editar Categoría Objeto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <!-- Basic Inputs Validation start -->
+        <div class="card">
+            <div class="card-header">
+                <h5>Editar Categoría Objeto</h5>
+            </div>
+            <div class="card-block">
+                {{ include('categoriaobjeto/_form.html.twig', {'button_label': 'Editar Categoría Objeto'}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

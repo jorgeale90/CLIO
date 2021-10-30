@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SIBHPdata - Localización Sitios Patrimoniales</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="icon" type="image/png" href="{{ asset('icons/icono.png') }}"/>
+{#    <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js"></script>#}
+{#    <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />#}
+    <link rel="stylesheet" href="{{ asset('page/leaflet/leaflet.css') }}" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <link rel="stylesheet" href="{{ asset('page/leaflet/plugins/leaflet-autocomplete/dist/geojsonautocomplete.min.css') }}" />
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/bootstrap/css/bootstrap.min.css') }}">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/assets/icon/themify-icons/themify-icons.css') }}">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/assets/icon/icofont/css/icofont.css') }}">
+    <!-- feather Awesome -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/assets/icon/feather/css/feather.css') }}">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/assets/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/assets/css/jquery.mCustomScrollbar.css') }}">
+    <!-- Notifications -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/noty/animate/animate.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('page/leaflet/plugins/leaflet-search/src/leaflet-search.css') }}" />
+    <style>
+        .boton{
+            font-size:10px;
+            font-weight:bold;
+            color:white;
+            background:#638cb5;
+            border:0px;
+            width:120px;
+            height:30px;
+        }
+        .label {
+            text-align: right;
+            font-size: 11px;
+            padding-right: 5px;
+            color: black !important;
+        }
+        .text {
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: -0.5px;
+        }
+        .btn-link {
+            color: #ffa500 !important;
+        }
+        .btn-link:focus, .btn-link:hover {
+            color: #b35300 !important;
+            text-decoration: none !important;
+            background-color: transparent !important;
+        }
+        .footer-popup {
+            text-align: right;
+        }
+        .leaflet-popup-content {
+            margin: 5px 5px !important;
+            /*background-color: white;*/
+            /*border-color: #e6e1ff;*/
+            /*box-shadow: 0 0 5px #CCC;*/
+            /*width: 280px;*/
+            /*height: 550px;*/
+            /*margin-left: 2px;*/
+            /*margin-right: 2px;*/
+            /*font: 12px/20px 'Open Sans', sans-serif;*/
+            /*border-radius: 5px;*/
+            /*position: fixed;*/
+            /*align-items: center;*/
+            /*justify-content: center;*/
+            /*overflow-x: scroll;*/
+            /*overflow-y : auto;*/
+            /*opacity: 85%;*/
+            /*position: relative;*/
+            /*transition: opacity 500ms;*/
+        }
+        .leaflet-popup-content img {
+            width: 100%;
+            margin: 0 0 10px 0;
+            border-radius: 10px 10px 0 0;
+        }
+        .leaflet-popup-content p {
+            margin: -8px 0;
+            font-size: 11px;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="pcoded" class="pcoded">
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+        {% block barra_nav %}
+            {{ include ('block/barra_nav_map.html.twig') }}
+        {% endblock %}
+
+        <div class="pcoded-main-container">
+            <div id="map" style="height: 91vh"></div>
+            <div id='searchContainer' style="position: fixed; margin-top: 5%">
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+<!-- Required Jquery -->
+<script type="text/javascript" src="{{ asset('page/bower_components/jquery/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/bower_components/popper.js/js/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
+
+<!-- Custom js -->
+<script type="text/javascript" src="{{ asset('page/assets/pages/advance-elements/select2-custom.js') }}"></script>
+<script src="{{ asset('page/assets/pages/data-table/js/data-table-custom.js') }}"></script>
+<script src="{{ asset('page/assets/js/pcoded.min.js') }}"></script>
+<script src="{{ asset('page/assets/js/vartical-layout.min.js') }}"></script>
+<script src="{{ asset('page/assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/assets/js/script.js') }}"></script>
+<script src="{{ asset('page/leaflet/leaflet.js') }}"></script>
+<script src="{{ asset('page/leaflet/plugins/leaflet-autocomplete/dist/geojsonautocomplete.min.js') }}"></script>
+<script src="{{ asset('page/leaflet/plugins/leaflet-search/src/leaflet-search.js') }}"></script>
+<script type="text/javascript">
+    var apiToken = "pk.eyJ1Ijoiam9yZ2VhbGUiLCJhIjoiY2s5dmM2OXdjMDNpdjNnbzB1ZnlhMGp3cCJ9.afdxsU2huUrLvjkclObZ1Q";
+    var defaultMap = [21.61657934, -79.28833008]; //Coordenas para que cargue el mapa por default
+    var map = L.map('map', {zoomControl: false}).setView(defaultMap, 7);
+    map.addControl(L.control.zoom({position: 'topright'}));
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    function showZone(id, btn) {
+        $.ajax({
+            url: "{{ path('app_zonas_gps') }}",	//read comments in search.php for more information usage
+            type: 'GET',
+            data: {
+                id: id,
+                zone: btn.data('zone')
+            },
+            dataType: 'json',
+            success: function(json) {
+                console.log(json);
+                L.polygon(json, {color: 'red'}).addTo(map);
+            }
+        });
+    }
+
+    function onEachFeature(feature, layer){
+        console.log('feature', feature);
+        var zonaInsertidumbre = 'ZonaInsertidumbreGPS';
+        table = "<table>" +
+                    "<tr>" +
+                        "<td class='label'>Nombre del Sitio:</td>" +
+                        "<td class='text'>"+ feature.properties.allProps.nombre +"</td>" +
+                    "</tr>" +
+                    "<tr>" +
+                        "<td class='label'>Categoría:</td>" +
+                        "<td class='text'>"+feature.properties.allProps.categoria.nombre+"</td>" +
+                    "</tr>" +
+                    "<tr>" +
+                        "<td class='label'>Tipo de Sitio Natural:</td>" +
+                        "<td class='text'>"+feature.properties.allProps.tipositio.nombre+"</td>" +
+                    "</tr>" +
+                    "<tr>" +
+                        "<td class='label'>Tipo de Sitio Cultural:</td>" +
+                        "<td class='text'>"+feature.properties.allProps.tipositionatural.nombre+"</td>" +
+                    "</tr>" +
+                    "<tr>" +
+                        "<td class='label'>Zona de insertidumbre:</td>" +
+                        "<td class='text'><input type='checkbox' data-zone='ZonaInsertidumbreGPS' onclick='showZone("+ feature.properties.allProps.id +", $(this))' id='zona_insertidumbre_gps'></td>" +
+                    "</tr>" +
+                    "<tr>" +
+                        "<td class='label'>Zona de objeto:</td>" +
+                        "<td class='text'><input type='checkbox' data-zone='ZonaObjetoGPS' onclick='showZone("+ feature.properties.allProps.id +", $(this))' id='zona_insertidumbre_gps'></td>" +
+                    "</tr>" +
+                    "<tr>" +
+                        "<td class='label'>Zona patrimonial:</td>" +
+                        "<td class='text'><input type='checkbox' data-zone='ZonaPatrimonialGPS' onclick='showZone("+ feature.properties.allProps.id +", $(this))' id='zona_insertidumbre_gps'></td>" +
+                    "</tr>" +
+                    "<tr>" +
+                        "<td class='label'>Zona de protección:</td>" +
+                        "<td class='text'><input type='checkbox' data-zone='ZonaProteccionGPS' onclick='showZone("+ feature.properties.allProps.id +", $(this))' id='zona_insertidumbre_gps'></td>" +
+                    "</tr>" +
+                "</table><br>";
+        // text1 = "<b><strong>Nombre del Sitio: </strong></b>"+ feature.properties.allProps.nombre;
+        // text2 = "<b><strong>Categoría: </strong></b>"+ feature.properties.allProps.categoria.nombre;
+        // text3 = "<b><strong>Tipo de Sitio Natural: </strong></b>"+ feature.properties.allProps.tipositio.nombre;
+        // text4 = "<b><strong>Tipo de Sitio Cultural: </strong></b>"+ feature.properties.allProps.tipositionatural.nombre;
+        // text5 = "<b><strong>Ubicación: </strong></b>"+ feature.properties.allProps.coordenadasgps.longitud + "<br>" + feature.properties.allProps.coordenadasgps.latitud;
+        text6 = feature.properties.allProps.caracteristicas_generales ? feature.properties.allProps.caracteristicas_generales : 'Sin especificar.';
+        imagen = "<img src='{{ asset("image/no-image.png") }}' width='260' height='140' target='_blank' > </img>";
+        if (feature.properties.allProps.fotografias[0].link) {
+            imagen = "<img src='{{ asset('uploads/sitio/fotografias/') }}" + feature.properties.allProps.fotografias[0].link + "' width='260' height='140' target='_blank' > </img>"
+        }
+        var popup = imagen + "<br>" + table + "<p><strong>Caracteristicas generales:</strong></p><br><p>" + text6 + "</p><br><div class='footer-popup'><button class='btn btn-link'>más información <i class='icofont icofont-plus-circle'></i></button></div>";
+        layer.bindPopup(popup);
+    }
+
+    $.ajax({
+        url: "{{ path('app_localizacion') }}",	//read comments in search.php for more information usage
+        type: 'GET',
+        data: {search: ''},
+        dataType: 'json',
+        success: function(json) {
+            var searchLayer = L.geoJson(json, {
+                onEachFeature: onEachFeature
+            });
+            //... adding data in searchLayer ...
+            var searchControl =  new L.Control.Search({layer: searchLayer, marker: false, hideMarkerOnCollapse: true});
+            searchControl.on('search:locationfound', function (event) {
+                map.addLayer(event.layer);
+            });
+            map.addControl(searchControl);
+        }
+    });
+</script>
+</body>
+</html>

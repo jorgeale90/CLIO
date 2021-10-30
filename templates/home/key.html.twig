@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Busqueda Sitio Patrimonial{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block">
+            <h5><strong>Dashboard</strong> - Listado Busqueda Sitio Patrimonial</h5>
+            <div class="page-header-breadcrumb">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item">
+                        <a href="#!">
+                            <i class="feather icon-home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item"> <i class="feather icon-map-pin"></i> Dashboard
+                    </li>
+                    <li class="breadcrumb-item active">Listado Busqueda Sitio Patrimonial
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-block front-icon-breadcrumb row">
+                <div class="row seacrh-header">
+                    <div class="col-lg-4 offset-lg-4 offset-sm-3 col-sm-6 offset-sm-1 col-xs-12">
+                        <form method="get" action=".">
+                            <div class="input-group input-group-button input-group-primary">
+                                {{ form_widget(form.keyword, { 'attr': { 'class': 'form-control-round', 'placeholder': 'Palabra Clave', 'type': 'text' } }) }}
+                                <button class="btn btn-primary input-group-addon">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Search result found start -->
+            <div class="col-lg-12 col-xl-7 search2 search-result">
+                <div class="card card-main">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {% for sitio in pagination %}
+                                    <div class="search-content">
+                                        {% for foto in sitio.portadasitio %}
+                                            <img class="card-img-top" src="{{ asset('/CLIO/public/uploads/sitio/portada/' ~ foto.link) }}" alt="Card image cap">
+                                        {% endfor %}
+                                        <div class="card-block">
+                                            <h5 class="card-title">{{ sitio.nombre }}
+                                                <a href="#"></a>
+                                            </h5>
+                                            <p class="card-text text-muted">{{ sitio.hechohistorico }} </p>
+                                            <p class="card-text"><small class="text-muted">Last updated 12 mins ago</small></p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <ul class="pagination justify-content-lg-end m-0">
+                    {{ knp_pagination_render(pagination) }}
+                </ul>
+            </div>
+
+            <!-- Search result found end -->
+            <div class="col-lg-12 col-xl-5">
+                <div class="card card-main">
+                    <div class="card-header">
+                        <h5 class="card-header-text">Filtrar</h5>
+                    </div>
+                    <div class="card-block">
+                        <div class="input-group">
+                            <input id="dropper-default" class="form-control" type="text" placeholder="Código">
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group input-group-button input-group-primary">
+                                <input type="text" class="form-control" placeholder="Search here...">
+                                <button class="btn btn-primary input-group-addon">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+<script>
+$(function () {
+    {% for notice_level in ['success','error','info', 'warning'] %}
+    {% set session_var = 'app_' ~ notice_level %}
+        {% if app.session.flashbag.has(session_var) %}
+            {% for flash in app.session.flashbag.get(session_var) %}
+            noty({
+                text: '{{ flash }}',
+                progressBar : true,
+                layout      : 'topRight',
+                dismissQueue: true,
+                timeout     : 5000,
+                closeWith   : ['click'],
+                theme       : 'relax',
+                type        : '{{ notice_level }}',
+                maxVisible  : 10,
+                animation   : {
+                            open  : 'animated bounceInRight',
+                            close : 'animated bounceOutRight',
+                            easing: 'swing',
+                            speed : 500
+                        }
+                    });
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+});
+</script>
+{% endblock %}

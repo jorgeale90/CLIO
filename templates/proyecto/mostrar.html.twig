@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Mostrar Proyecto{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Sitio</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Sitio</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Listado Proyecto</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Mostrar Proyecto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <!-- Basic Inputs Validation start -->
+        <div class="card">
+            <div class="card-header">
+                <h5>Mostrar Proyecto</h5>
+            </div>
+            <div class="card-block">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.codProyecto, 'Codigo del Proyecto :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.codProyecto, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.nombre, 'Nombre del Proyecto :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.nombre, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.fechaInicio, 'Fecha y Hora de Inicio :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fechaInicio, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.fechaFin, 'Fecha y Hora de Fin :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fechaFin, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.objGeneral, 'Objetivo General :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.objGeneral, { 'attr': { 'class': 'form-control', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.objEspecificos, 'Objetivos Especificos :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.objEspecificos, { 'attr': { 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.tipoProyecto, 'Tipo de Proyecto :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.tipoProyecto, { 'attr': { 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.estado, 'Estado :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.estado, { 'attr': { 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.especialistaJefe, 'Jefe de Proyecto :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.especialistaJefe, { 'attr': { 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.especialistasParticipantes, 'Participantes :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.especialistasParticipantes, { 'attr': { 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <a href="{{ path('especialist') }}" style="background-color:transparent" class="btn btn-mat btn-info f-right"><span style="color:#010d0c"><i class="icofont icofont-exchange"></i> Volver al Listado</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

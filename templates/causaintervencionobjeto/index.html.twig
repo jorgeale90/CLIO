@@ -1,0 +1,233 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Causa Intervención Objeto{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Configuración General</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Configuración General</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Listado Causa Intervención Objeto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <!-- HTML5 Export Buttons table start -->
+        <div class="card">
+            <div class="card-header">
+                <h5><strong>Listado</strong> de Causa Intervención Objeto</h5>
+                <div class="dropdown-inverse dropdown open f-right">
+                    <button class="btn dropdown-toggle waves-effect waves-light" style="background-color:transparent" type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="icofont icofont-upload-alt"></i>Exportar</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                        <a href="#" class="dropdown-item waves-light waves-effect"><i class="icofont icofont-file-pdf"></i> <strong> Exportar</strong> PDF</a>
+                        <a href="#" class="dropdown-item waves-light waves-effect"><i class="icofont icofont-file-excel"></i> <strong> Exportar</strong> EXCEL</a>
+                    </div>
+                </div>
+                <a href="">
+                    <button type="button" style="background-color:transparent" name="reset-filter" id="btn-reset-filtros" class="btn f-right"><i
+                                class="icofont icofont-refresh"></i>Refrescar
+                    </button>
+                </a>
+                <a href="#">
+                    <button type="button" style="background-color:transparent" class="btn f-right" data-toggle="modal" data-target="#default-Modal"><i
+                                class="icofont icofont-file-alt"></i><strong> Añadir</strong> Causa Intervención
+                    </button>
+                </a>
+            </div>
+            <div class="card-block">
+                <div class="dt-responsive table-responsive">
+                    <table id="alt-pg-dt" class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Causa de Intervención del Objeto</th>
+                            <th>Acción</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for cau in causaint %}
+                            <tr>
+                                <td>{{ cau.id }}</td>
+                                <td>{{ cau.nombre }}</td>
+                                <td>
+                                    <a class="btn btn-mat btn-info" style="background-color:transparent" data-toggle="modal" data-target="#modal-editar-causa"
+                                       data-whatever=" {{ cau.id }}"><span style="color:#010d0c"><i class="icofont icofont-edit"></i> Editar</a>
+
+                                    <a class="btn btn-mat btn-danger delete-causa" style="background-color:transparent"
+                                       data-toggle="modal" data-target="#deleteModal" data-delete-id="{{ cau.id }}"
+                                       data-title="{{ cau.nombre }}"><span style="color:#010d0c"><i class="icofont icofont-ui-delete"></i> Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- HTML5 Export Buttons table end -->
+    </div>
+    <!-- Page-body end -->
+    <!-- Modals start-->
+    <div class="modal fade" id="default-Modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Añadir Causa de Intervención del Objeto</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ path('causaintervencionobj_index') }}" method="post" role="form">
+                    <div class="modal-body">
+                        {% if(form_errors(form.nombre)) %}
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>{{ form_errors(form.nombre) }}</strong>
+                            </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label>{{ form_label(form.nombre, 'Causa de Intervención del Objeto * :') }}</label>
+                            {{ form_widget(form.nombre, { 'attr': { 'class': 'form-control' } }) }}
+                        </div>
+                        {{ form_rest(form) }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" style="background-color:transparent" class="btn btn-mat btn-info f-right"><span style="color:#010d0c"><i class="icofont icofont-plus"></i> Añadir Causa Intervención</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-info fade" id="modal-editar-causa">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Actualizar Causa de Intervención del Objeto</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                </div>
+                <div id="modal-form-editar-causa">
+                    <div class="modal-body">
+                        <div id="loading_details" class="text-center">
+                            <div id="loading_details" class="text-center">
+                                <div class="preloader3 loader-block">
+                                    <div class="circ1 loader-primary loader-lg"></div>
+                                    <div class="circ2 loader-primary loader-lg"></div>
+                                    <div class="circ3 loader-primary loader-lg"></div>
+                                    <div class="circ4 loader-primary loader-lg"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal"
+         aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="icofont icofont-warning"></i> Advertencia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    Estas seguro de eliminar esta Causa de Intervención del Objeto:<p>
+                    <div id="edit-result"></div>
+                    <form action="{{ path('causaintervencionobjeto_delete') }}" method="post">
+                        <h5 id="causa-title"></h5>
+                        <input type="text" id="delete_id" name="delete_id" value="0" hidden>
+                        <hr/>
+                        <button type="submit" style="background-color:transparent" class="btn btn-mat btn-danger f-right"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i> Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modals end-->
+{% endblock %}
+{% block javascript %}
+<script>
+    $(function () {
+        {% for notice_level in ['success','error','info', 'warning'] %}
+        {% set session_var = 'app_' ~ notice_level %}
+        {% if app.session.flashbag.has(session_var) %}
+            {% for flash in app.session.flashbag.get(session_var) %}
+            noty({
+                text: '{{ flash }}',
+                progressBar : true,
+                layout      : 'topRight',
+                dismissQueue: true,
+                timeout     : 5000,
+                closeWith   : ['click'],
+                theme       : 'relax',
+                type        : '{{ notice_level }}',
+                maxVisible  : 10,
+                animation   : {
+                            open  : 'animated bounceInRight',
+                            close : 'animated bounceOutRight',
+                            easing: 'swing',
+                            speed : 500
+                        }
+                    });
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+        $('#modal-editar-causa').on('shown.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var idcausa = button.data('whatever');
+            var modal = $(this);
+            $.ajax({
+                url: href = "http:" + idcausa + "/edit",
+                type: 'POST',
+                async: true,
+                data: null,
+                success: function (html) {
+                    modal.find('#modal-form-editar-causa').html(html);
+                    modal.find('#modal-form-editar-causa').show();
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $(".delete-causa").click(function () {
+
+        });
+
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var id = button.data('delete-id'); // Extract info from data-* attributes
+            var title = button.data("title");
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this);
+            $('#delete_id').attr('value', id);
+            modal.find('.modal-body #causa-title').text(title);
+        })
+    });
+</script>
+{% endblock %}

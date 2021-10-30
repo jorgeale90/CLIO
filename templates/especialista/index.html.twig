@@ -1,0 +1,341 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Especialistas{% endblock %}
+{% block head %}
+    <!-- modal efect css -->
+    <link href="{{ asset('page/modal/css/component.css') }}" rel="stylesheet">
+{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Especialista</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Especialista</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Listado Especialista</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="modal fade" id="default-Modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Buscar Especialista</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="get" action=".">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>{{ form_label(form.noReg, 'No. Registro:') }}</label>
+                            {{ form_widget(form.noReg, { 'attr': { 'class': 'form-control', 'placeholder': 'No. Registro' } }) }}
+
+                            <label>{{ form_label(form.noId, 'Carnet de Identidad:') }}</label>
+                            {{ form_widget(form.noId, { 'attr': { 'class': 'form-control', 'placeholder': 'Carnet de Identidad' } }) }}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" name="submit-filter" value="filter" class="btn btn-mat btn-dark f-right"><i
+                                    class="icofont icofont-search-alt-1"></i> Buscar
+                        </button>
+                        <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Especialistas</h5>
+                <div class="dropdown-inverse dropdown open f-right">
+                    <button class="btn dropdown-toggle waves-effect waves-light " style="background-color:transparent" type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="icofont icofont-edit-alt"></i>Acción</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                        <a class="dropdown-item waves-light waves-effect" href="#" data-toggle="modal" data-target="#default-Modal"><i class="icofont icofont-search-alt-1"></i> Buscar</a>
+                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="icofont icofont-upload-alt"></i> <strong> Exportar</strong> Datos</a>
+                    </div>
+                </div>
+                <a href="{{ path('especialist') }}">
+                    <button type="button" name="reset-filter" class="btn f-right" style="background-color:transparent" id="btn-reset-filtros"><i class="icofont icofont-refresh"></i>Refrescar</button>
+                </a>
+                <a href="{{ path('especialist_new') }}">
+                    <button type="button" style="background-color:transparent" class="btn f-right"><i
+                                class="icofont icofont-file-alt"></i><strong> Añadir</strong> Especialista
+                    </button>
+                </a>
+            </div>
+            <div class="card-block tab-icon">
+                <ul class="nav nav-tabs md-tabs " role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#home7" role="tab"><i class="icofont icofont-users"></i>Listado de Especialistas</a>
+                        <div class="slide"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#profile7" role="tab"><i class="icofont icofont-plus "></i>Nuevos Especialistas <span class="pcoded-badge label label-success">{{ especialistNew | length }}</span></a>
+                        <div class="slide"></div>
+                    </li>
+                </ul>
+                <div class="tab-content card-block">
+                    <div class="tab-pane active" id="home7" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>No. Regisro</th>
+                                    <th>Nombre y Apellidos</th>
+                                    <th>No. Identidad</th>
+                                    <th>País</th>
+                                    <th>Provincia</th>
+                                    <th>Municipio</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% set noData = 'No especificado.' %}
+                                {% for e in pagination %}
+                                    {% if not e.new %}
+                                    <tr>
+                                        <td>{{ e.noReg }}</td>
+                                        <td>{{ e.credentials.firstname ~ ' ' ~ e.credentials.lastname }}</td>
+                                        <td>{{ e.noId }}</td>
+                                        {% if e.pais %}
+                                             <td>{{ e.pais }}</td>
+                                        {% else %}
+                                             <td>{{ noData }}</td>
+                                        {% endif %}
+                                        {% if e.provincia %}
+                                             <td>{{ e.provincia }}</td>
+                                        {% else %}
+                                             <td>{{ noData }}</td>
+                                        {% endif %}
+                                        {% if e.town %}
+                                             <td>{{ e.town }}</td>
+                                        {% else %}
+                                             <td>{{ noData }}</td>
+                                        {% endif %}
+                                        <td data-toggle="tooltip" data-placement="right" title="Activar/Desactivar Especialista"><input type="checkbox" data-value="{{ e.id }}"
+                                                   class="js-small-new" {% if e.state %} checked {% endif %}></td>
+                                        <td>
+                                            <a class="dropdown-toggle addon-btn" data-toggle="dropdown" aria-expanded="true">
+                                                <i class="icofont icofont-ui-settings"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <button class="dropdown-item mostrar" value="{{ path('especialista_show', {'id': e.id}) }}"><i class="icofont icofont-eye-alt"></i>Mostrar</button>
+                                                <button class="dropdown-item editar" value="{{ path('edit_especialist', {'id': e.id}) }}" title="Editar"><i class="icofont icofont-ui-edit"></i>Editar</button>
+                                                {% if app.user.id != e.credentials.id %}
+                                                <div role="separator" class="dropdown-divider"></div>
+                                                <button class="dropdown-item eliminar" value="{{ path('delete_especialist', {'id' : e.id}) }}"><i class="icofont icofont-trash"></i>Eliminar</button>
+                                                {%endif%}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="profile7" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>No. Regisro</th>
+                                    <th>Nombre y Apellidos</th>
+                                    <th>No. Identidad</th>
+                                    <th>País</th>
+                                    <th>Provincia</th>
+                                    <th>Municipio</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% set noData = 'No especificado.' %}
+                                {% for e in pagination %}
+                                    {% if e.new %}
+                                    <tr>
+                                        <td>{{ e.noReg }}</td>
+                                        <td>{{ e.credentials.firstname ~ ' ' ~ e.credentials.lastname }}</td>
+                                        <td>{{ e.noId }}</td>
+                                        {% if e.pais %}
+                                            <td>{{ e.pais }}</td>
+                                        {% else %}
+                                            <td>{{ noData }}</td>
+                                        {% endif %}
+                                        {% if e.provincia %}
+                                            <td>{{ e.provincia }}</td>
+                                        {% else %}
+                                            <td>{{ noData }}</td>
+                                        {% endif %}
+                                        {% if e.town %}
+                                            <td>{{ e.town }}</td>
+                                        {% else %}
+                                            <td>{{ noData }}</td>
+                                        {% endif %}
+                                            <td data-toggle="tooltip" data-placement="right" title="Activar Especialista"><input type="checkbox" data-value="{{ e.id }}"
+                                                       class="js-small-new" {% if e.state %} checked {% endif %}></td>
+                                        <td>
+                                            <a class="dropdown-toggle addon-btn" data-toggle="dropdown" aria-expanded="true">
+                                                <i class="icofont icofont-ui-settings"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <button class="dropdown-item mostrar" value="{{ path('especialista_show', {'id': e.id}) }}"><i class="icofont icofont-eye-alt"></i>Mostrar</button>
+                                                <button class="dropdown-item editar" value="{{ path('edit_especialist', {'id': e.id}) }}" title="Editar"><i class="icofont icofont-ui-edit"></i>Editar</button>
+                                                {% if app.user.id != e.credentials.id %}
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                    <button class="dropdown-item eliminar" value="{{ path('delete_especialist', {'id' : e.id}) }}"><i class="icofont icofont-trash"></i>Eliminar</button>
+                                                {%endif%}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="navigation">
+                            <ul class="pagination justify-content-lg-end m-0">
+                                {{ knp_pagination_render(pagination) }}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md-modal md-effect-1" id="modal-19">
+        <div class="md-content md-content-white">
+            <h3><i class="icofont icofont-warning"></i> Advertencia</h3>
+            <div>
+                <h5 id="mensaje"></h5>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <button class="btn btn-primary aceptar">Aceptar</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-inverse cancelar" onclick="$('#modal-19').removeClass('md-show')">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="md-overlay"></div>
+
+  {% for t in tipo %}
+        <div class="col-xl-4 col-md-6">
+            <div class="card">
+                <div class="card-block">
+                    <div class="row align-items-center m-l-0">
+                        <div class="col-auto">
+                            <i class="feather icon-users f-30 text-c-pink"></i>
+                        </div>
+                        <div class="col-auto">
+                            <h6 class="text-muted m-b-10">{{ t.nombre | upper }}</h6>
+                            <h2 class="m-b-0">{{ t.especialistas | length }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  {% endfor %}
+{% endblock %}
+{% block javascript %}
+    <!-- modal efect js -->
+    <script src="{{ asset('page/modal/js/modalEffects.js') }}"></script>
+    <script src="{{ asset('page/modal/js/classie.js') }}"></script>
+    <script>
+        $(function () {
+            {% for notice_level in ['success','error','info', 'warning'] %}
+            {% set session_var = 'app_' ~ notice_level %}
+            {% if app.session.flashbag.has(session_var) %}
+            {% for flash in app.session.flashbag.get(session_var) %}
+            noty({
+                text: '{{ flash }}',
+                progressBar: true,
+                layout: 'topRight',
+                dismissQueue: true,
+                timeout: 5000,
+                closeWith: ['click'],
+                theme: 'relax',
+                type: '{{ notice_level }}',
+                maxVisible: 10,
+                animation: {
+                    open  : 'animated bounceInRight',
+                    close : 'animated bounceOutRight',
+                    easing: 'swing',
+                    speed: 500
+                }
+            });
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+        });
+
+        // var stateEspecialist = document.querySelector('.js-small-new');
+        // var switchery = new Switchery(stateEspecialist, { color: '#4680ff', jackColor: '#fff', size: 'small' });
+
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-small-new'));
+
+        elems.forEach(function (html) {
+            var switchery = new Switchery(html, {color: '#4680ff', jackColor: '#fff', size: 'small'});
+            $(html).on('change', function () {
+                $.ajax({
+                    url: '{{ path('activate_especialist') }}',
+                    path: 'post',
+                    data: {value: html.checked, id: $(this).data('value')},
+                    success: function (res) {
+                        if (res.response === 'new') {
+                            window.location = "{{ path('especialist') }}";
+                        }
+                        notifierNoty(res.message, 'success');
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+            })
+        });
+
+        $('.editar').on('click', function () {
+            var link = $(this).val();
+            $('#modal-19').addClass('md-show');
+            $('#mensaje').text('Estas seguro que quieres editar este Especialista?');
+            $('.aceptar').on('click', function () {
+                window.location = link;
+            });
+        });
+
+        $('.eliminar').on('click', function () {
+            var link = $(this).val();
+            $('#modal-19').addClass('md-show');
+            $('#mensaje').text('Estas seguro que quieres eliminar este Especialista?');
+            $('.aceptar').on('click', function () {
+                window.location = link;
+            });
+        });
+
+        $('.mostrar').on('click', function () {
+            window.location = $(this).val();
+        });
+    </script>
+{% endblock %}

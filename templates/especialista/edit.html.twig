@@ -1,0 +1,288 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('page/bower_components/validation-engine/css/validationEngine.jquery.css') }}" type="text/css"/>
+{% endblock %}
+{% block titlepage %}Editar Especialista{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Especialista</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Especialista</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Listado Especialista</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Editar Especialista</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <!-- Basic Inputs Validation start -->
+        <div class="card">
+            <div class="card-header">
+                <h5>Editar Especialista</h5>
+            </div>
+            <div id="smartwizard">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#step-1">
+                            <strong>Paso 1</strong> <br>Información del Sistema
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#step-2">
+                            <strong>Paso 2</strong> <br>Descripción General
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#step-3">
+                            <strong>Paso 3</strong> <br>Información Docente
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#step-4">
+                            <strong>Paso 4</strong> <br>Información Laboral
+                        </a>
+                    </li>
+                </ul>
+                {{ include('especialista/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script src="{{ asset('page/smartwizard/src/js/jquery.smartWizard.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('page/smartwizard/src/js/jquery.smartWizard.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('page/bower_components/validation-engine/js/languages/jquery.validationEngine-es.js') }}"></script>
+    <script src="{{ asset('page/bower_components/validation-engine/js/jquery.validationEngine.min.js') }}" type="text/javascript"></script>
+    <script>
+        $('#{{ form.pais.vars.id }}').on('change', function (e) {
+            var data = {
+                pais_id: $(this).val()
+            };
+            $('#{{ form.provincia.vars.id }}').html('<option>Cargando...</option>');
+            $('#{{ form.provincia.vars.id }}').attr('disabled', 'disabled');
+            $.ajax({
+                type: 'POST',
+                url: '{{ path('provinciae_x_paise') }}',
+                async: true,
+                data: data,
+                success: function (response) {
+                    if (response.length != 0) {
+                        var option = '<option>Seleccione la Provincia.</option>';
+                        $.each(response, function (i, provincia) {
+                            option += '<option value=' + provincia.id + '>' + provincia.nombre + '</option>'
+                        });
+                        $('#{{ form.provincia.vars.id }}').html(option);
+                        $('#{{ form.provincia.vars.id }}').removeAttr('disabled');
+                    } else {
+                        var option1 = '<option>No hay Provincias en este País.</option>';
+                        $('#{{ form.provincia.vars.id }}').html(option1);
+                        $('#{{ form.provincia.vars.id }}').attr('disabled', 'disabled');
+                        var option2 = '<option>No hay Provincias en este País.</option>';
+                        $('#{{ form.town.vars.id }}').html(option2);
+                        $('#{{ form.town.vars.id }}').attr('disabled', 'disabled');
+                        var option3 = '<option>No hay Provincias en este País.</option>';
+                        $('#{{ form.centrolaboral.vars.id }}').html(option3);
+                        $('#{{ form.centrolaboral.vars.id }}').attr('disabled', 'disabled');
+                        noty({
+                            text: 'No se encontraron Provincias en el País seleccionado.',
+                            layout: 'topRight', type: 'error', timeout: 5000,
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        $('#{{ form.provincia.vars.id }}').on('change', function (e) {
+            var data = {
+                provincia_id: $(this).val()
+            };
+            $('#{{ form.town.vars.id }}').html('<option>Cargando...</option>');
+            $('#{{ form.town.vars.id }}').attr('disabled', 'disabled');
+            $.ajax({
+                type: 'POST',
+                url: '{{ path('municipioe_x_provinciae') }}',
+                async: true,
+                data: data,
+                success: function (response) {
+                    if (response.length != 0) {
+                        var option = '<option>Seleccione el Municipio.</option>';
+                        $.each(response, function (i, municipio) {
+                            option += '<option value=' + municipio.id + '>' + municipio.nombre + '</option>'
+                        });
+                        $('#{{ form.town.vars.id }}').html(option);
+                        $('#{{ form.town.vars.id }}').removeAttr('disabled');
+                    } else {
+                        var option = '<option>No hay Municipios en esta Provincia.</option>';
+                        $('#{{ form.town.vars.id }}').html(option);
+                        $('#{{ form.town.vars.id }}').attr('disabled', 'disabled');
+                        noty({
+                            text: 'No se encontraron Municipios de la Provincia seleccionada.',
+                            layout: 'topRight', type: 'error', timeout: 5000,
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $('form[name="{{ form.vars.id }}"]').validationEngine();
+            // Toolbar extra buttons
+            var btnFinish = $('<button id="btnSubmitForm" hidden></button>').html('<i class="icofont icofont-plus"></i> Añadir Especialista')
+                .addClass('btn btn-success')
+                .on('click', function () {
+                    $('#btnSubmitForm').click()
+                });
+
+            var btnCancel = $('<button></button>').text('Cancelar')
+                .addClass('btn btn-danger')
+                .on('click', function () {
+                    $('#smartwizard').smartWizard("reset");
+                });
+
+            var btnReturn = $('<button></button>').html('<i class="icofont icofont-exchange"></i> Volver al listado')
+                .addClass('btn btn-warning')
+                .on('click', function () {
+                    window.location.href = '{{ path('especialist') }}';
+                });
+
+            // Step show event
+            $("#smartwizard").on("showStep", function (e, anchorObject, stepNumber, stepDirection, stepPosition) {
+                $("#prev-btn").removeClass('disabled');
+                $("#next-btn").removeClass('disabled');
+                if (stepPosition === 'first') {
+                    $("#prev-btn").addClass('disabled');
+                } else if (stepPosition === 'last') {
+                    $("#next-btn").addClass('disabled');
+                } else {
+                    $("#prev-btn").removeClass('disabled');
+                    $("#next-btn").removeClass('disabled');
+                }
+            });
+
+            // Smart Wizard
+            $('#smartwizard').smartWizard({
+                selected: 0,
+                theme: 'arrows', //default, dots, progress
+                transition: {
+                    animation: 'none', // Effect on navigation, none/fade/slide-horizontal/slide-vertical/slide-swing
+                },
+                toolbarSettings: {
+                    toolbarPosition: 'bottom', // both bottom
+                    toolbarExtraButtons: [btnFinish, btnReturn]
+                },
+                lang: { // Language variables for button
+                    next: 'Siguiente',
+                    previous: 'Anterior'
+                },
+            });
+
+            $('#smartwizard').on('leaveStep', function (e, anchorObject, currentStepIndex, nextStepIndex, stepDirection) {
+                console.log('currentStepIndex', currentStepIndex)
+                let formValidated = $('form[name="{{ form.vars.id }}"]').validationEngine('validate');
+                console.log('formValidated', formValidated);
+                if (!formValidated) {
+                    return false;
+                }
+            })
+
+            $(".sw-btn-next").on('click', function () {
+                if ($(this).hasClass("disabled")) {
+                    $("#btnSubmitForm").removeAttr("hidden");
+                }
+            })
+            $(".sw-btn-prev").on('click', function () {
+                if (!$(this).hasClass("disabled")) {
+                    $("#btnSubmitForm").attr("hidden", "hidden");
+                }
+            })
+            // External Button Events
+            $("#reset-btn").on("click", function () {
+                // Reset wizard
+
+                $('#smartwizard').smartWizard("reset");
+                return true;
+            });
+
+            $("#prev-btn").on("click", function () {
+                // Navigate previous
+                $('#smartwizard').smartWizard("prev");
+                return true;
+            });
+
+            $("#next-btn").on("click", function () {
+                // Navigate next
+                $('#smartwizard').smartWizard("next");
+                return true;
+            });
+
+
+            // Demo Button Events
+            $("#got_to_step").on("change", function () {
+                // Go to step
+                var step_index = $(this).val() - 1;
+                $('#smartwizard').smartWizard("goToStep", step_index);
+                return true;
+            });
+
+            $("#is_justified").on("click", function () {
+                // Change Justify
+                var options = {
+                    justified: $(this).prop("checked")
+                };
+
+                $('#smartwizard').smartWizard("setOptions", options);
+                return true;
+            });
+
+            $("#dark_mode").on("click", function () {
+                // Change dark mode
+                var options = {
+                    darkMode: $(this).prop("checked")
+                };
+
+                $('#smartwizard').smartWizard("setOptions", options);
+                return true;
+            });
+
+            $("#animation").on("change", function () {
+                // Change theme
+                var options = {
+                    transition: {
+                        animation: $(this).val()
+                    },
+                };
+                $('#smartwizard').smartWizard("setOptions", options);
+                return true;
+            });
+
+            $("#theme_selector").on("change", function () {
+                // Change theme
+                var options = {
+                    theme: $(this).val()
+                };
+                $('#smartwizard').smartWizard("setOptions", options);
+                return true;
+            });
+
+        });
+    </script>
+{% endblock %}

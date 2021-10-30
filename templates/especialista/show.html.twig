@@ -1,0 +1,378 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Mostrar Especialista{% endblock %}
+{% block head %}
+    <!-- Include SmartTab CSS -->
+    <link href="{{ asset('page/tab/smart_tab_all.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- owl carousel css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/owl.carousel/css/owl.carousel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/owl.carousel/css/owl.theme.default.css') }}">
+    <!-- swiper css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/swiper/css/swiper.min.css') }}">
+{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Especialista</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Especialista</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Listado Especialista</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Mostrar Especialista</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-lg-3 col-md-6 default-grid-item">
+        <div class="card gallery-desc">
+            <div class="masonry-media">
+                <a class="media-middle" href="#!">
+                    {% if especiali.credentials.image != null %}
+                    <img class="img-fluid" src="{{ vich_uploader_asset(especiali.credentials, 'imageFile', 'App\\Entity\\User') }}" alt="{{ especiali.credentials.firstname }}">
+                    {% elseif especiali.credentials.image == null %}
+                    <img class="img-fluid" src="{{ asset('page/assets/images/anonimouser.png') }}" alt="{{ especiali.credentials.firstname }}">
+                    {% endif %}
+                </a>
+            </div>
+            <div class="card-block">
+                <h6 class="job-card-desc"><center>{{ especiali.credentials.nombrecompleto }}</center></h6>
+                <h7 class="job-meta-data"><center>{{ especiali.tipoespecialista }}</center></h7>
+                <p><h7 class="job-meta-data"><center style="color: #00AEEF">Código del Especialista</center></h7>
+                <h7 class="job-meta-data"><center style="color: #00AEEF">{{ especiali.noReg }}</center></h7></p>
+                <div class="job-meta-data"><i class="icofont icofont-pin"></i>Proyectos : {{ especiali ? (especiali.proyectos | merge (especiali.proyectosParticipantes) ) | length : '0' }}</div>
+                <div class="job-meta-data"><i class="icofont icofont-pin"></i>Intervenciones : {{ especiali ? (especiali.intervencionjefe | merge (especiali.intervencionpart) ) | length : '0' }}</div>
+                <div class="job-meta-data"><i class="icofont icofont-pin"></i>Sitios Patrimoniales :</div>
+                <div class="col-sm-13">
+                    <a class="btn " style="background-color:transparent" href="{{ path('edit_especialist', {'id': especiali.id}) }}"><span style="color:#010d0c"><i class="icofont icofont-edit"></i></a>
+                    <a class="btn " style="background-color:transparent" href="{{ path('especialist') }}"><span style="color:#010d0c" ><i class="icofont icofont-list"></i></a>
+                    <a class="btn " style="background-color:transparent" href="#"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="col-sm-9">
+    <div class="card">
+    <div id="smarttab">
+        <ul class="nav">
+            <li>
+                <a class="nav-link" href="#tab-1">
+                    <strong>Datos Generales</strong>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="#tab-2">
+                    <strong>Proyectos</strong>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="#tab-3">
+                    <strong>Intervenciones</strong>
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane" role="tabpanel">
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.noReg, 'No. Registro :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.noReg, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.noId, 'Carnet de Identidad :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.noId, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.credentials.firstname, 'Nombre :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.credentials.firstname, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.credentials.lastname, 'Apellidos :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.credentials.lastname, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.pais, 'País :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.pais, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.provincia, 'Provincia :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.provincia, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.town, 'Municipio :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.town, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.nacionalidad, 'Nacionalidad :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.nacionalidad, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.direccionparticular, 'Dirección Particular :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.direccionparticular, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.localidad, 'Localidad :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.localidad, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.movil, 'Movil :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.movil, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.telefonoparticular, 'Telefono Particular :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.telefonoparticular, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.emailparticular, 'Email Particular :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.emailparticular, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.centrolaboral, 'Centro Laboral :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.centrolaboral, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.cargo, 'Cargo :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.cargo, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.direccionlaboral, 'Dirección Laboral :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.direccionlaboral, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.telefonolaboral, 'Telefono Laboral :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.telefonolaboral, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.emaillaboral, 'Email Laboral :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.emaillaboral, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.tipoespecialista, 'Tipo de Especialista :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.tipoespecialista, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.nivelescolar, 'Nivel Escolar :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.nivelescolar, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.categoriadocente, 'Categoría Docente :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.categoriadocente, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.categoriacientifica, 'Categoría Científica :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.categoriacientifica, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.profesion, 'Profesión :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.profesion, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label>{{ form_label(form.organismo, 'Organismo :') }}</label>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.organismo, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+            </div>
+            <div id="tab-2" class="tab-pane" role="tabpanel">
+                {% include 'proyecto/list.html.twig' with {'proyectos': especiali.proyectos | merge(especiali.proyectosParticipantes)} %}
+            </div>
+            <div id="tab-3" class="tab-pane" role="tabpanel">
+                {% include 'intervencion/list.html.twig' with {'interv': especiali.intervencionjefe | merge(especiali.intervencionpart)} %}
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascript %}
+    <script src="{{ asset('page/tab/jquery.smartTab.min.js') }}" type="text/javascript"></script>
+    <!-- owl carousel 2 js -->
+    <script type="text/javascript" src="{{ asset('page/bower_components/owl.carousel/js/owl.carousel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('page/assets/js/owl-custom.js') }}"></script>
+    <!-- swiper js -->
+    <script type="text/javascript" src="{{ asset('page/bower_components/swiper/js/swiper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('page/assets/js/swiper-custom.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            // SmartTab initialize
+            $('#smarttab').smartTab();
+
+
+            // Demo Button Events
+            $("#got_to_tab").on("change", function() {
+                // Go to tab
+                var tab_index = $(this).val() - 1;
+                $('#smarttab').smartTab("goToTab", tab_index);
+                return true;
+            });
+
+            $("#is_vertical").on("click", function() {
+                // Change Orientation
+                var options = {
+                  orientation: ($(this).prop("checked") == true) ? 'vertical' : 'horizontal'
+                };
+                $('#smarttab').smartTab("setOptions", options);
+                return true;
+            });
+
+            $("#is_justified").on("click", function() {
+                // Change Justify
+                var options = {
+                  justified: $(this).prop("checked")
+                };
+
+                $('#smarttab').smartTab("setOptions", options);
+                return true;
+            });
+
+            $("#animation").on("change", function() {
+                // Change theme
+                var options = {
+                  transition: {
+                      animation: $(this).val()
+                  },
+                };
+                $('#smarttab').smartTab("setOptions", options);
+                return true;
+            });
+
+            $("#theme_selector").on("change", function() {
+                // Change theme
+                var options = {
+                  theme: $(this).val()
+                };
+                $('#smarttab').smartTab("setOptions", options);
+                return true;
+            });
+
+        });
+    </script>
+{% endblock %}

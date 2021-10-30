@@ -1,0 +1,320 @@
+{{ form_start(form) }}
+<div class="form-group row">
+    {% if(form_errors(form.cod_inventario)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.cod_inventario) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.cod_inventario, 'Código del Inventario * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.cod_inventario, { 'attr': { 'title': 'Introducir el código del inventario', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.fechainicio)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.fechainicio) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.fechainicio, 'Fecha de Inicio * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.fechainicio, { 'attr': { 'title': 'Fecha de inicio del inventario', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.fechafin)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.fechafin) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.fechafin, 'Fecha de Fin :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.fechafin, { 'attr': { 'title': 'Fecha de fin del inventario', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.duracion)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.duracion) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.duracion, 'Duración :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.duracion, { 'attr': { 'class': 'form-control', 'placeholder': 'Duración', 'title': 'Introducir la duración del inventario al objeto', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.objetivo_general)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.objetivo_general) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.objetivo_general, 'Objetivo General :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.objetivo_general, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.objetivo_especificos)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.objetivo_especificos) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.objetivo_especificos, 'Objetivo Especificos :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.objetivo_especificos, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.estado)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.estado) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.estado, 'Estado * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.estado, { 'attr': { 'title': 'Estado del inventario', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.especialistainvejefe)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.especialistainvejefe) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.especialistainvejefe, 'Especialista Jefe * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.especialistainvejefe, { 'attr': { 'title': 'Especialista jefe del inventario', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.especialistasinvParticipantes)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.especialistasinvParticipantes) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.especialistasinvParticipantes, 'Especialistas Participantes * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.especialistasinvParticipantes, { 'attr': { 'title': 'Especialistas participantes del inventario', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.sitiopatrimonial)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.sitiopatrimonial) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.sitiopatrimonial, 'Sitio Patrimonial * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.sitiopatrimonial, { 'attr': { 'title': 'Sitio Patrimonial', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.objetospresentes)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.objetospresentes) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.objetospresentes, 'Objetos Presentes :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.objetospresentes, { 'attr': { 'title': 'Objetos presentes del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.tipoinventario)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.tipoinventario) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.tipoinventario, 'Tipo de Inventario * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.tipoinventario, { 'attr': { 'title': 'Tipo de inventario', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.autorizacion)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.causaintervencion) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.autorizacion, 'Autorización :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.autorizacion, { 'attr': { 'title': 'Autorización', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.faltantes)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.faltantes) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.faltantes, 'Faltantes :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.faltantes, { 'attr': { 'class': 'js-small' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.objetosfaltantes)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.objetosfaltantes) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.objetosfaltantes, 'Objetos Faltantes :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.objetosfaltantes, { 'attr': { 'title': 'Objetos faltantes en el sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.descripcion_faltantes)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.objetivo_especificos) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.descripcion_faltantes, 'Descripción Faltantes :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.descripcion_faltantes, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.causas_faltantes)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.causas_faltantes) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.causas_faltantes, 'Causas Faltantes :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.causas_faltantes, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.ordeninventario)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.ordeninventario) }}</strong>
+        </div>
+    {% endif %}
+    {% if app.request.attributes.get('_route') == 'inventario_edit' %}
+        <label class="col-sm-2 col-form-label">Orden de Inventario :</label>
+        <div class="card-block col-sm-10">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for orde in invent.ordeninventario %}
+                        <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                            <div class="col-xl-9 col-md-20">
+                                <div class="row align-items-center m-l-12">
+                                    <div class="col-lg-auto">
+                                        <a href="{{ asset('/CLIO/public/uploads/inventario/ordeninventario/' ~ orde.link) }}" data-lightbox="{{ orde.link }}">
+                                            <img src="{{ asset('/CLIO/public/uploads/inventario/ordeninventario/' ~ orde.link) }}" alt="Orden de Inventario" width="150"><br>
+                                        </a>
+                                        <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/inventario/ordeninventario/' ~ orde.link) }}" target="_blank" title="{{orde.link}}">
+                                            <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                        <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('objeto_delete_ordeninv', {id: orde.id}) }}" data-delete
+                                           data-token="{{ csrf_token('delete' ~ orde.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <!-- end of swiper-slide -->
+                </div>
+                <!-- end of swipper-wrapper -->
+            </div>
+        </div>
+        <div class="col-sm-10">
+            {{ form_widget(form.ordeninventario) }}
+        </div>
+    {% elseif app.request.attributes.get('_route') == 'inventario_new' %}
+        <label class="col-sm-2 col-form-label">{{ form_label(form.ordeninventario, 'Orden de Inventario :') }}</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.ordeninventario, { 'attr': { 'class': 'validate[required]' } }) }}
+        </div>
+    {% endif %}
+</div>
+
+<div class="form-group row">
+{% if(form_errors(form.cartaautorizacioninventario)) %}
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>{{ form_errors(form.cartaautorizacioninventario) }}</strong>
+    </div>
+{% endif %}
+    {% if app.request.attributes.get('_route') == 'inventario_edit' %}
+        <label class="col-sm-2 col-form-label">Carta de Autorización :</label>
+        <div class="card-block col-sm-10">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for carta in invent.cartaautorizacioninventario %}
+                        <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                            <div class="col-xl-9 col-md-20">
+                                <div class="row align-items-center m-l-12">
+                                    <div class="col-lg-auto">
+                                        <a href="{{ asset('/CLIO/public/uploads/inventario/cartaautorizacion/' ~ carta.link) }}" data-lightbox="{{ carta.link }}">
+                                            <img src="{{ asset('/CLIO/public/uploads/inventario/cartaautorizacion/' ~ carta.link) }}" alt="Carta de Autorización" width="150"><br>
+                                        </a>
+                                        <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/inventario/cartaautorizacion/' ~ carta.link) }}" target="_blank" title="{{carta.link}}">
+                                            <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                        <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('objeto_delete_cartainventario', {id: carta.id}) }}" data-delete
+                                           data-token="{{ csrf_token('delete' ~ carta.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <!-- end of swiper-slide -->
+                </div>
+                <!-- end of swipper-wrapper -->
+            </div>
+        </div>
+        <div class="col-sm-10">
+            {{ form_widget(form.cartaautorizacioninventario) }}
+        </div>
+    {% elseif app.request.attributes.get('_route') == 'inventario_new' %}
+        <label class="col-sm-2 col-form-label">{{ form_label(form.cartaautorizacioninventario, 'Carta de Autorización :') }}</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.cartaautorizacioninventario, { 'attr': { 'class': 'validate[required]' } }) }}
+        </div>
+    {% endif %}
+</div>
+
+<div class="form-group row">
+    <label class="col-sm-10"></label>
+    <div class="col-sm-12">
+        <a href="{{ path('inventario_index') }}" style="background-color:transparent" class="btn btn-mat btn-info f-right"><span style="color:#010d0c"><i class="icofont icofont-exchange"></i> Volver al Listado</a>
+        <button style="background-color:transparent" class="btn btn-mat btn-info f-right"><span style="color:#010d0c"><i class="icofont icofont-plus"></i> {{ button_label|default('Añadir Inventario') }}</button>
+    </div>
+</div>
+{{ form_end(form) }}

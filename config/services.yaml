@@ -3,8 +3,56 @@
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
-parameters:
 
+parameters:
+    # Portada del Sitio Patrimonial
+    portadasitio_directory: '%kernel.project_dir%/public/uploads/sitio/portada'
+    # Croquis del Sitio Patrimonial
+    croquis_directory: '%kernel.project_dir%/public/uploads/sitio/croquis'
+    # Planimetria del Sitio Patrimonial
+    planimetria_directory: '%kernel.project_dir%/public/uploads/sitio/planimetria'
+    # Fotografias del Sitio Patrimonial
+    images_directory: '%kernel.project_dir%/public/uploads/sitio/fotografias'
+    # Fotogrametria del Sitio Patrimonial
+    fotogrametria_directory: '%kernel.project_dir%/public/uploads/sitio/fotogrametria'
+    # Videos del Sitio Patrimonial
+    video_directory: '%kernel.project_dir%/public/uploads/sitio/video'
+    # Modelos 3D del Sitio Patrimonial
+    modelo3d_directory: '%kernel.project_dir%/public/uploads/sitio/modelo3d'
+    # Publicaciones del Sitio Patrimonial
+    publicaciones_directory: '%kernel.project_dir%/public/uploads/sitio/publicaciones'
+    # Bibliografia del Sitio Patrimonial
+    bibliografia_directory: '%kernel.project_dir%/public/uploads/sitio/bibliografia'
+    # Referencias Web del Sitio Patrimonial
+    referenciaweb_directory: '%kernel.project_dir%/public/uploads/sitio/referenciaweb'
+    # Plan de Manejo Sitio Patrimonial
+    planmanejo_directory: '%kernel.project_dir%/public/uploads/sitio/planmanejo'
+    # Declaracion Sitio Patrimonial
+    declaracion_directory: '%kernel.project_dir%/public/uploads/sitio/declaracion'
+    # Fotografias de la Ficha del Objeto Patrimonial
+    fotografiaobjeto_directory: '%kernel.project_dir%/public/uploads/objeto/fotografias'
+    # Portada del Objeto Patrimonial
+    portadaobjeto_directory: '%kernel.project_dir%/public/uploads/objeto/portada'
+    # Dibujo de la Ficha del Objeto Patrimonial
+    dibujoobjeto_directory: '%kernel.project_dir%/public/uploads/objeto/dibujos'
+    # Fotogrametria de la Ficha del Objeto Patrimonial
+    fotogrametriaobjeto_directory: '%kernel.project_dir%/public/uploads/objeto/fotogrametrias'
+    # Modelo 3D de la Ficha del Objeto Patrimonial
+    modelo3dobjeto_directory: '%kernel.project_dir%/public/uploads/objeto/modelo3d'
+    # Bibliografia de la Ficha del Objeto Patrimonial
+    bibliografiaobjeto_directory: '%kernel.project_dir%/public/uploads/objeto/bibliografia'
+    # Publicaciones de la Ficha del Objeto Patrimonial
+    publicacionesobjeto_directory: '%kernel.project_dir%/public/uploads/objeto/publicaciones'
+    # Referencia Web de la Ficha del Objeto Patrimonial
+    referenciawebobjeto_directory: '%kernel.project_dir%/public/uploads/objeto/referenciasweb'
+    # Proyecto General de Intervención de Conservacion
+    proyectogeneralinter_directory: '%kernel.project_dir%/public/uploads/objeto/proyectogeneral'
+    # Carta de Autorización de Intervención de Conservacion
+    cartaautorizacioninter_directory: '%kernel.project_dir%/public/uploads/objeto/cartaautorizacion'
+    # Orden de Inventario de Sitio Patrimonial
+    ordeninventario_directory: '%kernel.project_dir%/public/uploads/inventario/ordeninventario'
+    # Carta de Autorización de Inventario
+    cartaautorizacioninventario_directory: '%kernel.project_dir%/public/uploads/inventario/cartaautorizacion'
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -23,3 +71,10 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+#    App.Handler.SessionIdle:
+#        class: App\Security\SessionIdleHandler
+#        arguments: ['%session_max_idle_time%']
+#        tags: [{ name: kernel.event_listener, event: kernel.request }]
+        
+    App\EventSubscriber\CalendarSubscriber:    

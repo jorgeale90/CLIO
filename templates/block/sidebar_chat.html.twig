@@ -1,0 +1,415 @@
+<div id="sidebar" class="users p-chat-user showChat">
+    <div class="had-container">
+        <div class="card card_main p-fixed users-main">
+            <div class="user-box">
+                <div class="chat-inner-header">
+                    <div class="back_chatBox">
+                        <div class="right-icon-control">
+                            <input type="text" class="form-control  search-text" placeholder="Buscar Opción" id="search-friends">
+                            <div class="form-icon">
+                                <i class="icofont icofont-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-friend-list">
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="País" data-toggle="tooltip" data-placement="left" title="País">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('pais_index') }}"><i class="feather icon-arrow-right"></i> Listado País</a>
+                                <span class="pcoded-badge label label-success ">
+                                     {{ paiss | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Provincia" data-toggle="tooltip" data-placement="left" title="Provincia">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('provincia_index') }}"><i class="feather icon-arrow-right"></i> Listado Provincia</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ provincia | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Municipio" data-toggle="tooltip" data-placement="left" title="Municipio">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('municipio_index') }}"><i class="feather icon-arrow-right"></i> Listado Municipio</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ municipi | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Nacionalidad" data-toggle="tooltip" data-placement="left" title="Nacionalidad">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('nacionalidad_index') }}"><i class="feather icon-arrow-right"></i> Listado Nacionalidad</a>
+                                <span class="pcoded-badge label label-success ">
+                                     {{ nacio | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Nivel Escolar" data-toggle="tooltip" data-placement="left" title="Nivel Escolar">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('nivelescolar_index') }}"><i class="feather icon-arrow-right"></i> Listado Nivel Escolar</a>
+                                <span class="pcoded-badge label label-success ">
+                                     {{ nivelescolares | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Categoría Docente" data-toggle="tooltip" data-placement="left" title="Categoría Docente">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('categoriadocente_index') }}"><i class="feather icon-arrow-right"></i> Listado Categoría Docente</a>
+                                <span class="pcoded-badge label label-success ">
+                                     {{ categoriadocente | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Categoría Científica" data-toggle="tooltip" data-placement="left" title="Categoría Científica">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('categoriacientifica_index') }}"><i class="feather icon-arrow-right"></i> Listado Categoría Científica</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ categoriacientifica | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Organismo" data-toggle="tooltip" data-placement="left" title="Organismo">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('organismo_index') }}"><i class="feather icon-arrow-right"></i> Listado Organismo</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ organis | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Profesión" data-toggle="tooltip" data-placement="left" title="Profesión">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('profesion_index') }}"><i class="feather icon-arrow-right"></i> Listado Profesión</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ prof | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Tipo Especialista" data-toggle="tooltip" data-placement="left" title="Tipo Especialista">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('tipoespecialista_index') }}"><i class="feather icon-arrow-right"></i> Listado Tipo Especialista</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ tipoespecialista | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Estado" data-toggle="tooltip" data-placement="left" title="Estado">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('estado_index') }}"><i class="feather icon-arrow-right"></i> Listado Estado</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ estadoproyecto | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Tipo Sitio Cultural" data-toggle="tooltip" data-placement="left" title="Tipo Sitio Cultural">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('tipositio_index') }}"><i class="feather icon-arrow-right"></i> Listado Tipo Sitio Cultural</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ tipositio | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Tipo Sitio Natural" data-toggle="tooltip" data-placement="left" title="Tipo Sitio Natural">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('tipositionatural_index') }}"><i class="feather icon-arrow-right"></i> Listado Tipo Sitio Natural</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ tipositionat | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Propiedad" data-toggle="tooltip" data-placement="left" title="Propiedad">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('propiedad_index') }}"><i class="feather icon-arrow-right"></i> Listado Propiedad</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ propied | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Datación" data-toggle="tooltip" data-placement="left" title="Datación">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('datacion_index') }}"><i class="feather icon-arrow-right"></i> Listado Datación</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ datacion | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Zona Costera" data-toggle="tooltip" data-placement="left" title="Zona Costera">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('zonacostera_index') }}"><i class="feather icon-arrow-right"></i> Listado Zona Costera</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ zonacostera | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Región" data-toggle="tooltip" data-placement="left" title="Región">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('region_index') }}"><i class="feather icon-arrow-right"></i> Listado Región</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ region | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="GeoSistema" data-toggle="tooltip" data-placement="left" title="GeoSistema">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('geosistema_index') }}"><i class="feather icon-arrow-right"></i> Listado GeoSistema</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ geosistema | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Contexto" data-toggle="tooltip" data-placement="left" title="Contexto">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('contexto_index') }}"><i class="feather icon-arrow-right"></i> Listado Contexto</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ contextogeo | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Contexto Cultural" data-toggle="tooltip" data-placement="left" title="Contexto Cultural">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('contextocultural_index') }}"><i class="feather icon-arrow-right"></i> Listado Contexto Cultural</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ contextocult | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Categoría Sitio" data-toggle="tooltip" data-placement="left" title="Categoría Sitio">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('categoria_index') }}"><i class="feather icon-arrow-right"></i> Listado Categoría Sitio</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ categoriasitio | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Tipo Material" data-toggle="tooltip" data-placement="left" title="Tipo Material">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('tipomaterial_index') }}"><i class="feather icon-arrow-right"></i> Listado Tipo Material</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ tipomaterial | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="SubTipo Material" data-toggle="tooltip" data-placement="left" title="SubTipo Material">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('subtipomaterial_index') }}"><i class="feather icon-arrow-right"></i> Listado SubTipo Material</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ subtipomat | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Clasificación" data-toggle="tooltip" data-placement="left" title="Clasificación">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('clasificacion_index') }}"><i class="feather icon-arrow-right"></i> Listado Clasificación</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ clasifica | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Uso Función" data-toggle="tooltip" data-placement="left" title="Uso Función">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('usofuncion_index') }}"><i class="feather icon-arrow-right"></i> Listado Uso/Función</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ usofunc | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Categoría Objeto" data-toggle="tooltip" data-placement="left" title="Categoría Objeto">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('categoriaobjeto_index') }}"><i class="feather icon-arrow-right"></i> Listado Categoría Objeto</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ categoriaobjet | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Objeto" data-toggle="tooltip" data-placement="left" title="Objeto">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('objeto_index') }}"><i class="feather icon-arrow-right"></i> Listado Objeto</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ objet | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Tipo Objeto" data-toggle="tooltip" data-placement="left" title="Tipo Objeto">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('tipoobjeto_index') }}"><i class="feather icon-arrow-right"></i> Listado Tipo Objeto</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ tipoobjeto | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Tipo Proyecto" data-toggle="tooltip" data-placement="left" title="Tipo Proyecto">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('tipoproyecto_index') }}"><i class="feather icon-arrow-right"></i> Listado Tipo Proyecto</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ tipoproyecto | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Tipo Intervención" data-toggle="tooltip" data-placement="left" title="Tipo Intervención Sitio">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('tipointervencion_index') }}"><i class="feather icon-arrow-right"></i> Listado Tipo Intervención Sitio</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ tipointerven | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Tipo Intervención" data-toggle="tooltip" data-placement="left" title="Tipo Intervención Objeto">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('tipointervencionobjeto_index') }}"><i class="feather icon-arrow-right"></i> Listado Tipo Intervención Objeto</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ tipointerobje | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Tecnica Aplicada" data-toggle="tooltip" data-placement="left" title="Tecnica Aplicada">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('tecnicaaplicada_index') }}"><i class="feather icon-arrow-right"></i> Listado Tecnica Aplicada</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ tecnicaaplicad | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Tratamiento Laboratorio" data-toggle="tooltip" data-placement="left" title="Tratamiento de Laboratorio">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('tratamientolaboratorio_index') }}"><i class="feather icon-arrow-right"></i> Listado Tratamiento Laboratorio</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ tratamientolaborator | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Tratamiento Insitu" data-toggle="tooltip" data-placement="left" title="Tratamiento Insitu">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('tratamientoinsitu_index') }}"><i class="feather icon-arrow-right"></i> Listado Tratamiento Insitu</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ tratamientoinsitu | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Causa Intervención Objeto" data-toggle="tooltip" data-placement="left" title="Causa Intervención Objeto">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('causaintervencionobj_index') }}"><i class="feather icon-arrow-right"></i> Listado Causa Intervención Objeto</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ causaintervencionobjeto | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Causa Intervención Sitio" data-toggle="tooltip" data-placement="left" title="Causa Intervención Sitio">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('causaintervencion_index') }}"><i class="feather icon-arrow-right"></i> Listado Causa Intervención Sitio</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ causaintv | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Integridad" data-toggle="tooltip" data-placement="left" title="Integridad">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('integridad_index') }}"><i class="feather icon-arrow-right"></i> Listado Integridad</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ integri | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-username="Integridad" data-toggle="tooltip" data-placement="left" title="Tipo Inventario">
+                        <div class="media-body">
+                            <div class="f-13 chat-header"><a href="{{ path('tipoinventario_index') }}"><i class="feather icon-arrow-right"></i> Listado Tipo Inventario</a>
+                                <span class="pcoded-badge label label-success ">
+                                    {{ tipoinventar | length }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left">
+
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left">
+
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left">
+
+                    </div>
+
+                    <div class="media userlist-box" data-id="1" data-status="online" data-toggle="tooltip" data-placement="left">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

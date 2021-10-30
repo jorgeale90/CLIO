@@ -1,0 +1,37 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Cód.</th>
+            <th>Inicio</th>
+            <th>Clausura</th>
+            <th>Estado</th>
+            <th>Tipo Intervención</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set noData = 'No especificado.' %}
+        {% for inte in interv %}
+            <tr>
+                <td>{{ inte.codIntervencion }}</td>
+                <td>{{ inte.fechainicio | date('Y-m-d') }}</td>
+                {% if inte.fechafin %}
+                    <td>{{ inte.fechafin | date('Y-m-d') }}</td>
+                {% else %}
+                    <td>{{ noData }}</td>
+                {% endif %}
+                <td>{{ inte.estado }}</td>
+                <td>{{ inte.tipointervencion }}</td>
+                <td>
+                    <a href="{{ path('intervencionesp_show', {'id': inte.id}) }}"><center><i class="icofont icofont-info-circle"></i></center></a>
+                </td>
+            </tr>
+        {% else %}
+            <div class="alert alert-warning background-warning">
+                El Especialista no tiene Intervenciones!!!
+            </div>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

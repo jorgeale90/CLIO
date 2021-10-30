@@ -1,0 +1,45 @@
+<nav class="topnav navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('post_list') }}">
+{#            <img src="{{ asset('page/img/logo.png') }}" style="max-height: 60px; max-width: 120px"> #}
+            <strong>M'ka</strong>
+        </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarColor02" style="">
+            <ul class="navbar-nav mr-auto d-flex align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('post_list') }}">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                {% for m in menu %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('archive_cat', {'category': m.category.name}) }}">{{ m.category.name }} <span class="sr-only">(current)</span></a>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CLIENT') or is_granted('ROLE_MODERATOR') %}
+                <div class="dropdown">
+                    <button class="dropbtn">{{ app.user.nombrecompleto }}</button>
+                    <div class="dropdown-content">
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MODERATOR') %}
+                            <a href="{{ path('dashboard') }}">Dashboard</a>
+                            <a href="{{ path('admin_posts') }}">Posts</a>
+                            <a href="{{ path('comments') }}">Comentarios</a>
+                        {% endif %}
+                        <a href="{{ path('app_home') }}">Portada</a>
+                        <a href="{{ path('blog_perfil_user') }}">Perfil Usuario</a>
+                        <div class="divider"></div>
+                        <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                </div>
+            {% else %}
+                <ul class="navbar-nav ml-auto d-flex align-items-center">
+                    <li class="nav-item highlight">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>

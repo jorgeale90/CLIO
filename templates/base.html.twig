@@ -1,19 +1,309 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+<html lang="en">
+
+<head>
+    <title>CLIO - {% block titlepage %} Home {% endblock %}</title>
+    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 10]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="#">
+    <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+    <meta name="author" content="#">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" href="{{ asset('icons/icono.png') }}"/>
+    <!-- Google font--><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/bootstrap/css/bootstrap.min.css') }}">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/assets/icon/themify-icons/themify-icons.css') }}">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/assets/icon/icofont/css/icofont.css') }}">
+    <!-- feather Awesome -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/assets/icon/feather/css/feather.css') }}">
+    <!-- Select 2 css -->
+    <link rel="stylesheet" href="{{ asset('page/bower_components/select2/css/select2.min.css') }}">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/assets/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/assets/css/jquery.mCustomScrollbar.css') }}">
+    <!-- Data Table Css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/assets/pages/data-table/css/buttons.dataTables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/assets/pages/data-table/extensions/buttons/css/buttons.dataTables.min.css') }}">
+    <!-- Notifications -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/noty/animate/animate.css') }}"/>
+    <!-- Multi Select css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/multiselect/css/multi-select.css') }}">
+    <!-- Switch component css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/switchery/css/switchery.min.css') }}">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/assets/icon/themify-icons/themify-icons.css') }}">
+    <!-- wizard form -->
+    <link href="{{ asset('page/smartwizard/src/css/smart_wizard_all.min.css') }}" rel="stylesheet" type="text/css" />
+    {% block head %}
+
+    {% endblock %}
+    {% block stylesheets %}
+
+    {% endblock %}
+</head>
+
+<body>
+<!-- Pre-loader start -->
+
+{% block pre_cargando %}
+    {{ include ('block/pre_cargar.html.twig') }}
+{% endblock %}
+
+<!-- Pre-loader end -->
+<div id="pcoded" class="pcoded">
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+
+        {% block barra_nav %}
+            {{ include ('block/barra_nav.html.twig') }}
         {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+        <!-- Sidebar chat start -->
+        {% if is_granted('ROLE_ADMIN') %}
+            {% block sidebar_chat %}
+                {{ include ('block/sidebar_chat.html.twig') }}
+            {% endblock %}
+        {% endif %}
+        <!-- Sidebar inner chat start-->
+{#        {% block sidebar_inner_chat %}#}
+{#            {{ include ('block/sidebar_inner_chat.html.twig') }}#}
+{#        {% endblock %}#}
+        <!-- Sidebar inner chat end-->
+        <div class="pcoded-main-container">
+            <div class="pcoded-wrapper">
+
+                {% block barra_menu %}
+                    {{ include ('block/barra_menu.html.twig') }}
+                {% endblock %}
+
+                <div class="pcoded-content">
+                    <div class="pcoded-inner-content">
+                        <!-- Main-body start -->
+                        <div class="main-body">
+                            <div class="page-wrapper">
+                                <!-- Page-header start -->
+                                {% block page_header %}
+
+                                {% endblock %}
+                                <!-- Page-header end -->
+                                <!-- Page body start -->
+                                <div class="page-body">
+                                    <div class="row">
+                                        {% block contenido %}
+
+                                        {% endblock %}
+                                    </div>
+                                    {% block carousel %}
+
+                                    {% endblock %}
+                                    <!-- Right column end -->
+                                </div>
+                            </div>
+                            <!-- Page body start -->
+                        </div>
+                    </div>
+                    <!-- Main-body end -->
+{#                    <div id="styleSelector">#}
+{#                    </div>#}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{#{% block chat_whatsapp %}#}
+{#    {{ include ('block/whatsapp.html.twig') }}#}
+{#{% endblock %}#}
+<!-- Warning Section Starts -->
+<!-- Older IE warning message -->
+<!--[if lt IE 10]>
+<div class="ie-warning">
+    <h1>Warning!!</h1>
+    <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+    <div class="iew-container">
+        <ul class="iew-download">
+            <li>
+                <a href="http://www.google.com/chrome/">
+                    <img src="{{ asset('assets/images/browser/chrome.png') }}" alt="Chrome">
+                    <div>Chrome</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.mozilla.org/en-US/firefox/new/">
+                    <img src="{{ asset('assets/images/browser/firefox.png') }}" alt="Firefox">
+                    <div>Firefox</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.opera.com">
+                    <img src="{{ asset('assets/images/browser/opera.png') }}" alt="Opera">
+                    <div>Opera</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.apple.com/safari/">
+                    <img src="{{ asset('assets/images/browser/safari.png') }}" alt="Safari">
+                    <div>Safari</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                    <img src="{{ asset('page/assets/images/browser/ie.png') }}" alt="">
+                    <div>IE (9 & above)</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <p>Lo sentimos por el incoveniente!!!</p>
+</div>
+<![endif]-->
+<!-- Warning Section Ends -->
+<!-- Required Jquery -->
+<script type="text/javascript" src="{{ asset('page/bower_components/jquery/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/bower_components/popper.js/js/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
+
+<!-- jquery slimscroll js -->
+<script type="text/javascript" src="{{ asset('page/bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
+
+<!-- modernizr js -->
+<script type="text/javascript" src="{{ asset('page/bower_components/modernizr/js/modernizr.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/bower_components/modernizr/js/css-scrollbars.js') }}"></script>
+
+<!-- isotope js -->
+<script src="{{ asset('page/assets/pages/isotope/jquery.isotope.js') }}"></script>
+<script src="{{ asset('page/assets/pages/isotope/isotope.pkgd.min.js') }}"></script>
+
+<!-- data-table js -->
+<script src="{{ asset('page/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('page/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('page/assets/pages/data-table/js/jszip.min.js') }}"></script>
+<script src="{{ asset('page/assets/pages/data-table/js/pdfmake.min.js') }}"></script>
+<script src="{{ asset('page/assets/pages/data-table/js/vfs_fonts.js') }}"></script>
+<script src="{{ asset('page/assets/pages/data-table/extensions/buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('page/assets/pages/data-table/extensions/buttons/js/buttons.flash.min.js') }}"></script>
+<script src="{{ asset('page/assets/pages/data-table/extensions/buttons/js/jszip.min.js') }}"></script>
+<script src="{{ asset('page/assets/pages/data-table/extensions/buttons/js/vfs_fonts.js') }}"></script>
+<script src="{{ asset('page/assets/pages/data-table/extensions/buttons/js/buttons.colVis.min.js') }}"></script>
+<script src="{{ asset('page/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('page/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('page/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('page/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('page/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
+
+<!-- i18next.min.js -->
+<script type="text/javascript" src="{{ asset('page/bower_components/i18next/js/i18next.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/bower_components/jquery-i18next/js/jquery-i18next.min.js') }}"></script>
+
+<!-- Switch component js -->
+<script type="text/javascript" src="{{ asset('page/bower_components/switchery/js/switchery.min.js') }}"></script>
+
+<!-- Custom js -->
+<script type="text/javascript" src="{{ asset('page/assets/pages/advance-elements/select2-custom.js') }}"></script>
+<script src="{{ asset('page/assets/pages/data-table/js/data-table-custom.js') }}"></script>
+<script src="{{ asset('page/assets/js/pcoded.min.js') }}"></script>
+<script src="{{ asset('page/assets/js/vartical-layout.min.js') }}"></script>
+<script src="{{ asset('page/assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/assets/pages/advance-elements/swithces.js') }}"></script>
+
+<!-- jQuery Notification Plugin 2.2.7 -->
+<script type="text/javascript" src="{{ asset('page/noty/animate/jquery.noty.packaged.js') }}"></script>
+
+<!--scrolling js--Ojo actualizar este script-->
+{#<script src="{{ asset('page/js/jquery.nicescroll.js') }}"></script>#}
+{#<script src="{{ asset('page/js/scripts.js') }}"></script>#}
+
+<!-- Select 2 js -->
+<script type="text/javascript" src="{{ asset('page/bower_components/select2/js/select2.full.min.js') }}"></script>
+
+<!-- Multiselect js -->
+<script type="text/javascript" src="{{ asset('page/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/bower_components/multiselect/js/jquery.multi-select.js') }}"></script>
+<script type="text/javascript" src="{{ asset('page/assets/js/jquery.quicksearch.js') }}"></script>
+
+<!-- Moment js -->
+<script type="text/javascript" src="{{ asset('page/bower_components/moment/js/moment.min.js') }}"></script>
+
+<script type="text/javascript">
+    $(window).on('load', function() {
+
+        var elem = Array.prototype.slice.call(document.querySelectorAll('.js-small'));
+
+        elem.forEach(function(html) {
+            var switchery = new Switchery(html, { color: '#4680ff', jackColor: '#fff', size: 'small' });
+        });
+
+        // $('#notification-toogle').on('click', function () {
+        //     var notificationTime = $('#notifications-list').find('.notification-time');
+        //     notificationTime.each(function () {
+        //         console.log($(this).text())
+        //         $(this).text(moment($(this).text(), 'YYYYMMDDhhmmss').fromNow());
+        //     })
+        // });
+
+        var $container = $('.filter-container');
+        $container.isotope({
+            filter: '*',
+            animationOptions: {
+                duration: 750,
+                easing: 'linear',
+                queue: false
+            }
+        });
+        var $grid = $('.default-grid').isotope({
+            itemSelector: '.default-grid-item',
+            masonry: {}
+        });
+    });
+
+    function notifierNoty(message, type) {
+        noty({
+            text: message,
+            progressBar: true,
+            layout: 'topRight',
+            dismissQueue: true,
+            timeout: 5000,
+            closeWith: ['click'],
+            theme: 'relax',
+            type: type,
+            maxVisible: 10,
+            animation: {
+                open: 'animated bounceInLeft',
+                close: 'animated bounceOutLeft',
+                easing: 'swing',
+                speed: 500
+            }
+        });
+    }
+</script>
+<script type="text/javascript" src="{{ asset('page/assets/js/script.js') }}"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-23581568-13');
+</script>
+{% block javascript %}
+
+{% endblock %}
+</body>
 </html>

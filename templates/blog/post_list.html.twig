@@ -1,0 +1,179 @@
+{% extends 'base-blog.html.twig' %}
+{% block title %}Posts{% endblock %}
+{% block head %}
+    <style>
+        #derecha {
+            margin-top: 18px;
+            margin-left: 780px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="form-group row" id="derecha">
+        <div class="col-sm-7">
+            {{ form_start(form) }}
+            <div class="container pt-0 pb-12">
+                {{ form_row(form.query, { 'attr': { 'class': 'form-control input-round', 'placeholder': 'Buscar Post' } }) }}
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <button type="submit" class="btn btn-primary btn-round">Buscar</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    {% set break = false %}
+    {% for post in posts %}
+        {% if post.fijarpost %}
+            {% if not break %}
+                <div class="container">
+                    <div class="jumbotron jumbotron-fluid mb-3 pt-0 pb-0 bg-lightblue position-relative">
+                        <div class="pl-4 pr-0 h-100 tofront">
+                            <div class="row justify-content-between">
+                                <div class="col-md-6 pt-6 pb-6 align-self-center">
+                                    <h1 class="secondfont mb-3 font-weight-bold">{{ post.title }}</h1>
+                                    <p class="mb-3">
+                                        {{ post.content | excerpt(25, '...') }}
+                                    </p>
+                                    <a href="{{ path('post_single', {'slug': post.slug}) }}" class="btn btn-dark">Leer más</a>
+                                </div>
+                                <div class="col-md-6 d-none d-md-block pr-0" style="background-size:cover;background-image:url({{ vich_uploader_asset(post, 'imageFile', 'App\\Entity\\Post') }});">	</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if loop.index == 1 or loop.index > 1 %}
+                    {% set break = true %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    <div class="container pt-4 pb-4">
+        <div class="row">
+            {% if posts %}
+                {% set break = false %}
+                {% for post in posts %}
+                    {% if not break %}
+                        <div class="col-lg-6">
+                            <div class="card border-0 mb-4 box-shadow h-xl-300">
+                                <div style="background-image: url({{ vich_uploader_asset(post, 'imageFile', 'App\\Entity\\Post') }}); height: 150px; background-size: cover; background-repeat: no-repeat;"></div>
+                                <div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
+                                    <h2 class="h4 font-weight-bold">
+                                        <a class="text-dark" href="{{ path('post_single', {'slug': post.slug}) }}">{{ post.title }}</a>
+                                    </h2>
+                                    <p class="card-text">
+                                        {{ post.content | excerpt(25, '...') }}
+                                    </p>
+                                    <div>
+                                        <small class="d-block"><a class="text-muted" href="#">{{ post.user.nombrecompleto }}</a></small>
+                                        <small class="text-muted">{{ post.dateCreated | time_ago }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if loop.index == 1 %}
+                            {% set break = true %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="col-md-12 col-12">
+                    <p class="lead text-center">Lo sentimos!!! No encontramos Post :(</p>
+                </div>
+            {% endif %}
+            <div class="col-lg-6">
+                <div class="flex-md-row mb-4 box-shadow h-xl-300">
+                    {% if posts | length > 1 %}
+                        {% set break = false %}
+                        {% for post in posts %}
+                            {% if not break %}
+                                {% if loop.index > 1 %}
+                                    <div class="mb-3 d-flex align-items-center">
+                                        <img height="80" src="{{ vich_uploader_asset(post, 'imageFile', 'App\\Entity\\Post') }}" width="130" height="50">
+                                        <div class="pl-3">
+                                            <h2 class="mb-2 h6 font-weight-bold">
+                                                <a class="text-dark" href="{{ path('post_single', {'slug': post.slug}) }}">{{ post.title }}</a>
+                                            </h2>
+                                            <div class="card-text text-muted small">
+                                                {{ post.user.nombrecompleto }}
+                                            </div>
+                                            <small class="text-muted">{{ post.dateCreated | time_ago }}</small>
+                                        </div>
+                                    </div>
+                                    {% if loop.index == 4 %}
+                                        {% set break = true %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+{#                        <div class="col-md-12 col-12">#}
+{#                            <p class="lead text-center">Lo sentimos!!! No encontramos Post :(</p>#}
+{#                        </div>#}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-md-8">
+                <h5 class="font-weight-bold spanborder"><span>Todos los Posts</span></h5>
+{#                {% if posts | length > 4 %}#}
+{#                    {% set break = false %}#}
+{#                    {% set limit = 5 %}   #}{#8#}
+                    {% for post in paginator %}
+{#                        {% if not break %}#}
+{#                            {% if loop.index > 4 %}#}
+                                <div class="mb-3 d-flex justify-content-between">
+                                    <div class="pr-3">
+                                        <h2 class="mb-1 h4 font-weight-bold">
+                                            <a class="text-dark" href="{{ path('post_single', {'slug': post.slug}) }}">{{ post.title }}</a>
+                                        </h2>
+                                        <p>
+                                            {{ post.content | excerpt(21, '...') }}
+                                        </p>
+                                        <div class="card-text text-muted small">
+                                            {{ post.user.nombrecompleto }}
+                                        </div>
+                                        <small class="text-muted"> <b>{{ post.category.name }}</b> / {{ post.dateCreated | time_ago }}</small>
+                                    </div>
+                                    <img height="120" src="{{ vich_uploader_asset(post, 'imageFile', 'App\\Entity\\Post') }}" width="130" height="50">
+                                </div>
+{#                                {% if loop.index > 5 %}   #}{#8#}
+{#                                    {% set break = true %}#}
+{#                                    <a href="#" class="d-block btn btn-lg btn-secondary">Leer más</a>#}
+{#                                {% endif %}#}
+{#                            {% endif %}#}
+{#                        {% endif %}#}
+                    {% endfor %}
+                <div class="navigation">
+                    {{ knp_pagination_render(paginator, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}
+                </div>
+
+{#                {% endif %}#}
+            </div>
+            {% if popular %}
+                <div class="col-md-4 pl-4">
+                    <h5 class="font-weight-bold spanborder"><span>Popular</span></h5>
+                    <ol class="list-featured">
+                        {% for c in comments %}
+                            <li>
+                                <span>
+                                    <h6 class="font-weight-bold">
+                                        <a href="{{ path('post_single', {'slug': c.post.slug}) }}" class="text-dark">{{ c.post.title }}</a>
+                                    </h6>
+                                    <p class="text-muted">
+                                        {{ c.user.nombrecompleto }}
+                                    </p>
+                                </span>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

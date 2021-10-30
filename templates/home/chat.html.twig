@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Chat{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block">
+            <h5><strong>Dashboard </strong> - Chat</h5>
+            <div class="page-header-breadcrumb">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item"> <i class="feather icon-home"></i> Dashboard
+                    </li>
+                    <li class="breadcrumb-item active">Chat
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="chat-box">
+        <ul class="text-right boxs">
+            <li class="chat-single-box card-shadow bg-white active" data-id="1">
+                <div class="had-container">
+                    <div class="chat-header p-10 bg-gray">
+                        <div class="user-info d-inline-block f-left">
+                            <div class="box-live-status bg-danger  d-inline-block m-r-10"></div>
+                            <a href="#">Josephin Doe</a>
+                        </div>
+                        <div class="box-tools d-inline-block">
+                            <a href="#" class="mini">
+                                <i class="icofont icofont-minus f-20 m-r-10"></i>
+                            </a>
+                            <a class="close" href="#">
+                                <i class="icofont icofont-close f-20"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="chat-body p-10">
+                        <div class="message-scrooler">
+                            <div class="messages">
+                                <div class="message out no-avatar media">
+                                    <div class="body media-body text-right p-l-50">
+                                        <div class="content msg-reply f-12 bg-primary d-inline-block">Good morning..</div>
+                                        <div class="seen"><i class="icon-clock f-12 m-r-5 txt-muted d-inline-block"></i><span>a few seconds ago </span>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <div class="sender media-right friend-box">
+                                        <a href="javascript:void(0);" title="Me"><img src="{{ asset('page/assets/images/avatar-1.jpg') }}" class="  img-chat-profile" alt="Me"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-footer b-t-muted">
+                        <div class="input-group write-msg">
+                            <input type="text" class="form-control input-value" placeholder="Type a Message">
+                            <span class="input-group-btn">
+<button id="paper-btn" class="btn btn-primary" type="button">
+<i class="icofont icofont-paper-plane"></i>
+</button>
+</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div id="sidebar" class="users p-chat-user">
+            <div class="had-container">
+                <div class="card card_main p-fixed users-main ">
+                    <div class="user-box">
+                        <div class="card-block">
+                            <div class="right-icon-control">
+                                <input type="text" class="form-control  search-text" placeholder="Search Friend">
+                                <div class="form-icon">
+                                    <i class="icofont icofont-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media userlist-box" data-id="8" data-status="offline" data-username="Sara Tancredi" data-toggle="tooltip" data-placement="left" title="Sara Tancredi">
+                            <a class="media-left" href="#!">
+                                <img class="media-object  " src="{{ asset('page/assets/images/avatar-5.jpg') }}" alt="Generic placeholder image">
+                                <div class="live-status bg-danger"></div>
+                            </a>
+                            <div class="media-body">
+                                <div class="f-13 chat-header">Sara Tancredi</div>
+                            </div>
+                        </div>
+                        <div class="media userlist-box" data-id="9" data-status="online" data-username="Samon" data-toggle="tooltip" data-placement="left" title="Samon">
+                            <a class="media-left" href="#!">
+                                <img class="media-object  " src="{{ asset('page/assets/images/avatar-1.jpg') }}" alt="Generic placeholder image">
+                                <div class="live-status bg-success"></div>
+                            </a>
+                            <div class="media-body">
+                                <div class="f-13 chat-header">Samon</div>
+                            </div>
+                        </div>
+                        <div class="media userlist-box" data-id="10" data-status="online" data-username="Daizy Mendize" data-toggle="tooltip" data-placement="left" title="Daizy Mendize">
+                            <a class="media-left" href="#!">
+                                <img class="media-object  " src="{{ asset('page/assets/images/task/task-u3.jpg') }}" alt="Generic placeholder image">
+                                <div class="live-status bg-success"></div>
+                            </a>
+                            <div class="media-body">
+                                <div class="f-13 chat-header">Daizy Mendize</div>
+                            </div>
+                        </div>
+                        <div class="media userlist-box" data-id="11" data-status="offline" data-username="Loren Scofield" data-toggle="tooltip" data-placement="left" title="Loren Scofield">
+                            <a class="media-left" href="#!">
+                                <img class="media-object  " src="{{ asset('page/assets/images/avatar-3.jpg') }}" alt="Generic placeholder image">
+                                <div class="live-status bg-danger"></div>
+                            </a>
+                            <div class="media-body">
+                                <div class="f-13 chat-header">Loren Scofield</div>
+                            </div>
+                        </div>
+                        <div class="media userlist-box" data-id="12" data-status="online" data-username="Shayk" data-toggle="tooltip" data-placement="left" title="Shayk">
+                            <a class="media-left" href="#!">
+                                <img class="media-object  " src="{{ asset('page/assets/images/avatar-4.jpg') }}" alt="Generic placeholder image">
+                                <div class="live-status bg-success"></div>
+                            </a>
+                            <div class="media-body">
+                                <div class="f-13 chat-header">Shayk</div>
+                            </div>
+                        </div>
+                        <div class="media userlist-box" data-id="13" data-status="offline" data-username="Sara" data-toggle="tooltip" data-placement="left" title="Sara">
+                            <a class="media-left" href="#!">
+                                <img class="media-object  " src="{{ asset('page/assets/images/task/task-u3.jpg') }}" alt="Generic placeholder image">
+                                <div class="live-status bg-danger"></div>
+                            </a>
+                            <div class="media-body">
+                                <div class="f-13 chat-header">Sara</div>
+                            </div>
+                        </div>
+                        <div class="media userlist-box" data-id="14" data-status="online" data-username="Doe" data-toggle="tooltip" data-placement="left" title="Doe">
+                            <a class="media-left" href="#!">
+                                <img class="media-object  " src="{{ asset('page/assets/images/avatar-1.jpg') }}" alt="Generic placeholder image">
+                                <div class="live-status bg-success"></div>
+                            </a>
+                            <div class="media-body">
+                                <div class="f-13 chat-header">Doe</div>
+                            </div>
+                        </div>
+                        <div class="media userlist-box" data-id="15" data-status="online" data-username="Lary" data-toggle="tooltip" data-placement="left" title="Lary">
+                            <a class="media-left" href="#!">
+                                <img class="media-object  " src="{{ asset('page/assets/images/task/task-u1.jpg') }}" alt="Generic placeholder image">
+                                <div class="live-status bg-success"></div>
+                            </a>
+                            <div class="media-body">
+                                <div class="f-13 chat-header">Lary</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script src="{{ asset('page/assets/pages/chat/js/mmc-common.js') }}"></script>
+    <script src="{{ asset('page/assets/pages/chat/js/mmc-chat.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('page/assets/pages/chat/js/chat.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('page/assets/js/script.js') }}"></script>
+{% endblock %}

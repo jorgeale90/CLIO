@@ -1,0 +1,1653 @@
+{{ form_start(form) }}
+<div class="tab-content">
+    <div id="identity" class="tab-pane" role="tabpanel" aria-labelledby="identity">
+        <div class="card-block">
+            <div class="form-group row">
+                {% if(form_errors(form.codigo)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.codigo) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.codigo, 'Código * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.codigo, { 'attr': { 'title': 'Introducir el código del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.ref_expediente)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.ref_expediente) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.ref_expediente, 'Referencia Exp. Patrimonial * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.ref_expediente, { 'attr': { 'title': 'Introducir la referencia del expediente', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.nombre)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.nombre) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.nombre, 'Nombre * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.nombre, { 'attr': { 'title': 'Introducir el nombre del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.otrosNombre)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.otrosNombre) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.otrosNombre, 'Otros Nombres * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.otrosNombre, { 'attr': { 'title': 'Introducir otro nombre del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.keyword)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.keyword) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.keyword, 'Palabras Claves (KeyWord):') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.keyword, { 'attr': { 'class': 'form-control', 'title': 'Introducir las palabras claves del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.fecharegistro)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.fecharegistro) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.fecharegistro, 'Fecha de Registro * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.fecharegistro, { 'attr': { 'title': 'Introducir la fecha de registro del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.fechainscripcion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.fechainscripcion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.fechainscripcion, 'Fecha de Inscripción * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.fechainscripcion, { 'attr': { 'title': 'Introducir la fecha de inscripción del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.descripcion_general)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.descripcion_general) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.descripcion_general, 'Descripción General :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.descripcion_general, { 'attr': { 'class': 'form-control', 'title': 'Introducir la descripción general del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.caracteristicas_generales)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.caracteristicas_generales) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.caracteristicas_generales, 'Caracteristicas Arqueológicas :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.caracteristicas_generales, { 'attr': { 'class': 'form-control', 'title': 'Introducir las caracteristicas generales del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.categoria)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.categoria) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.categoria, 'Categoría * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.categoria, { 'attr': { 'title': 'Introducir la categoría del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.tipositio)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.tipositio) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.tipositio, 'Tipo de Sitio Cultural * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.tipositio) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.tipositionatural)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.tipositionatural) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.tipositionatural, 'Tipo de Sitio Natural * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.tipositionatural) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.propiedad)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.propiedad) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.propiedad, 'Propiedad * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.propiedad) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.especialistasParticipantes)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.especialistasParticipantes) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.especialistasParticipantes, 'Personas que han Trabajado * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.especialistasParticipantes) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.portadasitio)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.portadasitio) }}</strong>
+                    </div>
+                {% endif %}
+                {% if app.request.attributes.get('_route') == 'sitiopatrimonial_edit' %}
+                    <label class="col-sm-2 col-form-label">Portada del Sitio :</label>
+                    <div class="card-block col-sm-10">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for por in sitio.portadasitio %}
+                                    <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                                        <div class="col-xl-9 col-md-20">
+                                            <div class="row align-items-center m-l-12">
+                                                <div class="col-lg-auto">
+                                                    <a href="{{ asset('/CLIO/public/uploads/sitio/portada/' ~ por.link) }}" data-lightbox="{{ por.link }}">
+                                                        <img src="{{ asset('/CLIO/public/uploads/sitio/portada/' ~ por.link) }}" alt="Porta del Sitio" width="150"><br>
+                                                    </a>
+                                                    <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/sitio/portada/' ~ por.link) }}" target="_blank" title="{{por.link}}">
+                                                        <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                                    <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('sitio_delete_portadasitio', {id: por.id}) }}" data-delete
+                                                       data-token="{{ csrf_token('delete' ~ por.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- end of swiper-slide -->
+                            </div>
+                            <!-- end of swipper-wrapper -->
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.portadasitio) }}
+                    </div>
+                {% elseif app.request.attributes.get('_route') == 'sitiopatrimonial_new' %}
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.portadasitio, 'Portada del Sitio :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.portadasitio) }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.croquis)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.croquis) }}</strong>
+                    </div>
+                {% endif %}
+                {% if app.request.attributes.get('_route') == 'sitiopatrimonial_edit' %}
+                    <label class="col-sm-2 col-form-label">Croquis :</label>
+                    <div class="card-block col-sm-10">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for cro in sitio.croquis %}
+                                    <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                                        <div class="col-xl-9 col-md-20">
+                                            <div class="row align-items-center m-l-12">
+                                                <div class="col-lg-auto">
+                                                    <img src="{{ asset('page/assets/images/documents.png') }}" alt="{{ cro.link }}" width="150"><br>
+                                                    <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/sitio/croquis/' ~ cro.link) }}" target="_blank" title="{{cro.link}}">
+                                                        <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                                    <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('sitio_delete_croquis', {id: cro.id}) }}" data-delete
+                                                       data-token="{{ csrf_token('delete' ~ cro.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- end of swiper-slide -->
+                            </div>
+                            <!-- end of swipper-wrapper -->
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.croquis) }}
+                    </div>
+                {% elseif app.request.attributes.get('_route') == 'sitiopatrimonial_new' %}
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.croquis, 'Croquis :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.croquis) }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.planimetria)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.planimetria) }}</strong>
+                    </div>
+                {% endif %}
+                {% if app.request.attributes.get('_route') == 'sitiopatrimonial_edit' %}
+                    <label class="col-sm-2 col-form-label">Planimetrías :</label>
+                    <div class="card-block col-sm-10">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for pla in sitio.planimetria %}
+                                    <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                                        <div class="col-xl-9 col-md-20">
+                                            <div class="row align-items-center m-l-12">
+                                                <div class="col-lg-auto">
+                                                    <img src="{{ asset('page/assets/images/documents.png') }}" alt="{{ pla.link }}" width="150"><br>
+                                                    <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/sitio/planimetria/' ~ pla.link) }}" target="_blank" title="{{pla.link}}">
+                                                        <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                                    <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('sitio_delete_planimetria', {id: pla.id}) }}" data-delete
+                                                       data-token="{{ csrf_token('delete' ~ pla.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- end of swiper-slide -->
+                            </div>
+                            <!-- end of swipper-wrapper -->
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.planimetria) }}
+                    </div>
+                {% elseif app.request.attributes.get('_route') == 'sitiopatrimonial_new' %}
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.planimetria, 'Planimetría :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.planimetria) }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.fotografias)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.fotografias) }}</strong>
+                    </div>
+                {% endif %}
+                {% if app.request.attributes.get('_route') == 'sitiopatrimonial_edit' %}
+                    <label class="col-sm-2 col-form-label">Fotografías :</label>
+                    <div class="card-block col-sm-10">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for foto in sitio.fotografias %}
+                                    <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                                        <div class="col-xl-9 col-md-20">
+                                            <div class="row align-items-center m-l-12">
+                                                <div class="col-lg-auto">
+                                                    <a href="{{ asset('/CLIO/public/uploads/sitio/fotografias/' ~ foto.link) }}" data-lightbox="{{ foto.link }}">
+                                                       <img src="{{ asset('/CLIO/public/uploads/sitio/fotografias/' ~ foto.link) }}" alt="Fotografía" width="150"><br>
+                                                    </a>
+                                                    <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/sitio/fotografias/' ~ foto.link) }}" target="_blank" title="{{foto.link}}">
+                                                        <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                                    <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('sitio_delete_fotografia', {id: foto.id}) }}" data-delete
+                                                       data-token="{{ csrf_token('delete' ~ foto.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- end of swiper-slide -->
+                            </div>
+                            <!-- end of swipper-wrapper -->
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fotografias) }}
+                    </div>
+                {% elseif app.request.attributes.get('_route') == 'sitiopatrimonial_new' %}
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.fotografias, 'Fotografías :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fotografias) }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.fotogrametria)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.fotogrametria) }}</strong>
+                    </div>
+                {% endif %}
+                {% if app.request.attributes.get('_route') == 'sitiopatrimonial_edit' %}
+                    <label class="col-sm-2 col-form-label">Fotogrametría :</label>
+                    <div class="card-block col-sm-10">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for fotog in sitio.fotogrametria %}
+                                    <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                                        <div class="col-xl-9 col-md-20">
+                                            <div class="row align-items-center m-l-12">
+                                                <div class="col-lg-auto">
+                                                    <img src="{{ asset('page/assets/images/documents.png') }}" alt="{{ fotog.link }}" width="150"><br>
+                                                    <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/sitio/fotogrametria/' ~ fotog.link) }}" target="_blank" title="{{fotog.link}}">
+                                                        <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                                    <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('sitio_delete_fotogrametria', {id: fotog.id}) }}" data-delete
+                                                       data-token="{{ csrf_token('delete' ~ fotog.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- end of swiper-slide -->
+                            </div>
+                            <!-- end of swipper-wrapper -->
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fotogrametria) }}
+                    </div>
+                {% elseif app.request.attributes.get('_route') == 'sitiopatrimonial_new' %}
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.fotogrametria, 'Fotogrametría :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fotogrametria) }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.video)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.video) }}</strong>
+                    </div>
+                {% endif %}
+                {% if app.request.attributes.get('_route') == 'sitiopatrimonial_edit' %}
+                    <label class="col-sm-2 col-form-label">Videos :</label>
+                    <div class="card-block col-sm-10">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for vide in sitio.video %}
+                                    <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                                        <div class="col-xl-9 col-md-20">
+                                            <div class="row align-items-center m-l-12">
+                                                <div class="col-lg-auto">
+                                                    <img src="{{ asset('page/assets/images/video.png') }}" alt="{{ vide.link }}" width="150"><br>
+                                                    <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/sitio/video/' ~ vide.link) }}" target="_blank" title="{{vide.link}}">
+                                                        <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                                    <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('sitio_delete_video', {id: vide.id}) }}" data-delete
+                                                       data-token="{{ csrf_token('delete' ~ vide.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- end of swiper-slide -->
+                            </div>
+                            <!-- end of swipper-wrapper -->
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.video) }}
+                    </div>
+                {% elseif app.request.attributes.get('_route') == 'sitiopatrimonial_new' %}
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.video, 'Videos :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.video) }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.modelo3d)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.modelo3d) }}</strong>
+                    </div>
+                {% endif %}
+                {% if app.request.attributes.get('_route') == 'sitiopatrimonial_edit' %}
+                    <label class="col-sm-2 col-form-label">Modelo 3D :</label>
+                    <div class="card-block col-sm-10">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for mod in sitio.modelo3d %}
+                                    <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                                        <div class="col-xl-9 col-md-20">
+                                            <div class="row align-items-center m-l-12">
+                                                <div class="col-lg-auto">
+                                                    <img src="{{ asset('page/assets/images/documents.png') }}" alt="{{ mod.link }}" width="150"><br>
+                                                    <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/sitio/modelo3d/' ~ mod.link) }}" target="_blank" title="{{mod.link}}">
+                                                        <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                                    <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('sitio_delete_modelo3d', {id: mod.id}) }}" data-delete
+                                                       data-token="{{ csrf_token('delete' ~ mod.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- end of swiper-slide -->
+                            </div>
+                            <!-- end of swipper-wrapper -->
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.modelo3d) }}
+                    </div>
+                {% elseif app.request.attributes.get('_route') == 'sitiopatrimonial_new' %}
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.modelo3d, 'Modelo 3D :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.modelo3d) }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.publicaciones)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.publicaciones) }}</strong>
+                    </div>
+                {% endif %}
+                {% if app.request.attributes.get('_route') == 'sitiopatrimonial_edit' %}
+                    <label class="col-sm-2 col-form-label">Publicaciones :</label>
+                    <div class="card-block col-sm-10">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for pub in sitio.publicaciones %}
+                                    <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                                        <div class="col-xl-9 col-md-20">
+                                            <div class="row align-items-center m-l-12">
+                                                <div class="col-lg-auto">
+                                                    <img src="{{ asset('page/assets/images/documents.png') }}" alt="{{ pub.link }}" width="150"><br>
+                                                    <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/sitio/publicaciones/' ~ pub.link) }}" target="_blank" title="{{pub.link}}">
+                                                        <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                                    <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('sitio_delete_publicaciones', {id: pub.id}) }}" data-delete
+                                                       data-token="{{ csrf_token('delete' ~ pub.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- end of swiper-slide -->
+                            </div>
+                            <!-- end of swipper-wrapper -->
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.publicaciones) }}
+                    </div>
+                {% elseif app.request.attributes.get('_route') == 'sitiopatrimonial_new' %}
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.publicaciones, 'Publicaciones :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.publicaciones) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {# ----------Paso 2 Localizacion del sitio------------- #}
+    <div id="location" class="tab-pane" role="tabpanel" aria-labelledby="location">
+        <div class="card-block">
+            <div class="form-group row">
+                {% if(form_errors(form.pais)) %}
+                    <div class="col-sm-5 alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.pais) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.pais, 'País * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.pais) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.provincia)) %}
+                    <div class="col-sm-10 alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.provincia) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.provincia, 'Provincia * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.provincia) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.municipio)) %}
+                    <div class="col-sm-10 alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.municipio) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.municipio, 'Municipio * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.municipio) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.localidad)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.localidad) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.localidad, 'Localidad * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.localidad, { 'attr': { 'title': 'Introducir la localidad del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.consejopopular)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.consejopopular) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.consejopopular, 'Consejo Popular :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.consejopopular, { 'attr': { 'class': 'form-control', 'title': 'Introducir el consejo popular del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.region)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.region) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.region, 'Region * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.region) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.geosistema)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.geosistema) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.geosistema, 'GeoSistema * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.geosistema) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.zonacostera)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.zonacostera) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.zonacostera, 'Zona Costera * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.zonacostera) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.demarcacion_visual)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.demarcacion_visual) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.demarcacion_visual, 'Demarcación Visual * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.demarcacion_visual, { 'attr': { 'class': 'form-control validate[required]', 'title': 'Introducir la demarcación visual del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.enfilaciones)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.enfilaciones) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.enfilaciones, 'Enfilaciones * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.enfilaciones, { 'attr': { 'class': 'form-control validate[required]', 'title': 'Introducir las enfilaciones del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{ form_label(form.isOnlyOneGPS, 'Coordenadas GPS punto :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.isOnlyOneGPS, { 'attr': { 'class': 'js-small', 'title': 'Habilitar si las coordenadas es de un punto', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.coordenadasgps)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.coordenadasgps) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.coordenadasgps, 'Coordenada GPS :') }}</label>
+                <div class="col-sm-10">
+                    <ul class=coordenadaGPS data-prototype="{{ form_widget(form.coordenadasgps.vars.prototype)|e }}">
+                        {% for param in form.coordenadasgps %}
+                            <li>
+                                {{ form_errors(param) }}
+                                {{ form_widget(param, { 'attr': { 'title': 'Introducir las coordenadas GPS del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{ form_label(form.isOnlyOneUTM, 'Coordenadas UTM punto :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.isOnlyOneUTM, { 'attr': { 'class': 'js-small' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.coordenadasutm)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.coordenadasutm) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.coordenadasutm, 'Coordenada UTM :') }}</label>
+                <div class="col-sm-10">
+                    <ul class=coordenadaUTM data-prototype="{{ form_widget(form.coordenadasutm.vars.prototype)|e }}">
+                        {% for param in form.coordenadasutm %}
+                            <li>
+                                {{ form_errors(param) }}
+                                {{ form_widget(param, { 'attr': { 'title': 'Introducir las coordenadas UTM del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.zonaobjetogps)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.zonaobjetogps) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.zonaobjetogps, 'Zona Objeto GPS :') }}</label>
+                <div class="col-sm-10">
+                    <ul class=zonaobjetogps data-prototype="{{ form_widget(form.zonaobjetogps.vars.prototype)|e }}">
+                        {% for param in form.zonaobjetogps %}
+                            <li>
+                                {{ form_errors(param) }}
+                                {{ form_widget(param, { 'attr': { 'title': 'Introducir la zona del objeto GPS del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.zonapatrimonialgps)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.zonapatrimonialgps) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.zonapatrimonialgps, 'Zona Patrimonial GPS :') }}</label>
+                <div class="col-sm-10">
+                    <ul class=zonapatrimonialgps
+                        data-prototype="{{ form_widget(form.zonapatrimonialgps.vars.prototype)|e }}">
+                        {% for param in form.zonapatrimonialgps %}
+                            <li>
+                                {{ form_errors(param) }}
+                                {{ form_widget(param, { 'attr': { 'title': 'Introducir la zona patrimonial GPS del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.zonaprotecciongps)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.zonaprotecciongps) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.zonaprotecciongps, 'Zona Protección GPS :') }}</label>
+                <div class="col-sm-10">
+                    <ul class=zonaprotecciongps data-prototype="{{ form_widget(form.zonaprotecciongps.vars.prototype)|e }}">
+                        {% for param in form.zonaprotecciongps %}
+                            <li>
+                                {{ form_errors(param) }}
+                                {{ form_widget(param, { 'attr': { 'title': 'Introducir la zona de protección GPS del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.zonainsertidumbregps)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.zonainsertidumbregps) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.zonainsertidumbregps, 'Zona Insertidumbre GPS :') }}</label>
+                <div class="col-sm-10">
+                    <ul class=zonainsertidumbregps
+                        data-prototype="{{ form_widget(form.zonainsertidumbregps.vars.prototype)|e }}">
+                        {% for param in form.zonainsertidumbregps %}
+                            <li>
+                                {{ form_errors(param) }}
+                                {{ form_widget(param, { 'attr': { 'title': 'Introducir la zona de insertidumbre GPS del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.areaobjeto)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.areaobjeto) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.areaobjeto, 'Area Objeto Patrimonial (m2) :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.areaobjeto, { 'attr': { 'class': 'form-control', 'title': 'Introducir el area de objeto del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.areapatrimonial)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.areapatrimonial) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.areapatrimonial, 'Area Patrimonial (m2) :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.areapatrimonial, { 'attr': { 'class': 'form-control', 'title': 'Introducir el area del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.areaproteccion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.areaproteccion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.areaproteccion, 'Area Protección (m2) :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.areaproteccion, { 'attr': { 'class': 'form-control', 'title': 'Introducir el area de potrección del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.areainsertidumbre)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.areainsertidumbre) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.areainsertidumbre, 'Area Insertidumbre (m2) :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.areainsertidumbre, { 'attr': { 'class': 'form-control', 'title': 'Introducir el area de insertidumbre del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.maxaltura)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.maxaltura) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.maxaltura, 'Maxima Altura del Nivel del Mar :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.maxaltura, { 'attr': { 'class': 'form-control', 'title': 'Introducir la maxima altura del nivel del mar del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# ----------------Paso 3 Cronologia del sitio--------------- #}
+    <div id="cronology" class="tab-pane" role="tabpanel" aria-labelledby="cronology">
+        <div class="card-block">
+            <div class="form-group row">
+                {% if(form_errors(form.datacionrelaticadesde)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.datacionrelaticadesde) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.datacionrelaticadesde, 'Datación Relativa Desde * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.datacionrelaticadesde, { 'attr': { 'title': 'Introducir la fecha de la datación realtiva desde', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.datacionrelaticahasta)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.datacionrelaticahasta) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.datacionrelaticahasta, 'Datación Relativa Hasta * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.datacionrelaticahasta, { 'attr': { 'title': 'Introducir la fecha de la datación realtiva hasta', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.datacionabsoluta)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.datacionabsoluta) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.datacionabsoluta, 'Datación Absoluta * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.datacionabsoluta, { 'attr': { 'title': 'Introducir la fecha de la datación absoluta', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.fechaconocimiento)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.fechaconocimiento) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.fechaconocimiento, 'Fecha de Conocimiento * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.fechaconocimiento, { 'attr': { 'title': 'Introducir la fecha de conocimiento', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# --------------Paso 4 Datos arqueometricos del sitio--------------- -#}
+    <div id="data_arq" class="tab-pane" role="tabpanel" aria-labelledby="data_arq">
+        <div class="card-block">
+            <div class="form-group row">
+                {% if(form_errors(form.tipo_construccion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.tipo_construccion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.tipo_construccion, 'Tipo de Construcción :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.tipo_construccion, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.tipo_arquitectura)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.tipo_arquitectura) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.tipo_arquitectura, 'Tipo de Arquitectura :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.tipo_arquitectura, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.descripcion_tecnica)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.descripcion_tecnica) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.descripcion_tecnica, 'Descripción Tecnica :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.descripcion_tecnica, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# -------------Paso 5 Historicos del sitio------------- #}
+    <div id="history" class="tab-pane" role="tabpanel" aria-labelledby="history">
+        <div class="card-block">
+            <div class="form-group row">
+                {% if(form_errors(form.contexto)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.contexto) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.contexto, 'Contexto Historico * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.contexto) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.hecho_historico)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.hecho_historico) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.hecho_historico, 'Hecho Histórico :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.hecho_historico, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.contextocultural)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.contextocultural) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.contextocultural, 'Contexto Cultural * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.contextocultural) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.referencia_documental)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.referencia_documental) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.referencia_documental, 'Referencia Documental :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.referencia_documental, { 'attr': { 'class': 'js-small' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.antecedentes_historicos)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.antecedentes_historicos) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.antecedentes_historicos, 'Antecedentes Históricos :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.antecedentes_historicos, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.bibliografia)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.bibliografia) }}</strong>
+                    </div>
+                {% endif %}
+                {% if app.request.attributes.get('_route') == 'sitiopatrimonial_edit' %}
+                    <label class="col-sm-2 col-form-label">Bibliografias :</label>
+                    <div class="card-block col-sm-10">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for bib in sitio.bibliografia %}
+                                    <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                                        <div class="col-xl-9 col-md-20">
+                                            <div class="row align-items-center m-l-12">
+                                                <div class="col-lg-auto">
+                                                    <a href="{{ asset('/CLIO/public/uploads/sitio/bibliografia/' ~ bib.link) }}" data-lightbox="{{ bib.link }}">
+                                                        <img src="{{ asset('/CLIO/public/uploads/sitio/bibliografia/' ~ bib.link) }}" alt="Bibliografías" width="150"><br>
+                                                    </a>
+                                                    <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/sitio/bibliografia/' ~ bib.link) }}" target="_blank" title="{{bib.link}}">
+                                                        <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                                    <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('sitio_delete_bibliografia', {id: bib.id}) }}" data-delete
+                                                       data-token="{{ csrf_token('delete' ~ bib.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- end of swiper-slide -->
+                            </div>
+                            <!-- end of swipper-wrapper -->
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.bibliografia) }}
+                    </div>
+                {% elseif app.request.attributes.get('_route') == 'sitiopatrimonial_new' %}
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.bibliografia, 'Bibliografías :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.bibliografia) }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.referenciaweb)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.referenciaweb) }}</strong>
+                    </div>
+                {% endif %}
+                {% if app.request.attributes.get('_route') == 'sitiopatrimonial_edit' %}
+                    <label class="col-sm-2 col-form-label">Referencia Web :</label>
+                    <div class="card-block col-sm-10">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for ref in sitio.referenciaweb %}
+                                    <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                                        <div class="col-xl-9 col-md-20">
+                                            <div class="row align-items-center m-l-12">
+                                                <div class="col-lg-auto">
+                                                    <a href="{{ asset('/CLIO/public/uploads/sitio/referenciaweb/' ~ ref.link) }}" data-lightbox="{{ ref.link }}">
+                                                        <img src="{{ asset('/CLIO/public/uploads/sitio/referenciaweb/' ~ ref.link) }}" alt="Refencia Web" width="150"><br>
+                                                    </a>
+                                                    <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/sitio/referenciaweb/' ~ ref.link) }}" target="_blank" title="{{ref.link}}">
+                                                        <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                                    <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('sitio_delete_referenciaweb', {id: ref.id}) }}" data-delete
+                                                       data-token="{{ csrf_token('delete' ~ ref.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- end of swiper-slide -->
+                            </div>
+                            <!-- end of swipper-wrapper -->
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.referenciaweb) }}
+                    </div>
+                {% elseif app.request.attributes.get('_route') == 'sitiopatrimonial_new' %}
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.referenciaweb, 'Referencia web :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.referenciaweb) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {# -------------Paso 6 Gestion patrimonial del sitio--------------- #}
+    <div id="management" class="tab-pane" role="tabpanel" aria-labelledby="management">
+        <div class="card-block">
+            <div class="form-group row">
+                {% if(form_errors(form.cant_inventario)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.cant_inventario) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.cant_inventario, 'Cantidad de Inventario :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.cant_inventario, { 'attr': { 'class': 'form-control', 'title': 'Introducir la cantidad de inventario del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.cant_intervenciones_conserv)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.cant_intervenciones_conserv) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.cant_intervenciones_conserv, 'Cantidad de intervenciones Conservación :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.cant_intervenciones_conserv, { 'attr': { 'class': 'form-control', 'title': 'Introducir la cantidad de intervenciones de conservación', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.cant_intervenciones_const)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.cant_intervenciones_const) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.cant_intervenciones_const, 'Cantidad de intervenciones Constructivas :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.cant_intervenciones_const, { 'attr': { 'class': 'form-control', 'title': 'Introducir la cantidad de intervenciones constructivas', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.cant_objetos_patrim)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.cant_objetos_patrim) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.cant_objetos_patrim, 'Cantidad de Objetos Patrimoniales :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.cant_objetos_patrim, { 'attr': { 'class': 'form-control', 'title': 'Introducir la cantidad de objetos patrimoniales', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.promedio_visitas_diaria)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.promedio_visitas_diaria) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.promedio_visitas_diaria, 'Promedio de Visitas Diarias :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.promedio_visitas_diaria, { 'attr': { 'class': 'form-control', 'title': 'Introducir el promedio de visitas diarias', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.promedio_visitas_mensuales)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.promedio_visitas_mensuales) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.promedio_visitas_mensuales, 'Promedio de Visitas Mensuales :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.promedio_visitas_mensuales, { 'attr': { 'class': 'form-control', 'title': 'Introducir el promedio de visitas mensuales', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.promedio_visitas_anuales)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.promedio_visitas_anuales) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.promedio_visitas_anuales, 'Promedio de Visitas Anuales :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.promedio_visitas_anuales, { 'attr': { 'class': 'form-control', 'title': 'Introducir el promedio de visitas anuales', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.promedio_recaudacion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.promedio_recaudacion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.promedio_recaudacion, 'Promedio de Recaudación :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.promedio_recaudacion, { 'attr': { 'class': 'form-control', 'title': 'Introducir el promedio de recaudación', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.recibe_visita)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.recibe_visita) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.recibe_visita, 'Recibe Visita :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.recibe_visita, { 'attr': { 'class': 'js-small' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.nivel_visitas)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.nivel_visitas) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.nivel_visitas, 'Nivel de Visitas :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.nivel_visitas) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.cerrado_publico)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.cerrado_publico) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.cerrado_publico, 'Cerrado al Público :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.cerrado_publico, { 'attr': { 'class': 'js-small' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.expoliado)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.expoliado) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.expoliado, 'Expoliado :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.expoliado, { 'attr': { 'class': 'js-small' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.dannado)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.dannado) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.dannado, 'Dañado :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.dannado, { 'attr': { 'class': 'js-small' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.inventarios)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.inventarios) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.inventarios, 'Inventarios :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.inventarios, { 'attr': { 'class': 'js-small' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.nivel_antropizacion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.nivel_antropizacion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.nivel_antropizacion, 'Nivel de Antropización :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.nivel_antropizacion) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.estado_conservacion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.estado_conservacion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.estado_conservacion, 'Estado de Conservación :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.estado_conservacion) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.degradacion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.degradacion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.degradacion, 'Degradación :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.degradacion, { 'attr': { 'class': 'js-small' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.plan_manejo)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.plan_manejo) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.plan_manejo, 'Plan de Manejo :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.plan_manejo, { 'attr': { 'class': 'js-small' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.declarado)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.declarado) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.declarado, 'Declarado :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.declarado, { 'attr': { 'class': 'js-small' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.riesgos_potenciales)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.riesgos_potenciales) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.riesgos_potenciales, 'Riesgos Potenciales :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.riesgos_potenciales, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.medidas_proteccion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.medidas_proteccion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.medidas_proteccion, 'Medidas de Protección :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.medidas_proteccion, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.medidas_seguridad)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.medidas_seguridad) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.medidas_seguridad, 'Medidas de Seguridad :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.medidas_seguridad, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.intervencion_construc)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.intervencion_construc) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.intervencion_construc, 'Intervenciones Constructivas :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.intervencion_construc, { 'attr': { 'class': 'js-small' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.intervencion_arqueol)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.intervencion_arqueol) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.intervencion_arqueol, 'Intervenciones Arqueologicas :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.intervencion_arqueol, { 'attr': { 'class': 'js-small' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.intervencion_conserv)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.intervencion_conserv) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.intervencion_conserv, 'Intervenciones Conservación :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.intervencion_conserv, { 'attr': { 'class': 'js-small' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.estado_conserv)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.estado_conserv) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.estado_conserv, 'Estado de Conservación :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.estado_conserv, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.antropizacion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.antropizacion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.antropizacion, 'Antropización :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.antropizacion, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.causa_degradacion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.causa_degradacion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.causa_degradacion, 'Causa de Degradación :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.causa_degradacion, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.propuesta_actuacion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.propuesta_actuacion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.propuesta_actuacion, 'Propuesta de Actuación :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.propuesta_actuacion, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.fecha_declaracion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.fecha_declaracion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.fecha_declaracion, 'Fecha de Declaración * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.fecha_declaracion, { 'attr': { 'class': 'form-control', 'title': 'Introducir la fecha de declaración del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.no_expe_declaracion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.no_expe_declaracion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.no_expe_declaracion, 'No. Expediente de Declaración :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.no_expe_declaracion, { 'attr': { 'class': 'form-control', 'title': 'Introducir el número de expediente de declaración del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.plan)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.plan) }}</strong>
+                    </div>
+                {% endif %}
+                {% if app.request.attributes.get('_route') == 'sitiopatrimonial_edit' %}
+                    <label class="col-sm-2 col-form-label">Plan de Manejo :</label>
+                    <div class="card-block col-sm-10">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for pl in sitio.plan %}
+                                    <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                                        <div class="col-xl-9 col-md-20">
+                                            <div class="row align-items-center m-l-12">
+                                                <div class="col-lg-auto">
+                                                    <a href="{{ asset('/CLIO/public/uploads/sitio/planmanejo/' ~ pl.link) }}" data-lightbox="{{ pl.link }}">
+                                                        <img src="{{ asset('/CLIO/public/uploads/sitio/planmanejo/' ~ pl.link) }}" alt="Pln de Manejo" width="150"><br>
+                                                    </a>
+                                                    <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/sitio/planmanejo/' ~ pl.link) }}" target="_blank" title="{{pl.link}}">
+                                                        <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                                    <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('sitio_delete_planmanejo', {id: pl.id}) }}" data-delete
+                                                       data-token="{{ csrf_token('delete' ~ pl.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- end of swiper-slide -->
+                            </div>
+                            <!-- end of swipper-wrapper -->
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.plan) }}
+                    </div>
+                {% elseif app.request.attributes.get('_route') == 'sitiopatrimonial_new' %}
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.plan, 'Plan de Manejo :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.plan) }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.declaracion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.declaracion) }}</strong>
+                    </div>
+                {% endif %}
+                {% if app.request.attributes.get('_route') == 'sitiopatrimonial_edit' %}
+                    <label class="col-sm-2 col-form-label">Declaración :</label>
+                    <div class="card-block col-sm-10">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for dec in sitio.declaracion %}
+                                    <div class="swiper-slide" style="width: 120.2px; margin-right: 50px;">
+                                        <div class="col-xl-9 col-md-20">
+                                            <div class="row align-items-center m-l-12">
+                                                <div class="col-lg-auto">
+                                                    <a href="{{ asset('/CLIO/public/uploads/sitio/declaracion/' ~ dec.link) }}" data-lightbox="{{ dec.link }}">
+                                                        <img src="{{ asset('/CLIO/public/uploads/sitio/declaracion/' ~ dec.link) }}" alt="Declaraciones" width="150"><br>
+                                                    </a>
+                                                    <a class="btn btn-mat btn-info" style="background-color:transparent" href="{{ asset('/CLIO/public/uploads/sitio/declaracion/' ~ dec.link) }}" target="_blank" title="{{dec.link}}">
+                                                        <span style="color:#010d0c"><i class="icofont icofont-download-alt"></i></a>
+                                                    <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('sitio_delete_declaracion', {id: dec.id}) }}" data-delete
+                                                       data-token="{{ csrf_token('delete' ~ dec.id) }}"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- end of swiper-slide -->
+                            </div>
+                            <!-- end of swipper-wrapper -->
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.declaracion) }}
+                    </div>
+                {% elseif app.request.attributes.get('_route') == 'sitiopatrimonial_new' %}
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.declaracion, 'Declaración :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.declaracion) }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.datacion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.datacion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.datacion, 'Datación * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.datacion) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group row" style="display: none">
+    <label class="col-sm-10"></label>
+    <div class="col-sm-10">
+        <a href="{{ path('sitiopatrimonial_index') }}" class="btn btn-mat btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="icofont icofont-exchange"></i> Volver al Listado</a>
+        <button class="btn btn-mat btn-success"><i class="icofont icofont-plus"></i> {{ button_label|default('Añadir Sitio Patrimonial') }}</button>
+    </div>
+</div>
+{{ form_end(form) }}

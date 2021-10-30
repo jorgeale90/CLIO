@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Mostrar Intervención{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Sitio</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Sitio</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Listado Intervención</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Mostrar Intervención</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <!-- Basic Inputs Validation start -->
+        <div class="card">
+            <div class="card-header">
+                <h5>Mostrar Intervención</h5>
+            </div>
+            <div class="card-block">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.cod_intervencion, 'Código de la Intervención :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.cod_intervencion, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.fechainicio, 'Fecha y Hora de Inicio :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fechainicio, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.fechafin, 'Fecha y Hora de Fin :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.fechafin, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.duracion, 'Duración :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.duracion, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.objetivo_general, 'Objetivo General :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.objetivo_general, { 'attr': { 'class': 'form-control', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.objetivo_especificos, 'Objetivo Especificos :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.objetivo_especificos, { 'attr': { 'class': 'form-control', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.estado, 'Estado :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.estado, { 'attr': { 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.descripcion, 'Descripción :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.descripcion, { 'attr': { 'class': 'form-control', 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.organismo, 'Organismo :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.organismo, { 'attr': { 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.sitiopatrimonial, 'Sitio Patrimonial :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.sitiopatrimonial, { 'attr': { 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.causaintervencion, 'Causa de la Intervención :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.causaintervencion, { 'attr': { 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.tipointervencion, 'Tipo de Intervención :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.tipointervencion, { 'attr': { 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.especialistajefe, 'Especialista Jefe :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.especialistajefe, { 'attr': { 'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.especialistapart, 'Participantes :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.especialistapart, { 'attr': {'disabled':'disabled' } }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <a href="{{ path('especialist') }}" style="background-color:transparent" class="btn btn-mat btn-info f-right"><span style="color:#010d0c"><i class="icofont icofont-exchange"></i> Volver al Listado</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

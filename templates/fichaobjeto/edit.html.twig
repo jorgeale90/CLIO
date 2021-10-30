@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Editar Ficha Objeto Patrimonial{% endblock %}
+{% block head %}
+    <!-- owl carousel css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/owl.carousel/css/owl.carousel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/owl.carousel/css/owl.theme.default.css') }}">
+    <!-- swiper css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/swiper/css/swiper.min.css') }}">
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('page/bower_components/validation-engine/css/validationEngine.jquery.css') }}" type="text/css"/>
+{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Objeto</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Objeto</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Listado Ficha Objeto Patrimonial</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Editar Ficha Objeto Patrimonial</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <!-- Basic Inputs Validation start -->
+        <div class="card">
+            <div class="card-header">
+                <h5>Editar Ficha Objeto Patrimonial</h5>
+            </div>
+            <div class="card-block">
+                {{ include('fichaobjeto/_form.html.twig', {'button_label': 'Editar Ficha Objeto'}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <!-- owl carousel 2 js -->
+    <script type="text/javascript" src="{{ asset('page/bower_components/owl.carousel/js/owl.carousel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('page/assets/js/owl-custom.js') }}"></script>
+    <!-- swiper js -->
+    <script type="text/javascript" src="{{ asset('page/bower_components/swiper/js/swiper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('page/assets/js/swiper-custom.js') }}"></script>
+    <!-- Validation js -->
+    <script src="{{ asset('page/bower_components/validation-engine/js/languages/jquery.validationEngine-es.js') }}"></script>
+    <script src="{{ asset('page/bower_components/validation-engine/js/jquery.validationEngine.min.js') }}"
+            type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $('form[name="{{ form.vars.id }}"]').validationEngine('attach', {promptPosition: "bottomLeft"});
+            $('#send-form').on('click', function () {
+                let formValidated = $('form[name="{{ form.vars.id }}"]').validationEngine('validate');
+                if (!formValidated) {
+                    return false;
+                }
+            })
+        })
+
+        // Script para el Manejo de Eliminar los archivos subidos por el usuario
+        window.onload = () => {
+            // Gestión de los botones "Eliminar"
+            let links = document.querySelectorAll("[data-delete]")
+
+            // Hacemos un bucle en los enlaces
+            for(link of links){
+                // Escuchamos el clic
+                link.addEventListener("click", function(e){
+                    // Evitamos la navegación
+                    e.preventDefault()
+
+                    // Pedimos confirmación
+                    if(confirm("Estas seguro de Eliminar esta Elemento ?")){
+                        // Enviamos una solicitud Ajax al href del enlace con el método DELETE
+                        fetch(this.getAttribute("href"), {
+                            method: "DELETE",
+                            headers: {
+                                "X-Requested-With": "XMLHttpRequest",
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({"_token": this.dataset.token})
+                        }).then(
+                            // Obtenemos la respuesta en JSON
+                            response => response.json()
+                        ).then(data => {
+                            if(data.success)
+                                this.parentElement.remove()
+                            else
+                                alert(data.error)
+                        }).catch(e => alert(e))
+                    }
+                })
+            }
+        }
+    </script>
+{% endblock %}

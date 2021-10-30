@@ -1,0 +1,301 @@
+{{ form_start(form) }}
+<div class="form-group row">
+    {% if(form_errors(form.sitiopatrimonial)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.sitiopatrimonial) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.sitiopatrimonial, 'Sitio Patrimonial * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.sitiopatrimonial, { 'attr': { 'title': 'Introducir el sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.fichaobjeto)) %}
+        <div class="col-sm-10 alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.fichaobjeto) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.fichaobjeto, 'Ficha Objeto * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.fichaobjeto, { 'attr': { 'title': 'Introducir el objeto del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.cod_intervencion)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.fechafin) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.cod_intervencion, 'Código Intervención * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.cod_intervencion, { 'attr': { 'title': 'Introducir el código del inventario', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.fechainicio)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.fechafin) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.fechainicio, 'Fecha y Hora Inicio :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.fechainicio, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.fechafin)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.fechafin) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.fechafin, 'Fecha y Hora de Fin :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.fechafin, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.duracion)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.duracion) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.duracion, 'Duración :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.duracion, { 'attr': { 'class': 'form-control', 'title': 'Introducir la duración del inventario', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.objetivo_general)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.objetivo_general) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.objetivo_general, 'Objetivo General :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.objetivo_general, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.objetivo_especificos)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.objetivo_especificos) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.objetivo_especificos, 'Objetivo Específico :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.objetivo_especificos, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.descripcion)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.descripcion) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.descripcion, 'Descripción :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.descripcion, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.proyectogeneral)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.proyectogeneral) }}</strong>
+        </div>
+    {% endif %}
+    {% if app.request.attributes.get('_route') == 'intervencionconservacion_edit' %}
+        <label class="col-sm-2 col-form-label">Proyecto General :</label>
+        <div class="card-block col-sm-10">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for proy in intervcons.proyectogeneral %}
+                        <div class="swiper-slide" style="width: 300.2px; margin-right: 50px;">
+                            <div class="col-xl-9 col-md-20">
+                                <div class="row align-items-center m-l-12">
+                                    <div class="col-lg-auto">
+                                        <img src="{{ asset('/CLIO/public/uploads/objeto/proyectogeneral/' ~ proy.link) }}" alt="Proyecto" width="150"><br>
+                                        <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('objeto_delete_proyec', {id: proy.id}) }}" data-delete
+                                           data-token="{{ csrf_token('delete' ~ proy.id) }}"><span style="color:#010d0c" ;><i class="icofont icofont-delete-alt"></i> Eliminar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <!-- end of swiper-slide -->
+                </div>
+{#                <div class="swiper-pagination"></div>#}
+                <!-- end of swipper-wrapper -->
+            </div>
+        </div>
+        <div class="col-sm-10">
+            {{ form_widget(form.proyectogeneral) }}
+        </div>
+    {% elseif app.request.attributes.get('_route') == 'intervencionconservacion_new' %}
+        <label class="col-sm-2 col-form-label">{{ form_label(form.proyectogeneral, 'Proyecto General :') }}</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.proyectogeneral) }}
+        </div>
+    {% endif %}
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.cartaautorizacion)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.cartaautorizacion) }}</strong>
+        </div>
+    {% endif %}
+    {% if app.request.attributes.get('_route') == 'intervencionconservacion_edit' %}
+        <label class="col-sm-2 col-form-label">Carta Autorización :</label>
+        <div class="card-block col-sm-10">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for carta in intervcons.cartaautorizacion %}
+                        <div class="swiper-slide" style="width: 300.2px; margin-right: 50px;">
+                            <div class="col-xl-9 col-md-20">
+                                <div class="row align-items-center m-l-12">
+                                    <div class="col-lg-auto">
+                                        <img src="{{ asset('/CLIO/public/uploads/objeto/cartaautorizacion/' ~ carta.link) }}" alt="Carta Autorización" width="150"><br>
+                                        <a class="btn btn-mat btn-danger" style="background-color:transparent" href="{{ path('objeto_delete_cartaauto', {id: carta.id}) }}" data-delete
+                                           data-token="{{ csrf_token('delete' ~ carta.id) }}"><span style="color:#010d0c" ;><i class="icofont icofont-delete-alt"></i> Eliminar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <!-- end of swiper-slide -->
+                </div>
+{#                <div class="swiper-pagination"></div>#}
+                <!-- end of swipper-wrapper -->
+            </div>
+        </div>
+        <div class="col-sm-10">
+            {{ form_widget(form.cartaautorizacion) }}
+        </div>
+    {% elseif app.request.attributes.get('_route') == 'intervencionconservacion_new' %}
+        <label class="col-sm-2 col-form-label">{{ form_label(form.cartaautorizacion, 'Carta Autorización :') }}</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.cartaautorizacion) }}
+        </div>
+    {% endif %}
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.especialista_jefe)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.especialista_jefe) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.especialista_jefe, 'Especialista Jefe * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.especialista_jefe) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.especialistapart)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.especialistapart) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.especialistapart, 'Especialista Participan * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.especialistapart) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.tipointervencionobj)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.tipointervencionobj) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.tipointervencionobj, 'Tipo de Intervención del Objeto * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.tipointervencionobj) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.causaintervencionobj)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.causaintervencionobj) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.causaintervencionobj, 'Causa de Intervención del Objeto * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.causaintervencionobj) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.tratamientoinsitu)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.tratamientoinsitu) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.tratamientoinsitu, 'Tratamiento Insitu * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.tratamientoinsitu) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.tratamientolaboratorio)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.tratamientolaboratorio) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.tratamientolaboratorio, 'Tratamiento Laboratorio * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.tratamientolaboratorio) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.tecnicaaplicada)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.tecnicaaplicada) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.tecnicaaplicada, 'Tecnica Aplicada * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.tecnicaaplicada) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-sm-10"></label>
+    <div class="col-sm-12">
+        <a href="{{ path('intervencionconservacion_index') }}" style="background-color:transparent" class="btn btn-mat btn-info f-right"><span style="color:#010d0c"><i class="icofont icofont-exchange"></i> Volver al Listado</a>
+        <button style="background-color:transparent" class="btn btn-mat btn-info f-right"><span style="color:#010d0c"><i class="icofont icofont-plus"></i> {{ button_label|default('Añadir Intervención Conservación') }}</button>
+    </div>
+</div>
+{{ form_end(form) }}

@@ -1,0 +1,152 @@
+<nav class="pcoded-navbar">
+    <div class="pcoded-inner-navbar main-menu">
+        <div class="pcoded-navigatio-lavel">Navigación</div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                    <span class="pcoded-mtext">Dashboard</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    {% if is_granted('ROLE_ADMIN')%}
+                        <li class="#">
+                            <a href="#" target="_blank">
+                                <span class="pcoded-mtext">Auditoría</span>
+                            </a>
+                        </li>
+                    <li class="#">
+                        <a href="#">
+                            <span class="pcoded-mtext">Medios</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </li>
+            {% if is_granted('ROLE_MODERADOR') or is_granted('ROLE_ADMIN') %}
+                <li class="{{ 'especialist' }}">
+                    <a href="{{ path('especialist') }}">
+                        <span class="pcoded-micon"><i class="feather icon-users"></i></span>
+                        <span class="pcoded-mtext">Especialista</span>
+                        <span class="pcoded-badge label label-success ">{{ especialist | length }}</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_ESPECIALISTA') or is_granted('ROLE_MODERADOR') or is_granted('ROLE_ADMIN') %}
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)">
+                        <span class="pcoded-micon"><i class="feather icon-map-pin"></i></span>
+                        <span class="pcoded-mtext">Sitio</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="{{ path('sitiopatrimonial_index') }}">
+                            <a href="{{ path('sitiopatrimonial_index') }}">
+                                <span class="pcoded-mtext">Sitio Patrimonial</span>
+                                <span class="pcoded-badge label label-success ">{{ sitiopatrimonial | length }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ path('intervencion_index') }}">
+                            <a href="{{ path('intervencion_index') }}">
+                                <span class="pcoded-mtext">Intervención</span>
+                                <span class="pcoded-badge label label-success ">{{ intervencion | length }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ path('proyecto_index') }}">
+                            <a href="{{ path('proyecto_index') }}">
+                                <span class="pcoded-mtext">Proyecto</span>
+                                <span class="pcoded-badge label label-success ">{{ proyecto | length }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ path('inventario_index') }}">
+                            <a href="{{ path('inventario_index') }}">
+                                <span class="pcoded-mtext">Inventario</span>
+                                <span class="pcoded-badge label label-success ">{{ inventari | length }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)">
+                        <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
+                        <span class="pcoded-mtext">Objeto</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li class="{{ path('fichaobjeto_index') }}">
+                            <a href="{{ path('fichaobjeto_index') }}">
+                                <span class="pcoded-mtext">Objeto Patrimonial</span>
+                                <span class="pcoded-badge label label-success ">{{ fichaobjetopat | length }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ path('intervencionconservacion_index') }}">
+                            <a href="{{ path('intervencionconservacion_index') }}">
+                                <span class="pcoded-mtext">Intervención</span>
+                                <span class="pcoded-badge label label-success ">{{ intervencionconservacion | length }}</span>
+                            </a>
+                        </li>
+                        <li class="#">
+                            <a href="#">
+                                <span class="pcoded-mtext">Movimiento</span>
+                                <span class="pcoded-badge label label-success ">0</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            {% endif %}
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span>
+                    <span class="pcoded-mtext">Análisis</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="#">
+                        <a href="#">
+                            <span class="pcoded-mtext">Resumen 1</span>
+                        </a>
+                    </li>
+                    <li class="#">
+                        <a href="#">
+                            <span class="pcoded-mtext">Resumen 2</span>
+                        </a>
+                    </li>
+                    <li class="#">
+                        <a href="#">
+                            <span class="pcoded-mtext">Resumen 3</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="feather icon-link-2"></i></span>
+                    <span class="pcoded-mtext">Blog</span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="#">
+                        <a href="{{ path('settings_index') }}">
+                            <span class="pcoded-mtext">Settings</span>
+                        </a>
+                    </li>
+                    <li class="#">
+                        <a href="{{ path('category_add') }}">
+                            <span class="pcoded-mtext">Categoría</span>
+                        </a>
+                    </li>
+                    <li class="#">
+                        <a href="{{ path('menu') }}">
+                            <span class="pcoded-mtext">Menú</span>
+                        </a>
+                    </li>
+                    <li class="#">
+                        <a href="{{ path('admin_posts') }}">
+                            <span class="pcoded-mtext">Post</span>
+                        </a>
+                    </li>
+                    <li class="#">
+                        <a href="{{ path('comments') }}">
+                            <span class="pcoded-mtext">Comentarios</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

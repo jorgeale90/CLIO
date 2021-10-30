@@ -1,0 +1,21 @@
+{{ form_start(form, {'action': path('profesion_edit', {'id' : profesion.id}), 'attr' : {'class' : 'form-horizontal', 'role' : 'form'}}) }}
+<div class="modal-body">
+    {% if(form_errors(form.nombre)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.nombre) }}</strong>
+        </div>
+    {% endif %}
+    <div class="form-group">
+        <label>{{ form_label(form.nombre, 'Profesión * :') }}</label>
+        {{ form_widget(form.nombre, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+    {{ form_rest(form) }}
+</div>
+
+<div class="modal-footer">
+    <div class="col-sm-12">
+        <button style="background-color:transparent" class="btn btn-mat btn-info f-right"><span style="color:#010d0c"><i class="icofont icofont-plus"></i> Editar Profesión</button>
+    </div>
+</div>
+{{ form_end(form) }}

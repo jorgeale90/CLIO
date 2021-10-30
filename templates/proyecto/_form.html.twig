@@ -1,0 +1,191 @@
+{{ form_start(form) }}
+<div class="form-group row">
+    {% if(form_errors(form.sitiopatrimonial)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.sitiopatrimonial) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.sitiopatrimonial, 'Sitio Patrimonial * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.sitiopatrimonial) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.codProyecto)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.codProyecto) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.codProyecto, 'Codigo * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.codProyecto, { 'attr': { 'class': 'form-control', 'title': 'Introducir el código del proyecto del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.nombre)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.nombre) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.nombre, 'Nombre * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.nombre, { 'attr': { 'class': 'form-control', 'title': 'Introducir el nombre del proyecto del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.fechaInicio)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.fechaInicio) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.fechaInicio, 'Fecha de Inicio * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.fechaInicio, { 'attr': { 'type': 'datetime-local', 'title': 'Introducir la fecha de inicio del proyecto del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.fechaFin)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.fechaFin) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.fechaFin, 'Fecha de Fin :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.fechaFin, { 'attr': { 'type': 'datetime-local', 'title': 'Introducir la fecha de fin del proyecto del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.duracion)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.duracion) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.duracion, 'Duración :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.duracion, { 'attr': { 'class': 'form-control', 'title': 'Introducir la duración del proyecto del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.objGeneral)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.objGeneral) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.objGeneral, 'Objetivo general * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.objGeneral, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.objEspecificos)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.objEspecificos) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.objEspecificos, 'Objetivos especificos :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.objEspecificos, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.proyGeneralFile)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.proyGeneralFile) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.proyGeneralFile, 'Proyecto general :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.proyGeneralFile, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.cartaAutorizacionFile)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.cartaAutorizacionFile) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.cartaAutorizacionFile, 'Carta de autorización :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.cartaAutorizacionFile, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.tipoProyecto)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.tipoProyecto) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.tipoProyecto, 'Tipo de proyecto * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.tipoProyecto) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.estado)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.estado) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.estado, 'Estado * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.estado) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.especialistaJefe)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.especialistaJefe) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.especialistaJefe, 'Jefe de proyecto * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.especialistaJefe) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {% if(form_errors(form.especialistasParticipantes)) %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{ form_errors(form.especialistasParticipantes) }}</strong>
+        </div>
+    {% endif %}
+    <label class="col-sm-2 col-form-label">{{ form_label(form.especialistasParticipantes, 'Participantes * :') }}</label>
+    <div class="col-sm-10">
+        {{ form_widget(form.especialistasParticipantes, { 'attr': { 'title': 'Introducir los participantes del proyecto del sitio patrimonial', 'data-toggle': 'tooltip' } }) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-sm-10"></label>
+    <div class="col-sm-12">
+        <a href="{{ path('proyecto_index') }}" style="background-color:transparent" class="btn btn-mat btn-info f-right"><span style="color:#010d0c"><i class="icofont icofont-exchange"></i> Volver al Listado</a>
+        <button style="background-color:transparent" class="btn btn-mat btn-info f-right"><span style="color:#010d0c"><i class="icofont icofont-plus"></i> {{ button_label|default('Añadir Proyecto') }}</button>
+    </div>
+</div>
+{{ form_end(form) }}

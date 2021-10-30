@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Editar Settings Blog{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ asset('page/bower_components/validation-engine/css/validationEngine.jquery.css') }}" type="text/css"/>
+{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Blog</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Blog</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Listado Settings Blog</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Editar Settings Blog</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Editar Settings Blog</h5>
+            </div>
+            <div class="card-block">
+                {{ include('settings/_form.html.twig', {'button_label': 'Editar Settings'}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <!-- Validation js -->
+    <script src="{{ asset('page/bower_components/validation-engine/js/languages/jquery.validationEngine-es.js') }}"></script>
+    <script src="{{ asset('page/bower_components/validation-engine/js/jquery.validationEngine.min.js') }}" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $('form[name="{{ form.vars.id }}"]').validationEngine('attach', {promptPosition: "bottomLeft"});
+            $('#send-form').on('click', function () {
+                let formValidated = $('form[name="{{ form.vars.id }}"]').validationEngine('validate');
+                if (!formValidated) {
+                    return false;
+                }
+            })
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,166 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Listado Menú Blog{% endblock %}
+{% block head %}
+    <!-- modal efect css -->
+    <link href="{{ asset('page/modal/css/component.css') }}" rel="stylesheet">
+{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Navegación</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Blog</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Listado Menú</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-7">
+        <div class="card">
+            <div class="card-header">
+                <h5><strong>Listado</strong> Menús Seleccionado</h5>
+                <a href="">
+                    <button type="button" style="background-color:transparent" name="reset-filter" id="btn-reset-filtros" class="btn f-right"><i
+                                class="icofont icofont-refresh"></i>Refrescar
+                    </button>
+                </a>
+            </div>
+            <div class="card-block">
+                <div class="dt-responsive table-responsive">
+                    <table id="alt-pg-dt" class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Descripción</th>
+                            <th>Acción</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for m in active_menu %}
+                            <tr>
+                                <td>{{ m.id }}</td>
+                                <td>{{ m.category.name }}</td>
+                                <td>
+                                    <center>
+                                        <a class="dropdown-toggle addon-btn fc-center" data-toggle="dropdown" aria-expanded="true">
+                                            <i class="icofont icofont-ui-settings"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <button class="dropdown-item eliminar" value="{{ path('menu_delete', {'id': m.id}) }}" title="Editar"><i class="icofont icofont-trash"></i>Eliminar</button>
+                                        </div>
+                                    </center>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-5">
+        <div class="alert alert-warning">
+            <strong>Advertencia:</strong> No pueden repetirse las Categorías en el Menú del Blog.
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h5><strong>Añadir</strong> Menú al Blog</h5>
+            </div>
+            <div class="card-block">
+                {{ form_start(menu) }}
+                <div class="form-group row">
+                    {% if(form_errors(menu.category)) %}
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>{{ form_errors(menu.category) }}</strong>
+                        </div>
+                    {% endif %}
+                    <label class="col-sm-3 col-form-label">{{ form_label(menu.category, 'Categoría * :') }}</label>
+                    <div class="col-sm-9">
+                        {{ form_widget(menu.category, { 'attr': { 'class': 'form-control' } }) }}
+                    </div>
+                </div>
+                <button style="background-color:transparent" class="btn btn-mat btn-info f-right"><span style="color:#010d0c"><i class="icofont icofont-plus"></i> Añadir Categoría</button>
+                {{ form_end(menu) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="md-modal md-effect-1" id="modal-19">
+        <div class="md-content md-content-white">
+            <h3><i class="icofont icofont-warning"></i> Advertencia</h3>
+            <div>
+                <h4 id="mensaje"></h4>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <button class="btn btn-primary aceptar">Aceptar</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-danger cancelar" onclick="$('#modal-19').removeClass('md-show')">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="md-overlay"></div>
+{% endblock %}
+{% block javascript %}
+    <!-- modal efect js -->
+    <script src="{{ asset('page/modal/js/modalEffects.js') }}"></script>
+    <script src="{{ asset('page/modal/js/classie.js') }}"></script>
+    <!-- Validation js -->
+    <script src="{{ asset('page/bower_components/validation-engine/js/languages/jquery.validationEngine-es.js') }}"></script>
+    <script src="{{ asset('page/bower_components/validation-engine/js/jquery.validationEngine.min.js') }}" type="text/javascript"></script>
+    <script>
+        $(function () {
+            {% for notice_level in ['success','error','info', 'warning'] %}
+            {% set session_var = 'app_' ~ notice_level %}
+            {% if app.session.flashbag.has(session_var) %}
+            {% for flash in app.session.flashbag.get(session_var) %}
+            noty({
+                text: '{{ flash }}',
+                progressBar : true,
+                layout      : 'topRight',
+                dismissQueue: true,
+                timeout     : 5000,
+                closeWith   : ['click'],
+                theme       : 'relax',
+                type        : '{{ notice_level }}',
+                maxVisible  : 10,
+                animation   : {
+                    open  : 'animated bounceInRight',
+                    close : 'animated bounceOutRight',
+                    easing: 'swing',
+                    speed : 500
+                }
+            });
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+        });
+
+        $('.eliminar').on('click', function () {
+            var link = $(this).val();
+            $('#modal-19').addClass('md-show');
+            $('#mensaje').text('Estas seguro que quieres eliminar este Menú del Blog?');
+            $('.aceptar').on('click', function () {
+                window.location = link;
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,418 @@
+{{ form_start(form) }}
+<div class="tab-content">
+    <div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
+        <div class="card-block">
+            <div class="form-group row">
+                {% if(form_errors(form.noReg)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.noReg) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.noReg, 'No. Registro * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.noReg) }}
+                    <span class="messages"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.noId)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.noId) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.noId, 'No. Identidad * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.noId) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.credentials.firstname)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.credentials.firstname) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.credentials.firstname, 'Nombre * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.credentials.firstname, { 'attr': { 'class': 'form-control validate[required]' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.credentials.lastname)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.credentials.lastname) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.credentials.lastname, 'Apellidos * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.credentials.lastname, { 'attr': { 'class': 'form-control validate[required]' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.credentials.email)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.credentials.email) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.credentials.email, 'Correo Electrónico * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.credentials.email, { 'attr': { 'class': 'form-control validate[required]' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.credentials.password)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.credentials.password.first) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.credentials.password.first, 'Contraseña  * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.credentials.password.first, { 'attr': { 'class': 'form-control validate[required]' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.credentials.password.second)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.credentials.password.second) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.credentials.password.second, 'Repita Contraseña * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.credentials.password.second, { 'attr': { 'class': 'form-control validate[required]' } }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2">
+        <div class="card-block">
+            <div class="form-group row">
+                {% if(form_errors(form.pais)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.pais) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.pais, 'País * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.pais) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.provincia)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.provincia) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.provincia, 'Provincia * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.provincia) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.town)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.town) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.town, 'Municipio * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.town) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.localidad)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.localidad) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.localidad, 'Localidad :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.localidad) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.direccionparticular)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.direccionparticular) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.direccionparticular, 'Dirección Particular :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.direccionparticular, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.nacionalidad)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.nacionalidad) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.nacionalidad, 'Nacionalidad :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.nacionalidad) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.movil)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.movil) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.movil, 'Móvil :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.movil) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.telefonoparticular)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.telefonoparticular) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.telefonoparticular, 'Telefono Particular :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.telefonoparticular) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.emailparticular)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.emailparticular) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.emailparticular, 'Email Particular :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.emailparticular) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3">
+        <div class="card-block">
+            <div class="form-group row">
+                {% if(form_errors(form.categoriadocente)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.categoriadocente) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.categoriadocente, 'Categoría Docente :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.categoriadocente) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.categoriacientifica)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.categoriacientifica) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.categoriacientifica, 'Categoría Científica :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.categoriacientifica) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.nivelescolar)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.nivelescolar) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.nivelescolar, 'Nivel Escolar :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.nivelescolar) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4">
+        <div class="card-block">
+            <div class="form-group row">
+                {% if(form_errors(form.centrolaboral)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.centrolaboral) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.centrolaboral, 'Centro Laboral :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.centrolaboral) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.cargo)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.cargo) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.cargo, 'Cargo Laboral :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.cargo) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.direccionlaboral)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.direccionlaboral) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.direccionlaboral, 'Dirección Laboral :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.direccionlaboral, { 'attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.telefonolaboral)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.telefonolaboral) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.telefonolaboral, 'Telefono Laboral :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.telefonolaboral) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.emaillaboral)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.emaillaboral) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.emaillaboral, 'Email Laboral :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.emaillaboral) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.organismo)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.organismo) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.organismo, 'Organismo :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.organismo) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.profesion)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.profesion) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.profesion, 'Profesión :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.profesion) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.tipoespecialista)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.tipoespecialista) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.tipoespecialista, 'Tipo de Especialista :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.tipoespecialista) }}
+                </div>
+            </div>
+
+            {% if form.credentials.roles is defined %}
+                <div class="form-group row">
+                    {% if(form_errors(form.credentials.roles)) %}
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>{{ form_errors(form.credentials.roles) }}</strong>
+                        </div>
+                    {% endif %}
+                    <label class="col-sm-2 col-form-label">{{ form_label(form.credentials.roles, 'Rol * :') }}</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(form.credentials.roles, { 'attr': { 'class': 'form-control validate[required] js-example-basic-single' } }) }}
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="form-group row">
+                {% if(form_errors(form.credentials.imageFile)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.credentials.imageFile) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.credentials.imageFile, 'Imagen * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.credentials.imageFile, { 'attr': { 'class': 'form-control validate[required]' } }) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                {% if(form_errors(form.cvFile)) %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>{{ form_errors(form.cvFile) }}</strong>
+                    </div>
+                {% endif %}
+                <label class="col-sm-2 col-form-label">{{ form_label(form.cvFile, 'CV * :') }}</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.cvFile, { 'attr': { 'class': 'form-control validate[required]' } }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group row" style="display: none">
+    <label class="col-sm-10"></label>
+    <div class="col-sm-10">
+        <a href="{{ path('especialist') }}" class="btn btn-mat btn-warning" data-toggle="tooltip" data-placement="bottom"><i class="icofont icofont-exchange"></i> Volver al Listado</a>
+        <button class="btn btn-mat btn-success" id="btnSubmitForm" hidden><i class="icofont icofont-plus"></i> {{ button_label|default('Añadir Especialista') }}</button>
+    </div>
+</div>
+{{ form_end(form) }}

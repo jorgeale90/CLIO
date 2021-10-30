@@ -1,0 +1,49 @@
+{% extends 'base-blog.html.twig' %}
+{% block title %}Categoría!{% endblock %}
+{% block body %}
+    <div class="container pt-4 pb-4">
+        <div class="row">
+            {% if posts | length > 0 %}
+                {% for post in posts %}
+                    {% if loop.index == 1 %}
+                        <div class="text-center col-md-12">
+                            <h1 class="text-center text-capitalize">{{ tag ? tag : category }}</h1>
+                            {% if not tag and post.category.exerpt %}
+                                <p>{{ post.category.exerpt | raw }}</p>
+                            {% endif %}
+                            <hr>
+                        </div>
+                    {% endif %}
+                    <div class="col-lg-6">
+                        <div class="card border-0 mb-4 box-shadow h-xl-300">
+                            <div style="background-image: url({{ vich_uploader_asset(post, 'imageFile', 'App\\Entity\\Post') }}); height: 150px;    background-size: cover;    background-repeat: no-repeat;"></div>
+                            <div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
+                                <h2 class="h4 font-weight-bold">
+                                    <a class="text-dark" href="{{ path('post_single', {'slug': post.slug}) }}">{{ post.title }}</a>
+                                </h2>
+                                <p class="card-text">
+                                    {{ post.content | excerpt(10, '...') }}
+                                </p>
+                                <div>
+                                    {{ post.dateCreated | time_ago }} / {{ post.comments | length }}
+                                    comentario{% if post.comments | length != 1 %}s{% endif %}
+                                    / {{ post.category.name }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="col-md-12 col-12 text-center">
+                    <div class="d-inline-block navigation text-center">
+                        {{ knp_pagination_render(posts, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-md-12 text-center">
+                    {#<img src="{{ asset('icons/folder.svg') }}" style="width: 50px; opacity: .35"><br><br>#}
+                    <h4>No se encontraron publicaciones en {{ category }}</h4>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

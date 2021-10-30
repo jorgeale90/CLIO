@@ -1,0 +1,331 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Listadp Post{% endblock %}
+{% block head %}
+    <!-- modal efect css -->
+    <link href="{{ asset('page/modal/css/component.css') }}" rel="stylesheet">
+{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col-auto">
+                <div class="d-inline-block">
+                    <form method="get" action=".">
+                        <div class="input-group input-group-button input-group-primary">
+                            {{ form_widget(form.title, { 'attr': { 'class': 'form-control', 'placeholder': 'Título del Post' } }) }}
+                            <button type="submit" value="filter" class="btn btn-primary input-group-addon" id="basic-addon1">Buscar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Blog</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Listado Post</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="task col-lg-12">
+                <div class="task-right-header-status">
+                    <span data-toggle="collapse">Busqueda Avanzada</span>
+                    <i class="icofont icofont-rounded-down f-right"></i>
+                </div>
+                <!-- end of sidebar-header completed status-->
+                <div class="taskboard-right-progress" style="display: none;">
+                    <form method="get" action=".">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-10">{{ form_label(form.user, 'Usuario del Post :') }}</label>
+                                    <div class="col-sm-10">
+                                        {{ form_widget(form.user) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-10">{{ form_label(form.subheading, 'Sub Titulo del Post :') }}</label>
+                                    <div class="col-sm-10">
+                                        {{ form_widget(form.subheading, { 'attr': { 'class': 'form-control', 'placeholder': 'Sub Titulo del Post' } }) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-10">{{ form_label(form.category, 'Categoría del Post :') }}</label>
+                                    <div class="col-sm-10">
+                                        {{ form_widget(form.category) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-10"></label>
+                            <div class="col-sm-12">
+                                <button type="submit" name="submit-filter" value="filter" class="btn btn-mat btn-dark f-right"><i
+                                            class="icofont icofont-search-alt-1"></i> Avanzada
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Listado Post</h5>
+                <div class="dropdown-inverse dropdown open f-right">
+                    <button class="btn dropdown-toggle waves-effect waves-light" style="background-color:transparent" type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="icofont icofont-edit-alt"></i>Exportar</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="icofont icofont-file-pdf"></i> PDF</a>
+                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="icofont icofont-file-excel"></i> Excel</a>
+                    </div>
+                </div>
+                <a href="{{ path('admin_posts') }}">
+                    <button type="button" name="reset-filter" class="btn f-right" style="background-color:transparent" id="btn-reset-filtros"><i class="icofont icofont-refresh"></i>Refrescar</button>
+                </a>
+                <a href="{{ path('post_new') }}">
+                    <button type="button" style="background-color:transparent" class="btn f-right"><i
+                                class="icofont icofont-file-alt"></i><strong> Añadir</strong> Post
+                    </button>
+                </a>
+            </div>
+            <div class="card-block tab-icon">
+                <ul class="nav nav-tabs md-tabs " role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#home7" role="tab"><i class="icofont icofont-building-alt"></i>Listado de Posts</a>
+                        <div class="slide"></div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#profile7" role="tab"><i class="icofont icofont-plus "></i>Nuevos Posts <span class="pcoded-badge label label-success">3</span></a>
+                        <div class="slide"></div>
+                    </li>
+                </ul>
+                <div class="tab-content card-block">
+                    <div class="tab-pane active" id="home7" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Avatar</th>
+                                    <th>Título Post</th>
+                                    <th>Categoría</th>
+                                    <th>Compartir</th>
+                                    <th>Comentarios</th>
+                                    <th>Fijar Post Blog</th>
+                                    <th>Acción</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for post in pagination %}
+                                        <tr>
+                                            <td>
+                                                {% if post.user.image != null %}
+                                                    <center><img src="{{ vich_uploader_asset(post.user, 'imageFile', 'App\\Entity\\User') }}" class="img-radius cover-img" alt=""></center>
+                                                {% elseif post.user.image == null %}
+                                                    <center><img src="{{ asset('page/assets/images/anonimouser.png') }}" class="img-radius img-40 align-top m-r-15" alt=""></center>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {{ post.title | excerpt(10, '...') }}
+                                            </td>
+                                            <td>
+                                                {{ post.category.name }}
+                                            </td>
+                                            <td data-toggle="tooltip" data-placement="right" title="Activar/Desactivar Compartir Post">
+                                                <center><input type="checkbox" data-value="{{ post.id }}"
+                                                               class="js-small-icono" {% if post.sharingicons %} checked {% endif %}></center>
+                                            </td>
+                                            <td data-toggle="tooltip" data-placement="right" title="Activar/Desactivar Comentario en el Post">
+                                                <center><input type="checkbox" data-value="{{ post.id }}"
+                                                               class="js-small-comentario" {% if post.allowcomments %} checked {% endif %}></center>
+                                            </td>
+                                            <td data-toggle="tooltip" data-placement="right" title="Activar/Desactivar Fijar Post en la página principal del Blog">
+                                                <center><input type="checkbox" data-value="{{ post.id }}"
+                                                               class="js-small-fijar" {% if post.fijarpost %} checked {% endif %}></center>
+                                            </td>
+                                            <td>
+                                                <a class="dropdown-toggle addon-btn" data-toggle="dropdown" aria-expanded="true">
+                                                    <i class="icofont icofont-ui-settings"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <button class="dropdown-item mostrar" value="{{ path('post_single', {'slug': post.slug}) }}"><i class="icofont icofont-eye-alt"></i>Mostrar</button>
+                                                    <button class="dropdown-item editar" value="{{ path('post_edit', {'id': post.id}) }}" title="Editar"><i class="icofont icofont-ui-edit"></i>Editar</button>
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                    <button class="dropdown-item eliminar" value="{{ path('delete', {'id': post.id}) }}"><i class="icofont icofont-trash"></i>Eliminar</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="navigation">
+                            <ul class="pagination justify-content-lg-end m-0">
+                                {{ knp_pagination_render(pagination) }}
+{#                                {{ knp_pagination_render(pagination, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}#}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md-modal md-effect-1" id="modal-19">
+        <div class="md-content md-content-white">
+            <h3><i class="icofont icofont-warning"></i> Advertencia</h3>
+            <div>
+                <h4 id="mensaje"></h4>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <button class="btn btn-primary aceptar">Aceptar</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn btn-danger cancelar" onclick="$('#modal-19').removeClass('md-show')">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="md-overlay"></div>
+{% endblock %}
+{% block javascript %}
+    <!-- task board js -->
+    <script type="text/javascript" src="{{ asset('page/assets/pages/task-board/task-board.js') }}"></script>
+    <!-- modal efect js -->
+    <script src="{{ asset('page/modal/js/modalEffects.js') }}"></script>
+    <script src="{{ asset('page/modal/js/classie.js') }}"></script>
+    <script>
+        $(function () {
+            {% for notice_level in ['success','error','info', 'warning'] %}
+            {% set session_var = 'app_' ~ notice_level %}
+            {% if app.session.flashbag.has(session_var) %}
+            {% for flash in app.session.flashbag.get(session_var) %}
+            noty({
+                text: '{{ flash }}',
+                progressBar : true,
+                layout      : 'topRight',
+                dismissQueue: true,
+                timeout     : 5000,
+                closeWith   : ['click'],
+                theme       : 'relax',
+                type        : '{{ notice_level }}',
+                maxVisible  : 10,
+                animation   : {
+                    open  : 'animated bounceInRight',
+                    close : 'animated bounceOutRight',
+                    easing: 'swing',
+                    speed : 500
+                }
+            });
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+        });
+
+        $('.editar').on('click', function () {
+            var link = $(this).val();
+            $('#modal-19').addClass('md-show');
+            $('#mensaje').text('Estas seguro que quieres editar este Post?');
+            $('.aceptar').on('click', function () {
+                window.location = link;
+            });
+        });
+
+        $('.eliminar').on('click', function () {
+            var link = $(this).val();
+            $('#modal-19').addClass('md-show');
+            $('#mensaje').text('Estas seguro que quieres eliminar este Post?');
+            $('.aceptar').on('click', function () {
+                window.location = link;
+            });
+        });
+
+        $('.mostrar').on('click', function () {
+            window.location = $(this).val();
+        });
+
+        $(document).ready(function(){
+            var elemst = Array.prototype.slice.call(document.querySelectorAll('.js-small-fijar'));
+
+            elemst.forEach(function (html) {
+                var switchery = new Switchery(html, {color: '#4680ff', jackColor: '#fff', size: 'small'});
+                $(html).on('change', function () {
+                    $.ajax({
+                        url: '{{ path('fijar_en_portada') }}',
+                        path: 'admin_post',
+                        data: {value: html.checked, id: $(this).data('value')},
+                        success: function (res) {
+                            if (res.response === 'fijar_post') {
+                                window.location = "{{ path('admin_posts') }}";
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        }
+                    })
+                })
+            });
+        });
+
+        $(document).ready(function(){
+            var elemst = Array.prototype.slice.call(document.querySelectorAll('.js-small-icono'));
+
+            elemst.forEach(function (html) {
+                var switchery = new Switchery(html, {color: '#4680ff', jackColor: '#fff', size: 'small'});
+                $(html).on('change', function () {
+                    $.ajax({
+                        url: '{{ path('icono_en_portada') }}',
+                        path: 'admin_post',
+                        data: {value: html.checked, id: $(this).data('value')},
+                        success: function (res) {
+                            if (res.response === 'sharing_icons') {
+                                window.location = "{{ path('admin_posts') }}";
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        }
+                    })
+                })
+            });
+        });
+
+        $(document).ready(function(){
+            var elemst = Array.prototype.slice.call(document.querySelectorAll('.js-small-comentario'));
+
+            elemst.forEach(function (html) {
+                var switchery = new Switchery(html, {color: '#4680ff', jackColor: '#fff', size: 'small'});
+                $(html).on('change', function () {
+                    $.ajax({
+                        url: '{{ path('comentario_en_post') }}',
+                        path: 'admin_post',
+                        data: {value: html.checked, id: $(this).data('value')},
+                        success: function (res) {
+                            if (res.response === 'allow_comments') {
+                                window.location = "{{ path('admin_posts') }}";
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        }
+                    })
+                })
+            });
+        });
+    </script>
+{% endblock %}

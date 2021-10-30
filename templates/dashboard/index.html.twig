@@ -1,0 +1,193 @@
+{% extends 'base-dashboard.html.twig' %}
+{% block title %}Dashboard{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ asset ('dashboard/plugins/owl.carousel/dist/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset ('dashboard/plugins/owl.carousel/dist/assets/owl.theme.default.min.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="row clearfix">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="widget bg-primary">
+                <div class="widget-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="state">
+                            <h6>Posts</h6>
+                            <h2>{{ posts | length }}</h2>
+                        </div>
+                        <div class="icon">
+                            <i class="ik ik-box"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="widget bg-success">
+                <div class="widget-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="state">
+                            <h6>Comentarios</h6>
+                            <h2>{{ comments | length }}</h2>
+                        </div>
+                        <div class="icon">
+                            <i class="ik ik-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="widget bg-warning">
+                <div class="widget-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="state">
+                            <h6>Platos</h6>
+                            <h2>{{ platoss | length }}</h2>
+                        </div>
+                        <div class="icon">
+                            <i class="ik ik-inbox"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="widget bg-danger">
+                <div class="widget-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="state">
+                            <h6>Usuarios</h6>
+                            <h2>{{ users | length }}</h2>
+                        </div>
+                        <div class="icon">
+                            <i class="ik ik-users"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        {% set maxPosts = 5 %}
+        {% if posts %}
+        <div class="col-xl-4 col-md-12">
+            <div class="card bg-twitter soc-cont-card">
+                <div class="card-block">
+                    <div class="soc-slider">
+                        <div class="owl-carousel" id="gp-slider">
+                            {% set break = false %}
+                            {% for post in posts %}
+                                {% if not break %}
+                                    <div class="item">
+                                        <p>{{ post.title | excerpt(13, '...') }}</p>
+                                        <div class="num-block">
+                                            <i class="far fa-eye mr-10"></i>{{ post.viewcount | length}}
+                                        </div>
+                                        <div class="num-block">
+                                            <i class="far fa-comments mr-10"></i>{{ post.comments | length}}
+                                        </div>
+                                        {#                            <div class="num-block">#}
+                                        {#                                <a target="_blank" href="{{ path('post_single', {'slug': post.slug}) }}"><i class="far fa-eye"></i></a>#}
+                                        {#                            </div>#}
+                                        {#                            {% if loop.index == maxPosts %}#}
+                                        {#                            {% set break = true %}#}
+                                        {#                            {% if posts | length > maxPosts %}#}
+                                        {#                                <a href="#"><b>&raquo; Ver todos los posts</b></a>#}
+                                        {#                                <br>#}
+                                        {#                            {% endif %}#}
+                                        {#                            {% endif %}#}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <i class="fab fa-wordpress soc-cont-icon"></i>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if comments %} 
+        <div class="col-xl-4 col-md-6">
+            <div class="card bg-facebook soc-cont-card">
+                <div class="card-block">
+                    <div class="soc-slider">
+                        <div class="owl-carousel" id="fb-slider">
+                            {% if comments %}
+                                {% set break = false %}
+                                {% for comment in comments %}
+                                    {% if not break %}
+                                        <div class="item">
+                                            <p>{{ comment.user.username }} ha comentado {{ comment.comment | excerpt(8, '...') }}</p>
+                                            {#{{ comment.dateCreated | time_ago }}#}
+                                            <div class="num-block">
+                                                <i class="far fa-comments mr-10"></i>{{ comment.commentMarks | length}}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <p>No hay comentarios</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <i class="fab fa-blackberry soc-cont-icon"></i>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if users %} 
+        <div class="col-xl-4 col-md-6">
+            <div class="card bg-google soc-cont-card">
+                <div class="card-block">
+                    <div class="soc-slider">
+                        <div class="owl-carousel" id="tw-slider">
+                            {% set break = false %}
+                            {% for user in users  %}
+                                {% if not break %}
+                                    <div class="item">
+                                        <p>{{ user.nombrecompleto }}</p>
+                                        <p>{{ user.email }}</p>
+                                        <div class="num-block">
+                                            <i class="far fa-file mr-10"></i>{{ user.posts | length}}
+                                        </div>
+                                        <div class="num-block">
+                                            <i class="far fa-comments mr-10"></i>{{ user.comments | length}}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <i class="ik ik-users soc-cont-icon"></i>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+{#                    <div class="col-xl-4 col-md-6">#}
+{#                        <div class="info-box">#}
+{#                            <h1>{{ comments | length}} <small>Comentarios</small></h1>#}
+{#                            <hr>#}
+{#                            <h4 class="text-dark">Comentarios Recientes</h4>#}
+{#                            <hr>#}
+{#                            {% if comments %}#}
+{#                                {% set break = false %}#}
+{#                                {% for comment in comments %}#}
+{#                                    {% if not break %}#}
+{#                                        {{ comment.user.username }} <i>ha comentado</i> <a target="_blank" href="{{ path('post_single', {'slug': comment.post.slug}) }}#comments">{{ comment.post.title | excerpt(10, '...') }}</a><br>#}
+{#                                        {{ comment.dateCreated | time_ago }} <br><br>#}
+
+{#                                    {% endif %}#}
+{#                                {% endfor %}#}
+{#                            {% else %}#}
+{#                                <p>No hay comentarios</p>#}
+{#                            {% endif %}#}
+{#                        </div>#}
+{#                    </div>#}
+{% endblock %}
+{% block javascript %}
+    <script src="{{ asset ('dashboard/plugins/owl.carousel/dist/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset ('dashboard/js/widget-statistic.js') }}"></script>
+{% endblock %}

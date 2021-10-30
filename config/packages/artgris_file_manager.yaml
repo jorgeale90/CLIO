@@ -1,0 +1,22 @@
+artgris_file_manager:
+  conf:
+    default:
+      dir: "../public/uploads/"
+    private_user:
+      dir: "../public/uploads/images/user/"
+      type: image
+    private_cv:
+      dir: "../public/uploads/cv/user/"
+      type: file
+    private_proyectogen:
+      dir: "../public/uploads/document/proyectogeneral/"
+      type: file
+    private_cartaautorizacion:
+      dir: "../public/uploads/document/cartaautorizacion/"
+      type: file
+    private_sitio:
+      dir: "../public/uploads/images/sitio/"
+      type: image
+    private_post:
+      dir: "../public/uploads/images/post/"
+      type: image

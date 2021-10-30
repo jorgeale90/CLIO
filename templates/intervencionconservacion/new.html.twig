@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Añadir Intervención Conservación{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('page/bower_components/validation-engine/css/validationEngine.jquery.css') }}" type="text/css"/>
+{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Objeto</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Objet</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Listado Intervención Conservación</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Añadir Intervención Conservación</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-sm-12">
+        <!-- Basic Inputs Validation start -->
+        <div class="card">
+            <div class="card-header">
+                <h5>Añadir Intervención Conservación</h5>
+            </div>
+            <div class="card-block">
+            {{ include('intervencionconservacion/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script src="{{ asset('page/bower_components/validation-engine/js/languages/jquery.validationEngine-es.js') }}"></script>
+    <script src="{{ asset('page/bower_components/validation-engine/js/jquery.validationEngine.min.js') }}" type="text/javascript"></script>
+    <script>
+        //Select Dependiente para seleccion Objeto y Sitio
+        $('#{{ form.sitiopatrimonial.vars.id }}').on('change', function (e) {
+            var data = {
+                sitiopatrimonial_id: $(this).val()
+            };
+            $('#{{ form.fichaobjeto.vars.id }}').html('<option>Cargando...</option>');
+            $('#{{ form.fichaobjeto.vars.id }}').attr('disabled', 'disabled');
+            $.ajax({
+                type: 'POST',
+                url: '{{ path('objetos_x_sitios') }}',
+                async: true,
+                data: data,
+                success: function (response) {
+                    if (response.length != 0){
+                        var option = '<option>Seleccione el Objeto.</option>';
+                        $.each(response, function (i, fichaobjeto) {
+                            option += '<option value='+ fichaobjeto.id +'>'+ fichaobjeto.nombreobjeto +'</option>'
+                        });
+                        $('#{{ form.fichaobjeto.vars.id }}').html(option);
+                        $('#{{ form.fichaobjeto.vars.id }}').removeAttr('disabled');
+                    } else {
+                        var option1 = '<option>No hay Objetos en este Sitio Patrimonial.</option>';
+                        $('#{{ form.fichaobjeto.vars.id }}').html(option1);
+                        $('#{{ form.fichaobjeto.vars.id }}').attr('disabled', 'disabled');
+                        noty({
+                            text: 'No se encontraron Objetos en este Sitio Patrimonial seleccionado.',
+                            layout: 'topRight', type: 'error', timeout: 5000,
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $('form[name="{{ form.vars.id }}"]').validationEngine('attach', {promptPosition: "bottomLeft"});
+            $('#send-form').on('click', function () {
+                let formValidated = $('form[name="{{ form.vars.id }}"]').validationEngine('validate');
+                if (!formValidated) {
+                    return false;
+                }
+            })
+        })
+
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        $(document).ready(function() {
+            $('[data-toggle="popover"]').popover({
+                html: true,
+                content: function() {
+                    return $('#primary-popover-content').html();
+                }
+            });
+        });
+    </script>
+{% endblock %}

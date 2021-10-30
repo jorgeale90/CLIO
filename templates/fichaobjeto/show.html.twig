@@ -1,0 +1,604 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Ficha Objeto Patrimonial{% endblock %}
+{% block head %}
+    <!-- Include SmartTab CSS -->
+    <link href="{{ asset('page/tab/smart_tab_all.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- owl carousel css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/owl.carousel/css/owl.carousel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/owl.carousel/css/owl.theme.default.css') }}">
+    <!-- swiper css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/swiper/css/swiper.min.css') }}">
+    <!-- light-box css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/ekko-lightbox/css/ekko-lightbox.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/bower_components/lightbox2/css/lightbox.css') }}">
+{% endblock %}
+{% block page_header %}
+    <div class="card">
+        <div class="card-block front-icon-breadcrumb row">
+            <div class="breadcrumb-header col">
+                <div class="d-inline-block">
+                    <h5>Objeto</h5>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item"><a href="#!">Objeto</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Listado Ficha Objeto Patrimonial</a>
+                        </li>
+                        <li class="breadcrumb-item active"><a href="#!">Mostrar Ficha Objeto Patrimonial</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block contenido %}
+    <div class="col-lg-3 col-md-6 default-grid-item">
+        <div class="card gallery-desc">
+            <div class="masonry-media">
+                <a class="media-middle" href="#!">
+                    <div class="owl-carousel carousel-dot owl-theme">
+                        {% for por in fich.portadaobjeto %}
+                            <img src="{{ asset('/CLIO/public/uploads/objeto/portada/' ~ por.link) }}" alt="{{ fich.nombreobjeto }}" width="200px" height="280px">
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+            <div class="card-block">
+                <h6 class="job-card-desc"><center>{{ fich.nombreobjeto }}</center></h6>
+                <h7 class="job-meta-data"><center>{{ fich.clasificacion }}</center></h7>
+                <p><h7 class="job-meta-data"><center style="color: #00AEEF">Código de la Ficha del Objeto</center></h7>
+                <h7 class="job-meta-data"><center style="color: #00AEEF">{{ fich.codigoobjeto }}</center></h7></p>
+                <div class="job-meta-data"><i class="icofont icofont-pin"></i>País: {{ fich.pais }}</div>
+                <div class="job-meta-data"><i class="icofont icofont-pin"></i>Lugar Procedencia: {{ fich.lugarprocedencia }}</div>
+                <div class="col-sm-13">
+                    <a class="btn " style="background-color:transparent" href="{{ path('fichaobjeto_edit', {'id': fich.id}) }}"><span style="color:#010d0c"><i class="icofont icofont-edit"></i></a>
+                    <a class="btn " style="background-color:transparent" href="{{ path('fichaobjeto_index') }}"><span style="color:#010d0c" ><i class="icofont icofont-list"></i></a>
+                    <a class="btn " style="background-color:transparent" href="#"><span style="color:#010d0c"><i class="icofont icofont-delete-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="col-sm-9">
+    <div class="card">
+        <div id="smarttab">
+            <ul class="nav">
+                <li>
+                    <a class="nav-link" href="#tab-1">
+                        <strong>Identificación</strong>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#tab-2">
+                        <strong>Datos Generales</strong>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#tab-3">
+                        <strong>Archivos</strong>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#tab-4">
+                        <strong>Intervención</strong>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content" style="position: relative">
+                <div id="tab-1" class="tab-pane" role="tabpanel">
+{#                    <div class="form-group row">#}
+{#                        <div class="col-sm-2">#}
+{#                            <label>{{ form_label(form.sitiopatrimonial, 'Sitio Patrimonial :') }}</label>#}
+{#                        </div>#}
+{#                        <div class="col-sm-10">#}
+{#                            {{ form_widget(form.sitiopatrimonial, { 'attr': { 'class': 'form-control js-example-basic-multiple', 'readonly':'disabled' } }) }}#}
+{#                        </div>#}
+{#                    </div>#}
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.codigoobjeto, 'Código Objeto :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.codigoobjeto, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.nombreobjeto, 'Nombre :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.nombreobjeto, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.otronombreobjeto, 'Otro Nombre :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.otronombreobjeto, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.descripcion_tecnica, 'Descripción Tecnica :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.descripcion_tecnica, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.descripcion_visual, 'Descripción Visual :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.descripcion_visual, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.marcas_visibles, 'Marcas Visibles:') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.marcas_visibles, { 'attr': { 'class': 'js-small', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.autor, 'Autor :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.autor, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.realizadopor, 'Realizado por :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.realizadopor, { 'attr': { 'class': 'form-control js-example-basic-multiple', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.fecharealizacion, 'fecha Realización :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.fecharealizacion, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.fuepropiedad, 'Fue Propiedad :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.fuepropiedad, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.pais, 'País :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.pais, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.lugar_procedencia, 'Lugar Procedencia :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.lugar_procedencia, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.propiedad_actual, 'Propiedad Actual :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.propiedad_actual, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.hecho_historico_relacionado, 'Hecho Histórico Relacionado :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.hecho_historico_relacionado, { 'attr': { 'class': 'form-control', 'readonly':'disabled'} }) }}
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-2" class="tab-pane" role="tabpanel">
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.altura, 'Altura :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.altura, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.ancho, 'Ancho :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.ancho, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.largo, 'Largo :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.largo, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.grosor, 'Grosor :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.grosor, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.diametro, 'Diametro :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.diametro, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.peso, 'Peso :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.peso, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.clasificacion, 'Clasificación :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.clasificacion, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.tipomaterial, 'Tipo Material :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.tipomaterial, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.subtipomaterial, 'SubTipo de Material :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.subtipomaterial, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.categoriaobjeto, 'Categoría del Objeto :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.categoriaobjeto, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.usofuncion, 'Uso - Función :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.usofuncion, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.datacion, 'Datación :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.datacion, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.integridad, 'Integridad :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.integridad, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.estado_conservacion, 'Estado Conservación :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.estado_conservacion, { 'attr': { 'class': 'form-control js-example-basic-single', 'readonly':'disabled', 'disabled':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.expuesto_publico, 'Expuesto al Público :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.expuesto_publico, { 'attr': { 'class': 'js-small', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label>{{ form_label(form.lugares_exposicion, 'Lugares de Exposición :') }}</label>
+                        </div>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.lugares_exposicion, { 'attr': { 'class': 'form-control', 'readonly':'disabled' } }) }}
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-3" class="tab-pane" role="tabpanel">
+                    <div class="card-block accordion-block">
+                        <div class="accordion-box" id="single-open">
+                            <a class="accordion-msg">Fotografías +</a>
+                            <div class="row users-card">
+                                {% for fotoobj in fich.fotografiaobjeto %}
+                                    <div class="col-lg-6 col-xl-3 col-md-6">
+                                        <div class="card rounded-card user-card">
+                                            <div class="card-block">
+                                                <div class="img-hover">
+                                                    <a href="{{ asset('/CLIO/public/uploads/objeto/fotografias/' ~ fotoobj.link) }}" data-lightbox="{{ fotoobj.link }}">
+                                                        <img class="img-radius" src="{{ asset('/CLIO/public/uploads/objeto/fotografias/' ~ fotoobj.link) }}" width="100px" height="100px">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <a class="accordion-msg">Dibujos +</a>
+                            <div class="row users-card">
+                                {% for foto in fich.dibujoobjeto %}
+                                    <div class="col-lg-6 col-xl-3 col-md-6">
+                                        <div class="card rounded-card user-card">
+                                            <div class="card-block">
+                                                <div class="img-hover">
+                                                    <a href="{{ asset('/CLIO/public/uploads/objeto/dibujos/' ~ foto.link) }}" data-lightbox="{{ foto.link }}">
+                                                        <img class="img-radius" src="{{ asset('/CLIO/public/uploads/objeto/dibujos/' ~ foto.link) }}" width="100px" height="100px">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <a class="accordion-msg">Fotogrametría +</a>
+                            <div class="row users-card">
+                                {% for foto in fich.fotogrametriaobjeto %}
+                                    <div class="col-lg-6 col-xl-3 col-md-6">
+                                        <div class="card rounded-card user-card">
+                                            <div class="card-block">
+                                                <div class="img-hover">
+                                                    <a href="{{ asset('/CLIO/public/uploads/objeto/fotogrametrias/' ~ foto.link) }}" data-lightbox="{{ foto.link }}">
+                                                        <img class="img-radius" src="{{ asset('/CLIO/public/uploads/objeto/fotogrametrias/' ~ foto.link) }}" width="100px" height="100px">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <a class="accordion-msg">Modelo 3D +</a>
+                            <div class="row users-card">
+                                {% for foto in fich.modelo3dobjeto %}
+                                    <div class="col-lg-6 col-xl-3 col-md-6">
+                                        <div class="card rounded-card user-card">
+                                            <div class="card-block">
+                                                <div class="img-hover">
+                                                    <a href="{{ asset('/CLIO/public/uploads/objeto/modelo3d/' ~ foto.link) }}" data-lightbox="{{ foto.link }}">
+                                                        <img class="img-radius" src="{{ asset('/CLIO/public/uploads/objeto/modelo3d/' ~ foto.link) }}" width="100px" height="100px">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <a class="accordion-msg">Bibliografía +</a>
+                            <div class="row users-card">
+                                {% for foto in fich.bibliografiaobjeto %}
+                                    <div class="col-lg-6 col-xl-3 col-md-6">
+                                        <div class="card rounded-card user-card">
+                                            <div class="card-block">
+                                                <div class="img-hover">
+                                                    <a href="{{ asset('/CLIO/public/uploads/objeto/bibliografia/' ~ foto.link) }}" data-lightbox="{{ foto.link }}">
+                                                        <img class="img-radius" src="{{ asset('/CLIO/public/uploads/objeto/bibliografia/' ~ foto.link) }}" width="100px" height="100px">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <a class="accordion-msg">Publicaciones +</a>
+                            <div class="row users-card">
+                                {% for foto in fich.publicacionesobjeto %}
+                                    <div class="col-lg-6 col-xl-3 col-md-6">
+                                        <div class="card rounded-card user-card">
+                                            <div class="card-block">
+                                                <div class="img-hover">
+                                                    <a href="{{ asset('/CLIO/public/uploads/objeto/publicaciones/' ~ foto.link) }}" data-lightbox="{{ foto.link }}">
+                                                        <img class="img-radius" src="{{ asset('/CLIO/public/uploads/objeto/publicaciones/' ~ foto.link) }}" width="100px" height="100px">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <a class="accordion-msg">Referencia Web +</a>
+                            <div class="row users-card">
+                                {% for foto in fich.referenciawebobjeto %}
+                                    <div class="col-lg-6 col-xl-3 col-md-6">
+                                        <div class="card rounded-card user-card">
+                                            <div class="card-block">
+                                                <div class="img-hover">
+                                                    <a href="{{ asset('/CLIO/public/uploads/objeto/referenciasweb/' ~ foto.link) }}" data-lightbox="{{ foto.link }}">
+                                                        <img class="img-radius" src="{{ asset('/CLIO/public/uploads/objeto/referenciasweb/' ~ foto.link) }}" width="100px" height="100px">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-4" class="tab-pane" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Cód. Interv.</th>
+                                <th>Nombre</th>
+                                <th>Fecha Inicio</th>
+                                <th>Fecha Fin</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for e in objetointerv %}
+                                <tr>
+                                    <td>{{ e.cod_intervencion }}</td>
+                                    <td>{{ e.nombreobjeto }}</td>
+                                    <td>{{ e.fechainicio ? e.fechainicio | date('Y-m-d H:i:s') : '' }}</td>
+                                    <td>{{ e.fechafin ? e.fechafin | date('Y-m-d H:i:s') : '' }}</td>
+                                    <td>
+                                        <a href="#"><center><i class="icofont icofont-info-circle"></i></center></a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <div class="alert alert-warning background-warning">
+                                    El Objeto no tiene Intervenciones de Conservación !!!
+                                </div>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascript %}
+    <script src="{{ asset('page/tab/jquery.smartTab.min.js') }}" type="text/javascript"></script>
+    <!-- owl carousel 2 js -->
+    <script type="text/javascript" src="{{ asset('page/bower_components/owl.carousel/js/owl.carousel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('page/assets/js/owl-custom.js') }}"></script>
+    <!-- swiper js -->
+    <script type="text/javascript" src="{{ asset('page/bower_components/swiper/js/swiper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('page/assets/js/swiper-custom.js') }}"></script>
+    <!-- Accordion js -->
+    <script type="text/javascript" src="{{ asset('page/assets/pages/accordion/accordion.js') }}"></script>
+    <!-- light-box js -->
+    <script type="text/javascript" src="{{ asset('page/bower_components/ekko-lightbox/js/ekko-lightbox.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('page/bower_components/lightbox2/js/lightbox.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            // SmartTab initialize
+            $('#smarttab').smartTab();
+
+
+            // Demo Button Events
+            $("#got_to_tab").on("change", function() {
+                // Go to tab
+                var tab_index = $(this).val() - 1;
+                $('#smarttab').smartTab("goToTab", tab_index);
+                return true;
+            });
+
+            $("#is_vertical").on("click", function() {
+                // Change Orientation
+                var options = {
+                  orientation: ($(this).prop("checked") == true) ? 'vertical' : 'horizontal'
+                };
+                $('#smarttab').smartTab("setOptions", options);
+                return true;
+            });
+
+            $("#is_justified").on("click", function() {
+                // Change Justify
+                var options = {
+                  justified: $(this).prop("checked")
+                };
+
+                $('#smarttab').smartTab("setOptions", options);
+                return true;
+            });
+
+            $("#animation").on("change", function() {
+                // Change theme
+                var options = {
+                  transition: {
+                      animation: $(this).val()
+                  },
+                };
+                $('#smarttab').smartTab("setOptions", options);
+                return true;
+            });
+
+            $("#theme_selector").on("change", function() {
+                // Change theme
+                var options = {
+                  theme: $(this).val()
+                };
+                $('#smarttab').smartTab("setOptions", options);
+                return true;
+            });
+
+        });
+    </script>
+{% endblock %}

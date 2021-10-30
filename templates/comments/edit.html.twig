@@ -1,0 +1,26 @@
+{{ form_start(form, {'action': path('comment_edit', {'id' : comm.id}), 'attr' : {'class' : 'form-horizontal', 'role' : 'form'}}) }}
+<div class="modal-body">
+        <div class="form-group">
+        <label>{{ form_label(form.post, 'Post :') }}</label>
+        {{ form_widget(form.post, { 'attr': { 'class': 'form-control js-example-basic-single disabled', 'readonly':'disabled'} }) }}
+    </div>
+
+    <div class="form-group">
+        <label>{{ form_label(form.comment, 'Comentario :') }}</label>
+        {{ form_widget(form.comment, { 'attr': { 'class': 'form-control', 'readonly': 'disabled' } }) }}
+    </div>
+
+    <div class="form-group">
+        <label>{{ form_label(form.state, 'Habilitar :') }}</label>
+        {{ form_widget(form.state, { 'attr': { 'class': 'form-control col-md-7 col-xs-6 js-switch'} }) }}
+
+        <label>{{ form_label(form.portada, 'Portada :') }}</label>
+        {{ form_widget(form.portada, { 'attr': { 'class': 'form-control col-md-7 col-xs-6 js-switch'} }) }}
+    </div>
+    {{ form_rest(form) }}
+</div>
+
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary mr-2">Actualizar Comentario</button>
+</div>
+{{ form_end(form) }}

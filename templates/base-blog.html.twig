@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/favicon.ico">
+    <link rel="icon" type="image/png" href="{{ asset('page/img/icono.png') }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>M'ka Blog - {% block title %} {% endblock %}</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'/>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Source+Sans+Pro:400,600,700" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Main CSS -->
+    <link href="{{ asset('blog/assets/css/main.css') }}" rel="stylesheet"/>
+    <!-- Notifications -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('page/noty/animate/animate.css') }}"/>
+    <style>
+        /* Style The Dropdown Button */
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 9px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #f1f1f1}
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+    {% block head %}
+
+    {% endblock %}
+    {% block stylesheets %}
+
+    {% endblock %}
+</head>
+<body>
+<!--------------------------------------
+NAVBAR
+--------------------------------------->
+{% block top_nav %}
+    {{ include ('block/blog/top_nav.html.twig') }}
+{% endblock %}
+<!-- End Navbar -->
+<!--------------------------------------
+HEADER
+--------------------------------------->
+{% block header %}
+    {{ include ('block/blog/header.html.twig') }}
+{% endblock %}
+<!-- End Header -->
+<!--------------------------------------
+MAIN
+--------------------------------------->
+{% block body %}
+
+{% endblock %}
+<!--------------------------------------
+FOOTER
+--------------------------------------->
+{% block footer %}
+    {{ include ('block/blog/footer.html.twig') }}
+{% endblock %}
+<!--------------------------------------
+JAVASCRIPTS
+--------------------------------------->
+<script src="{{ asset('blog/assets/js/vendor/jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('blog/assets/js/vendor/popper.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('blog/assets/js/vendor/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('blog/assets/js/functions.js') }}" type="text/javascript"></script>
+<!-- jQuery Notification Plugin 2.2.7 -->
+<script type="text/javascript" src="{{ asset('page/noty/animate/jquery.noty.packaged.js') }}"></script>
+{% block javascripts %}
+
+{% endblock %}
+</body>
+</html>
