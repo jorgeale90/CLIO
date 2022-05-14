@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand" href="{{ path('post_list') }}">
 {#            <img src="{{ asset('page/img/logo.png') }}" style="max-height: 60px; max-width: 120px"> #}
-            <strong>M'ka</strong>
+            <strong>CLIO</strong>
         </a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
                     <button class="dropbtn">{{ app.user.nombrecompleto }}</button>
                     <div class="dropdown-content">
                         {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MODERATOR') %}
-                            <a href="{{ path('dashboard') }}">Dashboard</a>
+                            <a href="{{ path('app_home') }}">Dashboard</a>
                             <a href="{{ path('admin_posts') }}">Posts</a>
                             <a href="{{ path('comments') }}">Comentarios</a>
                         {% endif %}
