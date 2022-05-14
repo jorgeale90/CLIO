@@ -10,12 +10,12 @@
                 <ul class="pcoded-submenu">
                     {% if is_granted('ROLE_ADMIN')%}
                         <li class="#">
-                            <a href="#" target="_blank">
+                            <a href="{{ path('dh_auditor_list_audits') }}" target="_blank">
                                 <span class="pcoded-mtext">Auditoría</span>
                             </a>
                         </li>
                     <li class="#">
-                        <a href="#">
+                        <a href="{{ path('file_manager', {'conf': 'public' }) }}">
                             <span class="pcoded-mtext">Medios</span>
                         </a>
                     </li>

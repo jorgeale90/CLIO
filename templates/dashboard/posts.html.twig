@@ -80,7 +80,7 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h5>Listado Post</h5>
+                <h5><strong>Listado</strong> de Posts</h5>
                 <div class="dropdown-inverse dropdown open f-right">
                     <button class="btn dropdown-toggle waves-effect waves-light" style="background-color:transparent" type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="icofont icofont-edit-alt"></i>Exportar</button>
                     <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -97,19 +97,8 @@
                     </button>
                 </a>
             </div>
-            <div class="card-block tab-icon">
-                <ul class="nav nav-tabs md-tabs " role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#home7" role="tab"><i class="icofont icofont-building-alt"></i>Listado de Posts</a>
-                        <div class="slide"></div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#profile7" role="tab"><i class="icofont icofont-plus "></i>Nuevos Posts <span class="pcoded-badge label label-success">3</span></a>
-                        <div class="slide"></div>
-                    </li>
-                </ul>
+            <div class="card-block">
                 <div class="tab-content card-block">
-                    <div class="tab-pane active" id="home7" role="tabpanel">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -167,13 +156,11 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
 
                     <div class="card-footer">
                         <div class="navigation">
                             <ul class="pagination justify-content-lg-end m-0">
                                 {{ knp_pagination_render(pagination) }}
-{#                                {{ knp_pagination_render(pagination, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}#}
                             </ul>
                         </div>
                     </div>

@@ -4,5 +4,16 @@ dh_auditor:
     enabled: true
     providers:
         doctrine:
+            viewer:   true
             table_prefix: null
             table_suffix: '_audit'
+
+#dh_auditor:
+#    enabled: true
+#    providers:
+#        doctrine:
+#            #      entities:
+#            #        App\Entity\Author: ~
+#            viewer: true
+#            table_prefix: ~
+#            table_suffix: '_audit'
